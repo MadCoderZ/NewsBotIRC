@@ -1,4 +1,4 @@
-package NewsBotIRC;
+package com.github.NewsBotIRC;
 
 import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.FeedException;

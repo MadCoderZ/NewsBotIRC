@@ -1,4 +1,4 @@
-package NewsBotIRC;
+package com.github.NewsBotIRC;
 
 import java.io.IOException;
 import java.net.MalformedURLException;

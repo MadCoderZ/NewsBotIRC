@@ -1,4 +1,4 @@
-package NewsBotIRC;
+package com.github.NewsBotIRC;
 
 import org.apache.commons.configuration.CompositeConfiguration;
 import org.apache.commons.configuration.ConfigurationException;

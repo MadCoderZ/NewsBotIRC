@@ -1,4 +1,4 @@
-package NewsBotIRC;
+package com.github.NewsBotIRC;
 
 public class NewsBot
 {

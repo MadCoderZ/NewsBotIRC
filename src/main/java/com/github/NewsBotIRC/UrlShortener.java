@@ -1,4 +1,4 @@
-package NewsBotIRC;
+package com.github.NewsBotIRC;
 
 import java.io.BufferedReader;
 import java.io.IOException;

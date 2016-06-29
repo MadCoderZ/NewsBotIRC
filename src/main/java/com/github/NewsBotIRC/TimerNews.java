@@ -1,4 +1,4 @@
-package NewsBotIRC;
+package com.github.NewsBotIRC;
 
 import java.util.Timer;
 import java.util.TimerTask;

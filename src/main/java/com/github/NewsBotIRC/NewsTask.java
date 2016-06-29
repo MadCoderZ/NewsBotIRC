@@ -1,4 +1,4 @@
-package NewsBotIRC;
+package com.github.NewsBotIRC;
 
 import com.rometools.rome.io.FeedException;
 import java.util.TimerTask;
