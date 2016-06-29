@@ -7,7 +7,6 @@ import org.apache.commons.configuration.PropertiesConfiguration;
 /**
  *
  * @author  Written by Gerardo Canosa
- *          gera.canosa@gmail.com
  */
 public class ConfReader {
         private boolean autoreconnect = false;
