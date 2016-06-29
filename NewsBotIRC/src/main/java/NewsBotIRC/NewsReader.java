@@ -1,4 +1,5 @@
 package NewsBotIRC;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -34,12 +35,10 @@ public class NewsReader
                 this.addFeedUrl("http://rss.slashdot.org/Slashdot/slashdot");
                 this.addFeedUrl("http://gizmodo.com/rss");
                 this.addFeedUrl("http://feeds.bbci.co.uk/news/rss.xml");
-
                 this.loadNews();
             } catch (IOException | FeedException e) {
                 System.out.println("NewsReader() Exception: " + e.getMessage());
             }
-
 	}
 
 	public boolean addFeedUrl(String newUrl) throws MalformedURLException

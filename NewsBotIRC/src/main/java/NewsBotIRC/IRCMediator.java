@@ -17,7 +17,6 @@ import java.util.List;
  * Properties file support added by Gerardo Canosa
  */
 public class IRCMediator {
-
     private final PircBotX bot;
     private final NewsReader newsReader;
     ConfReader confReader;
