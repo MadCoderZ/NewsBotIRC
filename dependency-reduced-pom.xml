@@ -28,7 +28,7 @@
             <configuration>
               <transformers>
                 <transformer>
-                  <mainClass>com.github.NewsBotGG.NewsBot</mainClass>
+                  <mainClass>com.github.NewsBotIRC.NewsBot</mainClass>
                 </transformer>
               </transformers>
             </configuration>

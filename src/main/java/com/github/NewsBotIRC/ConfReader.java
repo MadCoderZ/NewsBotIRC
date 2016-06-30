@@ -16,6 +16,9 @@ public class ConfReader {
         private String nick = null;
         private String version = null;
         private String ircserver = null;
+        private String channel = null;
+
+        private CompositeConfiguration config = null;
 
     ConfReader() throws ConfigurationException
     {
@@ -35,7 +38,7 @@ public class ConfReader {
 
     public boolean isAutoreconnect()
     {
-        return autoreconnect;
+        return this.autoreconnect;
     }
 
     public void setAutoreconnect(boolean autoreconnect)
@@ -45,7 +48,7 @@ public class ConfReader {
 
     public int getReconnectattempts()
     {
-        return reconnectattempts;
+        return this.reconnectattempts;
     }
 
     public void setReconnectattempts(int reconnectattempts)
@@ -55,7 +58,7 @@ public class ConfReader {
 
     public int getDelaybetweenentries()
     {
-        return delaybetweenentries;
+        return this.delaybetweenentries;
     }
 
     public void setDelaybetweenentries(int delaybetweenentries)
@@ -65,7 +68,7 @@ public class ConfReader {
 
     public String getRealname()
     {
-        return realname;
+        return this.realname;
     }
 
     public void setRealname(String realname)
@@ -75,7 +78,7 @@ public class ConfReader {
 
     public String getNick()
     {
-        return nick;
+        return this.nick;
     }
 
     public void setNick(String nick)
@@ -85,7 +88,7 @@ public class ConfReader {
 
     public String getVersion()
     {
-        return version;
+        return this.version;
     }
 
     public void setVersion(String version)
@@ -95,7 +98,7 @@ public class ConfReader {
 
     public String getIrcserver()
     {
-        return ircserver;
+        return this.ircserver;
     }
 
     public void setIrcserver(String ircserver)
@@ -105,7 +108,7 @@ public class ConfReader {
 
     public String getChannel()
     {
-        return channel;
+        return this.channel;
     }
 
     public void setChannel(String channel)
@@ -115,14 +118,11 @@ public class ConfReader {
 
     public CompositeConfiguration getConfig()
     {
-        return config;
+        return this.config;
     }
 
     public void setConfig(CompositeConfiguration config)
     {
         this.config = config;
     }
-        private String channel = null;
-
-        private CompositeConfiguration config = null;
 }

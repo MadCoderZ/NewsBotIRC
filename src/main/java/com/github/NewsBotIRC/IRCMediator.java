@@ -11,6 +11,9 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.apache.commons.configuration.ConfigurationException;
 
 /**
  * Created by Geronimo on 13/6/16.
@@ -19,19 +22,26 @@ import java.util.List;
 public class IRCMediator {
     private final PircBotX bot;
     private final NewsReader newsReader;
-    ConfReader confReader;
+    private ConfReader confReader;
 
     public IRCMediator()
     {
+        try {
+            this.confReader = new ConfReader();
+        } catch (ConfigurationException ex) {
+            Logger.getLogger(IRCMediator.class.getName()).log(Level.SEVERE,
+                    null, ex);
+        }
+        
         Configuration configuration = new Configuration.Builder()
-            .setAutoReconnect(confReader.isAutoreconnect())
-            .setAutoReconnectAttempts(confReader.getReconnectattempts())
-            .setAutoReconnectDelay(confReader.getDelaybetweenentries())
-            .setRealName(confReader.getRealname())
-            .setName(confReader.getNick())
-            .addServer(confReader.getIrcserver())
-            .addAutoJoinChannel("#" + confReader.getChannel())
-            .setVersion(confReader.getVersion())
+            .setAutoReconnect(this.confReader.isAutoreconnect())
+            .setAutoReconnectAttempts(this.confReader.getReconnectattempts())
+            .setAutoReconnectDelay(this.confReader.getDelaybetweenentries())
+            .setRealName(this.confReader.getRealname())
+            .setName(this.confReader.getNick())
+            .addServer(this.confReader.getIrcserver())
+            .addAutoJoinChannel("#" + this.confReader.getChannel())
+            .setVersion(this.confReader.getVersion())
             .addListener( new IRCListener(this) )
             .buildConfiguration();
 
