@@ -6,6 +6,7 @@ import org.pircbotx.Channel;
 import org.pircbotx.Configuration;
 import org.pircbotx.PircBotX;
 import org.pircbotx.exception.IrcException;
+import org.pircbotx.Colors;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -32,7 +33,7 @@ public class IRCMediator {
             Logger.getLogger(IRCMediator.class.getName()).log(Level.SEVERE,
                     null, ex);
         }
-        
+
         Configuration configuration = new Configuration.Builder()
             .setAutoReconnect(this.confReader.isAutoreconnect())
             .setAutoReconnectAttempts(this.confReader.getReconnectattempts())

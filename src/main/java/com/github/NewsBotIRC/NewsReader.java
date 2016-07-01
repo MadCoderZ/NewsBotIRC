@@ -10,6 +10,7 @@ import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.FeedException;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
+import org.pircbotx.Colors;
 
 public class NewsReader
 {
@@ -191,6 +192,6 @@ public class NewsReader
         String domain = entry.getLink().replaceFirst(".*https?://([\\w.-]+)/.*", "<$1>");
         String link = UrlShortener.shortenUrl(entry.getLink());
 
-        this.mediator.showMessage("\"" + entry.getTitle() + "\" " + domain + " <" + link + ">");
+        this.mediator.showMessage("\"" + Colors.DARK_GRAY + entry.getTitle() + Colors.NORMAL + "\" " + Colors.BOLD + domain + Colors.NORMAL + " <" + link + ">");
     }
 }
