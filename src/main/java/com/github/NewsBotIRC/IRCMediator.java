@@ -40,6 +40,8 @@ public class IRCMediator {
             .setAutoReconnectDelay(this.confReader.getDelaybetweenentries())
             .setRealName(this.confReader.getRealname())
             .setName(this.confReader.getNick())
+            .setLogin(this.confReader.getLogin())
+            .setAutoNickChange(true)
             .addServer(this.confReader.getIrcserver())
             .addAutoJoinChannel("#" + this.confReader.getChannel())
             .setVersion(this.confReader.getVersion())

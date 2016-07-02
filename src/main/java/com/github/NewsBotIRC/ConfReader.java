@@ -14,6 +14,7 @@ public class ConfReader {
         private int delaybetweenentries;
         private String realname = null;
         private String nick = null;
+        private String login = null;
         private String version = null;
         private String ircserver = null;
         private String channel = null;
@@ -31,6 +32,7 @@ public class ConfReader {
         this.delaybetweenentries = config.getInt("bot.delaybetweenentries");
         this.realname = config.getString("bot.realname");
         this.nick = config.getString("bot.nick");
+        this.login = config.getString("bot.login");
         this.version = config.getString("bot.version");
         this.ircserver = config.getString("bot.ircserver");
         this.channel = config.getString("bot.channel");
@@ -124,5 +126,15 @@ public class ConfReader {
     public void setConfig(CompositeConfiguration config)
     {
         this.config = config;
+    }
+
+    public String getLogin()
+    {
+        return this.login;
+    }
+
+    public void setLogin(String login)
+    {
+        this.login = login;
     }
 }
