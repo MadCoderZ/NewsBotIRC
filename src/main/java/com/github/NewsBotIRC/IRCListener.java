@@ -22,9 +22,9 @@ public class IRCListener extends ListenerAdapter
     @Override
     public void onGenericMessage(GenericMessageEvent event)
     {
-        if (event.getMessage().startsWith("?version")) {
-            event.respond("NewsBot v0.1 by Gerardo Canosa and Geronimo Poppino!");
-        } else if (event.getMessage().startsWith("?list")) {
+        if (event.getMessage().startsWith("!version")) {
+            event.respond(ConfReader.getInstance().getVersion());
+        } else if (event.getMessage().startsWith("!list")) {
             try {
                 this.mediator.showMessage("--> BEGIN: My Feeds Are...");
                 this.mediator.listFeeds();
@@ -32,13 +32,13 @@ public class IRCListener extends ListenerAdapter
             } catch (IOException | FeedException e) {
                 System.out.println(e.getMessage());
             }
-        } else if (event.getMessage().startsWith("?add")) {
+        } else if (event.getMessage().startsWith("!add")) {
             try {
                 this.mediator.addFeed( event.getMessage().substring( event.getMessage().indexOf("http") ) );
             } catch (MalformedURLException e) {
                 System.out.println(e.getMessage());
             }
-        } else if (event.getMessage().startsWith("?remove")) {
+        } else if (event.getMessage().startsWith("!remove")) {
             System.out.println( event.getMessage().substring( event.getMessage().indexOf("http") ) );
             this.mediator.removeFeed( event.getMessage().substring( event.getMessage().indexOf("http") ) );
         }
