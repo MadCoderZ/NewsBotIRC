@@ -14,12 +14,12 @@ import org.pircbotx.Colors;
 
 public class NewsReader
 {
-	private IRCMediator mediator;
-	private Set<String> oldLinks;
+        private IRCMediator mediator;
+        private Set<String> oldLinks;
         private List<URL> feeds;
 
-	NewsReader(IRCMediator mediator)
-	{
+        NewsReader(IRCMediator mediator)
+        {
             this.mediator = mediator;
             this.oldLinks = new HashSet<>();
             this.feeds = new ArrayList<>();
@@ -40,7 +40,7 @@ public class NewsReader
             } catch (IOException | FeedException e) {
                 System.out.println("NewsReader() Exception: " + e.getMessage());
             }
-	}
+        }
         
 	public boolean addFeedUrl(String newUrl) throws MalformedURLException
 	{
@@ -143,15 +143,15 @@ public class NewsReader
 
     private void showLinks(String msg, Set<String> s)
     {
-        for (String link : s) {
+        s.forEach((link) -> {
             System.out.println(msg + " -> " + link + " | hash -> " + link.hashCode());
-        }
+            });
     }
 
     public void readNews() throws FeedException, InterruptedException
     {
         System.out.println("readNews(): checking for updates...");
-	try {
+        try {
             List<SyndEntry> newEntries = this.getNewEntries();
             Set<String> newLinks = this.getLinks(newEntries);
 

@@ -5,8 +5,8 @@ package com.github.NewsBotIRC;
  */
 public class NewsBot
 {
-	public static void main(String[] args)
-	{
+        public static void main(String[] args)
+        {
             new IRCMediator().start();
-	}
+        }
 }

@@ -8,17 +8,17 @@ import java.util.TimerTask;
  */
 public class TimerNews
 {
-	private Timer timer;
-	private int seconds;
+        private final Timer timer;
+        private final int seconds;
 
-	public TimerNews(int seconds)
-	{
-		this.seconds = seconds;
-		timer = new Timer();
-	}
+        public TimerNews(int seconds)
+        {
+            this.seconds = seconds;
+            timer = new Timer();
+        }
 
-	public void addTask(TimerTask task)
-	{
-		this.timer.schedule(task, this.seconds * 1000, this.seconds * 1000);
-	}
+        public void addTask(TimerTask task)
+        {
+            this.timer.schedule(task, this.seconds * 1000, this.seconds * 1000);
+        }
 }
