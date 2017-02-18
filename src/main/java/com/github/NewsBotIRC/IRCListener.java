@@ -39,8 +39,19 @@ public class IRCListener extends ListenerAdapter
                 System.out.println(e.getMessage());
             }
         } else if (event.getMessage().startsWith("!remove")) {
-            System.out.println( event.getMessage().substring( event.getMessage().indexOf("http") ) );
-            this.mediator.removeFeed( event.getMessage().substring( event.getMessage().indexOf("http") ) );
+            int index = -1;
+            try {
+                index = Integer.parseInt( event.getMessage().substring( event.getMessage().indexOf(" ") + 1) );
+            } catch (NumberFormatException e) {
+                event.respond("ERROR: could not remove feed!");
+                return;
+            }
+
+            if (this.mediator.removeFeed(index)) {
+                event.respond("Success!");
+            } else {
+                event.respond("ERROR: could not remove feed!");
+            }
         } else if (event.getMessage().startsWith("!uptime")) {
             event.respond(new Uptime().getUptime());
         }
