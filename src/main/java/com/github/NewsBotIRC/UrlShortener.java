@@ -6,8 +6,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 /**
  * Created by Geronimo on 11/6/16.
@@ -20,15 +18,14 @@ public class UrlShortener {
         try {
             String encoded = URLEncoder.encode(myUrl, "UTF-8");
 
-            URL url = new URL("http://qurl.org/api/url?url=" + encoded);
+            URL url = new URL("https://tinyurl.com/api-create.php?url=" + encoded);
             HttpURLConnection http = (HttpURLConnection) url.openConnection();
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(http.getInputStream()));
 
-            JSONObject json = new JSONObject( reader.readLine() );
-            shortenedUrl = json.optString("url");
+            shortenedUrl = reader.readLine();
 
-        } catch (IOException | JSONException e) {
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
         return shortenedUrl;
