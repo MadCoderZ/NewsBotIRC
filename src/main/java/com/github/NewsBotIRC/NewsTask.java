@@ -4,7 +4,7 @@ import com.rometools.rome.io.FeedException;
 import java.util.TimerTask;
 
 /**
- * Created by Geronimo Poppino on 11/6/16.
+ * Created by Geronimo Poppino on 11/6/16
  */
 public class NewsTask extends TimerTask
 {

@@ -41,7 +41,7 @@ public class NewsReader
                 System.out.println("NewsReader() Exception: " + e.getMessage());
             }
 	}
-
+        
 	public boolean addFeedUrl(String newUrl) throws MalformedURLException
 	{
             SyndFeedInput input = new SyndFeedInput();

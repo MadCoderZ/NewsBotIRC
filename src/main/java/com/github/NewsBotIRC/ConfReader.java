@@ -18,8 +18,8 @@ public class ConfReader {
         private String version = null;
         private String ircserver = null;
         private String channel = null;
-        private int pollfrequency;
-        private int port;
+        private final int pollfrequency;
+        private final int port;
         
         private CompositeConfiguration config = null;
 

@@ -17,7 +17,7 @@ import org.apache.commons.configuration.ConfigurationException;
 
 /**
  * Created by Geronimo on 13/6/16.
- * Properties file support added by Gerardo Canosa
+ * Properties file support added by Gerardo Canosa.
  */
 public class IRCMediator {
     private final PircBotX bot;

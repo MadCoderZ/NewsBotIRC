@@ -8,7 +8,7 @@ import java.net.MalformedURLException;
 
 /*
  *  Written by Geronimo Poppino
- *  Organization and code enhancement by Gerardo Canosa
+ *  Organization and code enhancement by Gerardo Canosa.
  */
 public class IRCListener extends ListenerAdapter
 {
