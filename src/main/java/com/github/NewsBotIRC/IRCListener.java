@@ -41,6 +41,8 @@ public class IRCListener extends ListenerAdapter
         } else if (event.getMessage().startsWith("!remove")) {
             System.out.println( event.getMessage().substring( event.getMessage().indexOf("http") ) );
             this.mediator.removeFeed( event.getMessage().substring( event.getMessage().indexOf("http") ) );
+        } else if (event.getMessage().startsWith("!uptime")) {
+            event.respond(new Uptime().getUptime());
         }
     }
 }
