@@ -18,7 +18,9 @@ public class ConfReader {
         private String version = null;
         private String ircserver = null;
         private String channel = null;
-
+        private int pollfrequency;
+        private int port;
+        
         private CompositeConfiguration config = null;
 
     ConfReader() throws ConfigurationException
@@ -34,8 +36,10 @@ public class ConfReader {
         this.nick = config.getString("bot.nick");
         this.login = config.getString("bot.login");
         this.version = config.getString("bot.version");
+        this.port = config.getInt("bot.port");
         this.ircserver = config.getString("bot.ircserver");
         this.channel = config.getString("bot.channel");
+        this.pollfrequency = config.getInt("rss.pollfrequency");
     }
 
     public boolean isAutoreconnect()
@@ -136,5 +140,13 @@ public class ConfReader {
     public void setLogin(String login)
     {
         this.login = login;
+    }
+
+    public int getPollFrequency() {
+        return this.pollfrequency;
+    }
+    
+    public int getPort() {
+        return this.port;
     }
 }

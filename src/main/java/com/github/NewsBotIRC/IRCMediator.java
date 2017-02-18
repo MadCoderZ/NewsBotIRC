@@ -6,7 +6,6 @@ import org.pircbotx.Channel;
 import org.pircbotx.Configuration;
 import org.pircbotx.PircBotX;
 import org.pircbotx.exception.IrcException;
-import org.pircbotx.Colors;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -24,6 +23,7 @@ public class IRCMediator {
     private final PircBotX bot;
     private final NewsReader newsReader;
     private ConfReader confReader;
+    private final String VERSION;
 
     public IRCMediator()
     {
@@ -42,7 +42,7 @@ public class IRCMediator {
             .setName(this.confReader.getNick())
             .setLogin(this.confReader.getLogin())
             .setAutoNickChange(true)
-            .addServer(this.confReader.getIrcserver())
+            .addServer(this.confReader.getIrcserver(), this.confReader.getPort())
             .addAutoJoinChannel("#" + this.confReader.getChannel())
             .setVersion(this.confReader.getVersion())
             .addListener( new IRCListener(this) )
@@ -50,8 +50,11 @@ public class IRCMediator {
 
         this.bot = new PircBotX(configuration);
         this.newsReader = new NewsReader(this);
+        
+        // set VERSION variable
+        VERSION = this.confReader.getVersion();
 
-        new TimerNews(180).addTask( new NewsTask(this.newsReader) );
+        new TimerNews(this.confReader.getPollFrequency()).addTask( new NewsTask(this.newsReader) );
     }
 
     public void showMessage(String message)
@@ -69,9 +72,9 @@ public class IRCMediator {
     {
         List<SyndFeed> feeds = this.newsReader.getNewsFeeds();
 
-        for (SyndFeed myFeed : feeds) {
+        feeds.forEach((myFeed) -> {
             this.showMessage(myFeed.getTitleEx().getValue() + " : " + myFeed.getLink());
-        }
+        });
     }
 
     public void addFeed(String url) throws MalformedURLException
@@ -91,9 +94,12 @@ public class IRCMediator {
             this.showMessage("Success!");
         }
     }
-
+    
     public void start()
     {
+    // Print NewsBot VERSION from properties file. (KEY: bot.version)
+    System.out.println(this.VERSION);
+    
         try {
             this.bot.startBot();
         } catch (IOException | IrcException e) {
