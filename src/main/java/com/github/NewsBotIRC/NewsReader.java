@@ -55,24 +55,13 @@ public class NewsReader {
         return true;
     }
 
-    public boolean removeFeed(String url)
+    public boolean removeFeed(int index)
     {
-        SyndFeedInput input = new SyndFeedInput();
+        if (index > this.feeds.size() || index < 0 || this.feeds.isEmpty())
+            return false;
 
-        URL urlToRemove = null;
-        SyndFeed currentFeed;
-        for (URL myURL : this.feeds) {
-            try {
-                currentFeed = input.build(new XmlReader(myURL));
-            } catch (FeedException | IOException e) {
-                System.out.println(e.getMessage());
-                continue;
-            }
-            if (currentFeed.getLink().compareTo(url) == 0) {
-                urlToRemove = myURL;
-                break;
-            }
-        }
+        SyndFeedInput input = new SyndFeedInput();
+        URL urlToRemove = this.feeds.get(index);
         if (urlToRemove != null) {
             this.feeds.remove(urlToRemove);
             return true;

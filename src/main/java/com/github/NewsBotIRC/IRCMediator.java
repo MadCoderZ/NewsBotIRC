@@ -83,9 +83,11 @@ public class IRCMediator
     {
         List<SyndFeed> feeds = this.newsReader.getNewsFeeds();
 
-        feeds.forEach((myFeed) -> {
-            this.showMessage(myFeed.getTitleEx().getValue() + " : " + myFeed.getLink());
-        });
+        int i = 0;
+        for (SyndFeed myFeed : feeds) {
+            this.showMessage("[" + i + "] <> " + myFeed.getTitleEx().getValue());
+            ++i;
+        }
     }
 
     public void addFeed(String url) throws MalformedURLException
@@ -97,13 +99,9 @@ public class IRCMediator
         }
     }
 
-    public void removeFeed(String url)
+    public boolean removeFeed(int index)
     {
-        if ( !this.newsReader.removeFeed(url) ) {
-            this.showMessage("ERROR: could not remove feed!");
-        } else {
-            this.showMessage("Success!");
-        }
+        return this.newsReader.removeFeed(index);
     }
 
     public void start()
