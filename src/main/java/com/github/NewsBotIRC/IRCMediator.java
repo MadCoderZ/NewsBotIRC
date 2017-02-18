@@ -20,10 +20,10 @@ import org.pircbotx.UtilSSLSocketFactory;
  * Created by Geronimo on 13/6/16.
  * Properties file support added by Gerardo Canosa.
  */
-public class IRCMediator {
+public class IRCMediator
+{
     private final PircBotX bot;
     private final NewsReader newsReader;
-    private final String VERSION;
 
     public IRCMediator()
     {
@@ -60,11 +60,10 @@ public class IRCMediator {
             .buildConfiguration();
         }
 
+        System.out.println(ConfReader.getInstance().getVersion());
+
         this.bot = new PircBotX(configuration);
         this.newsReader = new NewsReader(this);
-
-        // set VERSION variable
-        VERSION = ConfReader.getInstance().getVersion();
 
         new TimerNews(ConfReader.getInstance().getPollFrequency()).addTask( new NewsTask(this.newsReader) );
     }
@@ -109,9 +108,6 @@ public class IRCMediator {
 
     public void start()
     {
-    // Print NewsBot VERSION from properties file. (KEY: bot.version)
-    System.out.println(this.VERSION);
-
         try {
             this.bot.startBot();
         } catch (IOException | IrcException e) {
