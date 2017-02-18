@@ -14,7 +14,7 @@ public class ConfReader
 
     private boolean autoreconnect = false;
     private int reconnectattempts;
-    private int delaybetweenentries;
+    private int reconnectDelay;
     private String realname = null;
     private String nick = null;
     private String login = null;
@@ -24,6 +24,7 @@ public class ConfReader
     private final int pollfrequency;
     private final int port;
     private String[] rssUrls = null;
+    private boolean ssl = false;
     private CompositeConfiguration config = null;
 
     protected ConfReader()
@@ -39,7 +40,7 @@ public class ConfReader
 
         this.autoreconnect = config.getBoolean("bot.autoreconnect");
         this.reconnectattempts = config.getInt("bot.reconnectattempts");
-        this.delaybetweenentries = config.getInt("bot.delaybetweenentries");
+        this.reconnectDelay = config.getInt("bot.reconnectdelay");
         this.realname = config.getString("bot.realname");
         this.nick = config.getString("bot.nick");
         this.login = config.getString("bot.login");
@@ -48,6 +49,7 @@ public class ConfReader
         this.ircserver = config.getString("bot.ircserver");
         this.channel = config.getString("bot.channel");
         this.pollfrequency = config.getInt("rss.pollfrequency");
+        this.ssl = config.getBoolean("bot.ssl");
 
         this.rssUrls = config.getStringArray("rss.feed");
     }
@@ -56,6 +58,11 @@ public class ConfReader
     {
         if (instance == null) instance = new ConfReader();
         return instance;
+    }
+
+    public boolean isSSL()
+    {
+        return this.ssl;
     }
 
     public String[] getRssUrls()
@@ -83,14 +90,14 @@ public class ConfReader
         this.reconnectattempts = reconnectattempts;
     }
 
-    public int getDelaybetweenentries()
+    public int getDelaybetweenretries()
     {
-        return this.delaybetweenentries;
+        return this.reconnectDelay;
     }
 
-    public void setDelaybetweenentries(int delaybetweenentries)
+    public void setReconnectDelay(int reconnectDelay)
     {
-        this.delaybetweenentries = delaybetweenentries;
+        this.reconnectDelay = reconnectDelay;
     }
 
     public String getRealname()

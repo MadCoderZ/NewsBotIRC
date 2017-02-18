@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.configuration.ConfigurationException;
+import org.pircbotx.UtilSSLSocketFactory;
 
 /**
  * Created by Geronimo on 13/6/16.
@@ -26,10 +27,28 @@ public class IRCMediator {
 
     public IRCMediator()
     {
-        Configuration configuration = new Configuration.Builder()
+        Configuration configuration = null;
+
+        if (ConfReader.getInstance().isSSL()) {
+            configuration = new Configuration.Builder()
             .setAutoReconnect(ConfReader.getInstance().isAutoreconnect())
             .setAutoReconnectAttempts(ConfReader.getInstance().getReconnectattempts())
-            .setAutoReconnectDelay(ConfReader.getInstance().getDelaybetweenentries())
+            .setAutoReconnectDelay(ConfReader.getInstance().getDelaybetweenretries())
+            .setRealName(ConfReader.getInstance().getRealname())
+            .setName(ConfReader.getInstance().getNick())
+            .setLogin(ConfReader.getInstance().getLogin())
+            .setAutoNickChange(true)
+            .addServer(ConfReader.getInstance().getIrcserver(), ConfReader.getInstance().getPort())
+            .setSocketFactory(new UtilSSLSocketFactory().trustAllCertificates())
+            .addAutoJoinChannel("#" + ConfReader.getInstance().getChannel())
+            .setVersion(ConfReader.getInstance().getVersion())
+            .addListener( new IRCListener(this) )
+            .buildConfiguration();
+        } else {
+            configuration = new Configuration.Builder()
+            .setAutoReconnect(ConfReader.getInstance().isAutoreconnect())
+            .setAutoReconnectAttempts(ConfReader.getInstance().getReconnectattempts())
+            .setAutoReconnectDelay(ConfReader.getInstance().getDelaybetweenretries())
             .setRealName(ConfReader.getInstance().getRealname())
             .setName(ConfReader.getInstance().getNick())
             .setLogin(ConfReader.getInstance().getLogin())
@@ -39,6 +58,7 @@ public class IRCMediator {
             .setVersion(ConfReader.getInstance().getVersion())
             .addListener( new IRCListener(this) )
             .buildConfiguration();
+        }
 
         this.bot = new PircBotX(configuration);
         this.newsReader = new NewsReader(this);
