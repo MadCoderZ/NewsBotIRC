@@ -12,53 +12,48 @@ import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
 import org.pircbotx.Colors;
 
-public class NewsReader
-{
-        private IRCMediator mediator;
-        private Set<String> oldLinks;
-        private List<URL> feeds;
+public class NewsReader {
 
-        NewsReader(IRCMediator mediator)
-        {
-            this.mediator = mediator;
-            this.oldLinks = new HashSet<>();
-            this.feeds = new ArrayList<>();
+    private IRCMediator mediator;
+    private Set<String> oldLinks;
+    private List<URL> feeds;
+    private String[] rssUrls = null;
 
-            try {
-                this.addFeedUrl("http://www.clarin.com/rss/lo-ultimo/");
-                this.addFeedUrl("http://www.nacion.com/rss/latest/?contentType=NWS");
-                this.addFeedUrl("http://rss.cnn.com/rss/edition.rss");
-                this.addFeedUrl("http://feeds.arstechnica.com/arstechnica/index");
-                this.addFeedUrl("https://www.reddit.com/r/news/.rss");
-                this.addFeedUrl("http://www.osnews.com/files/recent.xml");
-                this.addFeedUrl("http://www.cnet.com/rss/news/");
-                this.addFeedUrl("https://news.ycombinator.com/rss");
-                this.addFeedUrl("http://rss.slashdot.org/Slashdot/slashdot");
-                this.addFeedUrl("http://gizmodo.com/rss");
-                this.addFeedUrl("http://feeds.bbci.co.uk/news/rss.xml");
-                this.loadNews();
-            } catch (IOException | FeedException e) {
-                System.out.println("NewsReader() Exception: " + e.getMessage());
+    NewsReader(IRCMediator mediator) {
+        this.mediator = mediator;
+        this.oldLinks = new HashSet<>();
+        this.feeds = new ArrayList<>();
+
+        try {
+
+            for (String myUrl : ConfReader.getInstance().getRssUrls()) {
+                this.addFeedUrl(myUrl);
             }
+
+            this.loadNews();
+
+        } catch (IOException | FeedException e) {
+            System.out.println("NewsReader() Exception: " + e.getMessage());
         }
-        
-	public boolean addFeedUrl(String newUrl) throws MalformedURLException
-	{
-            SyndFeedInput input = new SyndFeedInput();
-            SyndFeed feed;
+    }
 
-            try {
-                feed = input.build(new XmlReader( new URL(newUrl) ) );
-            } catch (FeedException | IOException e) {
-                return false;
-            }
+    public boolean addFeedUrl(String newUrl) throws MalformedURLException
+    {
+        SyndFeedInput input = new SyndFeedInput();
+        SyndFeed feed;
 
-            this.feeds.add( new URL(newUrl) );
+        try {
+            feed = input.build(new XmlReader(new URL(newUrl)));
+        } catch (FeedException | IOException e) {
+            return false;
+        }
 
-            System.out.println("Added Feed -> " + feed.getLink());
+        this.feeds.add(new URL(newUrl));
 
-            return true;
-	}
+        System.out.println("Added Feed -> " + newUrl);
+
+        return true;
+    }
 
     public boolean removeFeed(String url)
     {
@@ -68,7 +63,7 @@ public class NewsReader
         SyndFeed currentFeed;
         for (URL myURL : this.feeds) {
             try {
-                currentFeed = input.build(new XmlReader( myURL ));
+                currentFeed = input.build(new XmlReader(myURL));
             } catch (FeedException | IOException e) {
                 System.out.println(e.getMessage());
                 continue;
@@ -91,7 +86,7 @@ public class NewsReader
 
         for (URL myFeed : this.feeds) {
             SyndFeedInput input = new SyndFeedInput();
-            SyndFeed feed = input.build(new XmlReader( myFeed ) );
+            SyndFeed feed = input.build(new XmlReader(myFeed));
 
             newsFeeds.add(feed);
         }
@@ -104,9 +99,9 @@ public class NewsReader
 
         for (URL myFeed : this.feeds) {
             SyndFeedInput input = new SyndFeedInput();
-            SyndFeed feed = input.build(new XmlReader( myFeed ) );
+            SyndFeed feed = input.build(new XmlReader(myFeed));
 
-            newEntries.addAll( feed.getEntries() );
+            newEntries.addAll(feed.getEntries());
         }
         return newEntries;
     }
@@ -145,22 +140,25 @@ public class NewsReader
     {
         s.forEach((link) -> {
             System.out.println(msg + " -> " + link + " | hash -> " + link.hashCode());
-            });
+        });
     }
 
-    public void readNews() throws FeedException, InterruptedException
-    {
+    public void readNews() throws FeedException, InterruptedException {
         System.out.println("readNews(): checking for updates...");
         try {
             List<SyndEntry> newEntries = this.getNewEntries();
             Set<String> newLinks = this.getLinks(newEntries);
 
-            if (this.oldLinks.containsAll(newLinks)) return;
+            if (this.oldLinks.containsAll(newLinks)) {
+                return;
+            }
 
             Set<String> newLinksOriginal = new HashSet<>(newLinks);
 
             newLinks.removeAll(this.oldLinks);
-            if (newLinks.isEmpty()) return;
+            if (newLinks.isEmpty()) {
+                return;
+            }
 
             this.showLinks("New Links", newLinks);
 
@@ -182,16 +180,15 @@ public class NewsReader
             this.oldLinks.clear();
             this.oldLinks.addAll(newLinksOriginal);
 
-        } catch(IOException e) {
+        } catch (IOException e) {
             System.out.println("ERROR: " + e.getMessage());
         }
     }
 
-    private void showEntry(SyndEntry entry)
-    {
+    private void showEntry(SyndEntry entry) {
         String domain = entry.getLink().replaceFirst(".*https?://([\\w.-]+)/.*", "<$1>");
         String link = UrlShortener.shortenUrl(entry.getLink());
 
-        this.mediator.showMessage("\"" + Colors.DARK_GRAY + entry.getTitle() + Colors.NORMAL + "\" " + Colors.BOLD + domain + Colors.NORMAL + " <" + link + ">");
+        this.mediator.showMessage("\"" + Colors.DARK_GRAY + entry.getTitle() + Colors.NORMAL + "\" " + Colors.ITALICS + domain + Colors.NORMAL + " <" + link + ">");
     }
 }

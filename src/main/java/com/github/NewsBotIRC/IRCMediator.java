@@ -22,39 +22,31 @@ import org.apache.commons.configuration.ConfigurationException;
 public class IRCMediator {
     private final PircBotX bot;
     private final NewsReader newsReader;
-    private ConfReader confReader;
     private final String VERSION;
 
     public IRCMediator()
     {
-        try {
-            this.confReader = new ConfReader();
-        } catch (ConfigurationException ex) {
-            Logger.getLogger(IRCMediator.class.getName()).log(Level.SEVERE,
-                    null, ex);
-        }
-
         Configuration configuration = new Configuration.Builder()
-            .setAutoReconnect(this.confReader.isAutoreconnect())
-            .setAutoReconnectAttempts(this.confReader.getReconnectattempts())
-            .setAutoReconnectDelay(this.confReader.getDelaybetweenentries())
-            .setRealName(this.confReader.getRealname())
-            .setName(this.confReader.getNick())
-            .setLogin(this.confReader.getLogin())
+            .setAutoReconnect(ConfReader.getInstance().isAutoreconnect())
+            .setAutoReconnectAttempts(ConfReader.getInstance().getReconnectattempts())
+            .setAutoReconnectDelay(ConfReader.getInstance().getDelaybetweenentries())
+            .setRealName(ConfReader.getInstance().getRealname())
+            .setName(ConfReader.getInstance().getNick())
+            .setLogin(ConfReader.getInstance().getLogin())
             .setAutoNickChange(true)
-            .addServer(this.confReader.getIrcserver(), this.confReader.getPort())
-            .addAutoJoinChannel("#" + this.confReader.getChannel())
-            .setVersion(this.confReader.getVersion())
+            .addServer(ConfReader.getInstance().getIrcserver(), ConfReader.getInstance().getPort())
+            .addAutoJoinChannel("#" + ConfReader.getInstance().getChannel())
+            .setVersion(ConfReader.getInstance().getVersion())
             .addListener( new IRCListener(this) )
             .buildConfiguration();
 
         this.bot = new PircBotX(configuration);
         this.newsReader = new NewsReader(this);
-        
-        // set VERSION variable
-        VERSION = this.confReader.getVersion();
 
-        new TimerNews(this.confReader.getPollFrequency()).addTask( new NewsTask(this.newsReader) );
+        // set VERSION variable
+        VERSION = ConfReader.getInstance().getVersion();
+
+        new TimerNews(ConfReader.getInstance().getPollFrequency()).addTask( new NewsTask(this.newsReader) );
     }
 
     public void showMessage(String message)
@@ -94,12 +86,12 @@ public class IRCMediator {
             this.showMessage("Success!");
         }
     }
-    
+
     public void start()
     {
     // Print NewsBot VERSION from properties file. (KEY: bot.version)
     System.out.println(this.VERSION);
-    
+
         try {
             this.bot.startBot();
         } catch (IOException | IrcException e) {
