@@ -51,7 +51,7 @@
         <dependency>
             <groupId>com.rometools</groupId>
             <artifactId>rome</artifactId>
-            <version>1.6.0</version>
+            <version>1.7.1</version>
         </dependency>
         <dependency>
             <groupId>org.pircbotx</groupId>
@@ -61,13 +61,7 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <version>1.7.21</version>
-        </dependency>
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20090211</version>
-            <type>jar</type>
+            <version>1.7.22</version>
         </dependency>
         <dependency>
             <groupId>commons-configuration</groupId>
