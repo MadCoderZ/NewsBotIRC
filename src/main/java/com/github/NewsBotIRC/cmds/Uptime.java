@@ -1,16 +1,19 @@
-package com.github.NewsBotIRC;
+package com.github.NewsBotIRC.cmds;
 
+import com.github.NewsBotIRC.IRCMediator;
 import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
 
-/**
- *
- * @author Gerardo
- */
-public class Uptime
+public class Uptime implements Cmd
 {
+    @Override
+    public String get()
+    {
+        return "uptime";
+    }
 
-    String getUptime()
+    @Override
+    public void action(IRCMediator m, String params)
     {
         RuntimeMXBean rb = ManagementFactory.getRuntimeMXBean();
         long uptime = rb.getUptime();
@@ -31,7 +34,7 @@ public class Uptime
 
         long elapsedSeconds = uptime / secondsInMilli;
 
-        return elapsedDays + " days, " + elapsedHours + " hours, " +
-                elapsedMinutes + " minutes, " + elapsedSeconds + " seconds";
+        m.showMessage(elapsedDays + " days, " + elapsedHours + " hours, " +
+                elapsedMinutes + " minutes, " + elapsedSeconds + " seconds");
     }
 }
