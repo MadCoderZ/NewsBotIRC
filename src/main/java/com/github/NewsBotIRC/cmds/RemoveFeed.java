@@ -16,7 +16,6 @@ public class RemoveFeed implements Cmd
     {
         int index = -1;
         try {
-            System.out.println("params: " + params);
             index = Integer.parseInt(params);
         } catch (NumberFormatException e) {
             m.showMessage("ERROR: could not remove feed!");
