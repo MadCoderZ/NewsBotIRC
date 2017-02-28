@@ -67,8 +67,6 @@ public class IRCMediator
 
     public void showMessage(String message)
     {
-        System.out.println("showMessage(): about to print an entry into the channels...");
-
         Iterator<Channel> channels = this.bot.getUserChannelDao().getAllChannels().iterator();
         while (channels.hasNext()) {
             Channel chan = channels.next();
