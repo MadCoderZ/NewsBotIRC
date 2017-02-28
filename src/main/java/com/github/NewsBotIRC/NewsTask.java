@@ -18,7 +18,7 @@ public class NewsTask extends TimerTask
     public void run() {
         try {
             this.newsReader.readNews();
-        } catch (FeedException | InterruptedException e) {
+        } catch (FeedException e) {
             System.out.println(e.getMessage());
         }
     }

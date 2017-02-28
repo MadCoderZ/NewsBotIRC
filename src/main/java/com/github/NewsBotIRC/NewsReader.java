@@ -10,6 +10,7 @@ import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.FeedException;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
+import java.util.stream.Collectors;
 import org.pircbotx.Colors;
 
 public class NewsReader
@@ -83,7 +84,7 @@ public class NewsReader
         return newsFeeds;
     }
 
-    private List<SyndEntry> getNewEntries() throws IOException, FeedException
+    private List<SyndEntry> getAllEntries() throws IOException, FeedException
     {
         List<SyndEntry> newEntries = new ArrayList<>();
 
@@ -99,24 +100,32 @@ public class NewsReader
     private void loadNews() throws IOException, FeedException
     {
         System.out.println("loadNews(): Pre-loading news, please wait...");
-        this.oldEntries.addAll(this.getNewEntries());
+        this.oldEntries.addAll(this.getAllEntries());
     }
 
     public void readNews() throws FeedException
     {
         System.out.println("readNews(): checking for updates...");
         try {
-            List<SyndEntry> newEntries = this.getNewEntries();
-            newEntries.stream()
-                .filter(e -> !this.oldEntries.contains(e))
-                .forEach(e -> this.showEntry(e));
+            Set<String> oldLinks = this.oldEntries.stream()
+                    .map(SyndEntry::getLink)
+                    .collect(Collectors.toSet());
+
+            List<SyndEntry> allEntries = this.getAllEntries();
+
+            Set<SyndEntry> newEntries = allEntries.stream()
+                    .filter(e -> !oldLinks.contains(e.getLink()))
+                    .collect(Collectors.toSet());
+
+            newEntries.forEach(e -> this.showEntry(e));
 
             if (this.pass++ > 3) {
-                this.oldEntries.clear();
+                this.oldEntries.clear(); // do not let it to grow too much
+                this.oldEntries.addAll(allEntries);
                 this.pass = 0;
+            } else {
+                this.oldEntries.addAll(newEntries);
             }
-
-            this.oldEntries.addAll(newEntries);
         } catch (IOException e) {
             System.out.println("ERROR: " + e.getMessage());
         }
