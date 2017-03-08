@@ -10,7 +10,7 @@ public class CmdFactory
 
     protected CmdFactory()
     {
-        this.cmds = new ArrayList<Cmd>();
+        this.cmds = new ArrayList<>();
 
         this.cmds.add(new Version());
         this.cmds.add(new Uptime());
