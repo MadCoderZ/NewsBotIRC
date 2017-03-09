@@ -1,4 +1,4 @@
-# NewsBotIRC
+![](http://i.imgur.com/hrELgzg.png)
 ## Java IRC Bot with RSS feed reader
 
 This project has been entirely written in the Java language, so it basically can
