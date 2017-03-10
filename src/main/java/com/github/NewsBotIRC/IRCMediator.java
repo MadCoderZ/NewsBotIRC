@@ -88,7 +88,7 @@ public class IRCMediator
     public void addFeed(String url) throws MalformedURLException
     {
         if ( !this.newsReader.addFeedUrl(url) ) {
-            this.showMessage("ERROR: invalid feed!");
+            this.showMessage("ERROR: invalid or duplicate feed!");
         } else {
             this.showMessage("Success!");
         }

@@ -39,8 +39,14 @@ public class NewsReader
         }
     }
 
-    public boolean addFeedUrl(String newUrl) throws MalformedURLException
+    public boolean addFeedUrl(String newUrl)
+            throws MalformedURLException
     {
+        URL nURL = new URL(newUrl);
+        if (!this.feeds.stream().noneMatch((url) -> (url.equals(nURL)))) {
+            return false;
+        }
+
         SyndFeedInput input = new SyndFeedInput();
         SyndFeed feed;
 
@@ -50,7 +56,8 @@ public class NewsReader
             return false;
         }
 
-        this.feeds.add(new URL(newUrl));
+        this.feeds.add(nURL);
+        this.oldEntries.addAll(feed.getEntries()); // mark all entries as read
 
         System.out.println("Added Feed -> " + newUrl);
 
@@ -59,10 +66,9 @@ public class NewsReader
 
     public boolean removeFeed(int index)
     {
-        if (index > this.feeds.size() || index < 0 || this.feeds.isEmpty())
+        if (index >= this.feeds.size() || index < 0 || this.feeds.isEmpty())
             return false;
 
-        SyndFeedInput input = new SyndFeedInput();
         URL urlToRemove = this.feeds.get(index);
         if (urlToRemove != null) {
             this.feeds.remove(urlToRemove);
