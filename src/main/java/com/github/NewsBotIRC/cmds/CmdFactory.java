@@ -17,6 +17,7 @@ public class CmdFactory
         this.cmds.add(new ListFeeds());
         this.cmds.add(new AddFeed());
         this.cmds.add(new RemoveFeed());
+        this.cmds.add(new Debug());
     }
 
     public static CmdFactory getInstance()

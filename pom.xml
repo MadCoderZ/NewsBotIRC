@@ -4,7 +4,7 @@
 
     <groupId>com.github.NewsBotIRC</groupId>
     <artifactId>NewsBotIRC</artifactId>
-    <version>0.2</version>
+    <version>0.2-SNAPSHOT</version>
 
     <name>NewsBotIRC</name>
     <url>http://maven.apache.org</url>
