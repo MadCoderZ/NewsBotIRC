@@ -10,19 +10,21 @@ import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.FeedException;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
+import java.util.stream.Collectors;
 import org.pircbotx.Colors;
 
-public class NewsReader {
-
-    private IRCMediator mediator;
-    private Set<String> oldLinks;
+public class NewsReader
+{
+    private int pass = 0;
     private List<URL> feeds;
-    private String[] rssUrls = null;
+    private IRCMediator mediator;
+    private Set<SyndEntry> oldEntries;
 
-    NewsReader(IRCMediator mediator) {
+    NewsReader(IRCMediator mediator)
+    {
         this.mediator = mediator;
-        this.oldLinks = new HashSet<>();
         this.feeds = new ArrayList<>();
+        this.oldEntries = new HashSet();
 
         try {
 
@@ -37,8 +39,14 @@ public class NewsReader {
         }
     }
 
-    public boolean addFeedUrl(String newUrl) throws MalformedURLException
+    public boolean addFeedUrl(String newUrl)
+            throws MalformedURLException
     {
+        URL nURL = new URL(newUrl);
+        if (!this.feeds.stream().noneMatch((url) -> (url.equals(nURL)))) {
+            return false;
+        }
+
         SyndFeedInput input = new SyndFeedInput();
         SyndFeed feed;
 
@@ -48,7 +56,8 @@ public class NewsReader {
             return false;
         }
 
-        this.feeds.add(new URL(newUrl));
+        this.feeds.add(nURL);
+        this.oldEntries.addAll(feed.getEntries()); // mark all entries as read
 
         System.out.println("Added Feed -> " + newUrl);
 
@@ -57,10 +66,9 @@ public class NewsReader {
 
     public boolean removeFeed(int index)
     {
-        if (index > this.feeds.size() || index < 0 || this.feeds.isEmpty())
+        if (index >= this.feeds.size() || index < 0 || this.feeds.isEmpty())
             return false;
 
-        SyndFeedInput input = new SyndFeedInput();
         URL urlToRemove = this.feeds.get(index);
         if (urlToRemove != null) {
             this.feeds.remove(urlToRemove);
@@ -82,7 +90,7 @@ public class NewsReader {
         return newsFeeds;
     }
 
-    private List<SyndEntry> getNewEntries() throws IOException, FeedException
+    private List<SyndEntry> getAllEntries() throws IOException, FeedException
     {
         List<SyndEntry> newEntries = new ArrayList<>();
 
@@ -95,86 +103,42 @@ public class NewsReader {
         return newEntries;
     }
 
-    private Set<String> getLinks(List<SyndEntry> entries)
-    {
-        Set<String> links = new HashSet<>();
-        for (SyndEntry entry : entries) {
-            links.add(entry.getLink());
-        }
-        return links;
-    }
-
-    private SyndEntry findEntryByLink(String myLink, List<SyndEntry> myEntries)
-    {
-        SyndEntry rEntry = null;
-        for (SyndEntry mEntry : myEntries) {
-            if (myLink.compareTo(mEntry.getLink()) == 0) {
-                rEntry = mEntry;
-                break;
-            }
-        }
-        return rEntry;
-    }
-
     private void loadNews() throws IOException, FeedException
     {
         System.out.println("loadNews(): Pre-loading news, please wait...");
-        List<SyndEntry> newEntries = this.getNewEntries();
-        Set<String> newLinks = this.getLinks(newEntries);
-
-        this.oldLinks.addAll(newLinks);
+        this.oldEntries.addAll(this.getAllEntries());
     }
 
-    private void showLinks(String msg, Set<String> s)
+    public void readNews() throws FeedException
     {
-        s.forEach((link) -> {
-            System.out.println(msg + " -> " + link + " | hash -> " + link.hashCode());
-        });
-    }
-
-    public void readNews() throws FeedException, InterruptedException {
         System.out.println("readNews(): checking for updates...");
         try {
-            List<SyndEntry> newEntries = this.getNewEntries();
-            Set<String> newLinks = this.getLinks(newEntries);
+            Set<String> oldLinks = this.oldEntries.stream()
+                    .map(SyndEntry::getLink)
+                    .collect(Collectors.toSet());
 
-            if (this.oldLinks.containsAll(newLinks)) {
-                return;
+            List<SyndEntry> allEntries = this.getAllEntries();
+
+            Set<SyndEntry> newEntries = allEntries.stream()
+                    .filter(e -> !oldLinks.contains(e.getLink()))
+                    .collect(Collectors.toSet());
+
+            newEntries.forEach(e -> this.showEntry(e));
+
+            if (this.pass++ > 3) {
+                this.oldEntries.clear(); // do not let it to grow too much
+                this.oldEntries.addAll(allEntries);
+                this.pass = 0;
+            } else {
+                this.oldEntries.addAll(newEntries);
             }
-
-            Set<String> newLinksOriginal = new HashSet<>(newLinks);
-
-            newLinks.removeAll(this.oldLinks);
-            if (newLinks.isEmpty()) {
-                return;
-            }
-
-            this.showLinks("New Links", newLinks);
-
-            Iterator it = newLinks.iterator();
-
-            while (it.hasNext()) {
-                String myLink = (String) it.next();
-                SyndEntry entry = this.findEntryByLink(myLink, newEntries);
-                if (entry != null) {
-                    this.showEntry(entry);
-                    Thread.sleep(500);
-                }
-            }
-
-            Set<String> discardedLinks = new HashSet<>(this.oldLinks);
-            discardedLinks.removeAll(newLinksOriginal);
-            this.showLinks("Discarded Links", discardedLinks);
-
-            this.oldLinks.clear();
-            this.oldLinks.addAll(newLinksOriginal);
-
         } catch (IOException e) {
             System.out.println("ERROR: " + e.getMessage());
         }
     }
 
-    private void showEntry(SyndEntry entry) {
+    private void showEntry(SyndEntry entry)
+    {
         String domain = entry.getLink().replaceFirst(".*https?://([\\w.-]+)/.*", "<$1>");
         String link = UrlShortener.shortenUrl(entry.getLink());
 

@@ -67,8 +67,6 @@ public class IRCMediator
 
     public void showMessage(String message)
     {
-        System.out.println("showMessage(): about to print an entry into the channels...");
-
         Iterator<Channel> channels = this.bot.getUserChannelDao().getAllChannels().iterator();
         while (channels.hasNext()) {
             Channel chan = channels.next();
@@ -90,7 +88,7 @@ public class IRCMediator
     public void addFeed(String url) throws MalformedURLException
     {
         if ( !this.newsReader.addFeedUrl(url) ) {
-            this.showMessage("ERROR: invalid feed!");
+            this.showMessage("ERROR: invalid or duplicate feed!");
         } else {
             this.showMessage("Success!");
         }
