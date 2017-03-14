@@ -67,7 +67,7 @@ public class IRCMediator
         // Check if *identify* field is set on Configuration file, this way
         // we send an auth command against NickServ with the password stored
         // into NickServ_passwd field.
-        if (ConfReader.getInstance().isIndentify())
+        if (ConfReader.getInstance().isIdentify())
         {
             this.bot.send().identify(ConfReader.getInstance().getNickServ_passwd());
             System.out.println(this.bot.getNick() +
