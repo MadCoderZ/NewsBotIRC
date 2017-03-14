@@ -5,6 +5,7 @@ import com.github.NewsBotIRC.cmds.CmdFactory;
 import java.util.List;
 import java.util.stream.Stream;
 import org.pircbotx.hooks.ListenerAdapter;
+import org.pircbotx.hooks.events.ConnectEvent;
 import org.pircbotx.hooks.types.GenericMessageEvent;
 
 public class IRCListener extends ListenerAdapter
@@ -28,6 +29,13 @@ public class IRCListener extends ListenerAdapter
         Stream<Cmd> actionableCmds =
                 cmds.stream().filter(c -> c.get().equals(cmdTrigger));
         actionableCmds.forEach(c -> c.action(this.mediator, cmdParams));
+    }
+
+    public void onConnect(ConnectEvent event)
+    {
+        if (event.getBot().isNickservIdentified()) return;
+        event.getBot().send().identify(
+                ConfReader.getInstance().getNickserv_passwd());
     }
 
     private String getTrigger(String text, boolean skipCmdTrigger)
