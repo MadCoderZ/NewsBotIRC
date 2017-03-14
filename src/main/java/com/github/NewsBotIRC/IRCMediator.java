@@ -12,6 +12,7 @@ import java.net.MalformedURLException;
 import java.util.Iterator;
 import java.util.List;
 import org.pircbotx.UtilSSLSocketFactory;
+import org.pircbotx.cap.SASLCapHandler;
 
 /**
  * Created by Geronimo on 13/6/16.
@@ -24,58 +25,52 @@ public class IRCMediator
 
     public IRCMediator()
     {
-        Configuration configuration = null;
+        Configuration.Builder confBuilder = new Configuration.Builder();
 
         // check if SSL is enabled, otherwise it won't use SSL connection.
-        if (ConfReader.getInstance().isSSL()) {
-            configuration = new Configuration.Builder()
-            .setAutoReconnect(ConfReader.getInstance().isAutoreconnect())
-            .setAutoReconnectAttempts(ConfReader.getInstance().getReconnectattempts())
-            .setAutoReconnectDelay(ConfReader.getInstance().getDelaybetweenretries())
-            .setRealName(ConfReader.getInstance().getRealname())
-            .setName(ConfReader.getInstance().getNick())
-            .setLogin(ConfReader.getInstance().getLogin())
-            .setAutoNickChange(true)
-            .addServer(ConfReader.getInstance().getIrcserver(), ConfReader.getInstance().getPort())
-            .setSocketFactory(new UtilSSLSocketFactory().trustAllCertificates())
-            .addAutoJoinChannel("#" + ConfReader.getInstance().getChannel())
-            .setVersion(ConfReader.getInstance().getVersion())
-            .addListener( new IRCListener(this) )
-            .buildConfiguration();
-        } else {
-            configuration = new Configuration.Builder()
-            .setAutoReconnect(ConfReader.getInstance().isAutoreconnect())
-            .setAutoReconnectAttempts(ConfReader.getInstance().getReconnectattempts())
-            .setAutoReconnectDelay(ConfReader.getInstance().getDelaybetweenretries())
-            .setRealName(ConfReader.getInstance().getRealname())
-            .setName(ConfReader.getInstance().getNick())
-            .setLogin(ConfReader.getInstance().getLogin())
-            .setAutoNickChange(true)
-            .addServer(ConfReader.getInstance().getIrcserver(), ConfReader.getInstance().getPort())
-            .addAutoJoinChannel("#" + ConfReader.getInstance().getChannel())
-            .setVersion(ConfReader.getInstance().getVersion())
-            .addListener( new IRCListener(this) )
-            .buildConfiguration();
+        if (ConfReader.getInstance().isSSL())
+        {
+            confBuilder.setSocketFactory(new UtilSSLSocketFactory().trustAllCertificates());
         }
+
+        // It tries to authenticate using SASL (it doesn't work on all networks)
+        if (ConfReader.getInstance().isIdentifyEnabled())
+        {
+            confBuilder.addCapHandler(new SASLCapHandler(ConfReader.getInstance().getNick(), ConfReader.getInstance().getNickserv_passwd()));
+        }
+
+        confBuilder.setAutoReconnect(ConfReader.getInstance().isAutoreconnect());
+        confBuilder.setAutoReconnectAttempts(ConfReader.getInstance().getReconnectattempts());
+        confBuilder.setAutoReconnectDelay(ConfReader.getInstance().getDelaybetweenretries());
+        confBuilder.setRealName(ConfReader.getInstance().getRealname());
+        confBuilder.setName(ConfReader.getInstance().getNick());
+        confBuilder.setLogin(ConfReader.getInstance().getLogin());
+        confBuilder.setAutoNickChange(true);
+        confBuilder.addServer(ConfReader.getInstance().getIrcserver(), ConfReader.getInstance().getPort());
+        confBuilder.setSocketFactory(new UtilSSLSocketFactory().trustAllCertificates());
+        confBuilder.addAutoJoinChannel("#" + ConfReader.getInstance().getChannel());
+        confBuilder.setVersion(ConfReader.getInstance().getVersion());
+        confBuilder.addListener(new IRCListener(this) );
+        confBuilder.buildConfiguration();
 
         // Print on stdout the bot's current version.
         System.out.println(ConfReader.getInstance().getVersion());
 
-        this.bot = new PircBotX(configuration);
+        this.bot = new PircBotX(confBuilder.buildConfiguration());
         this.newsReader = new NewsReader(this);
 
         // Check if *identify* field is set on Configuration file, this way
         // we send an auth command against NickServ with the password stored
         // into NickServ_passwd field.
-        if (ConfReader.getInstance().isIdentify())
-        {
-            this.bot.send().identify(ConfReader.getInstance().getNickServ_passwd());
-            System.out.println(this.bot.getNick() +
-                    " has been succesfully authenticated (NickServ).");
-        } else {
-            System.out.println("You haven't configured the bot to authenticate"+
-                    "with NickServ. You can take a look into the Config file");
-        }
+//        if (ConfReader.getInstance().isIdentifyEnabled())
+//        {
+//            this.bot.send().identify(ConfReader.getInstance().getNickserv_passwd());
+//            System.out.println(this.bot.getNick() +
+//                    " has been succesfully authenticated (NickServ).");
+//        } else {
+//            System.out.println("You haven't configured the bot to authenticate" +
+//                    "with NickServ. You can take a look into the Config file");
+//        }
 
         new TimerNews(ConfReader.getInstance().getPollFrequency()).addTask( new NewsTask(this.newsReader) );
     }
