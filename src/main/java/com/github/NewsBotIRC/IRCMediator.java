@@ -47,7 +47,6 @@ public class IRCMediator
         confBuilder.setLogin(ConfReader.getInstance().getLogin());
         confBuilder.setAutoNickChange(true);
         confBuilder.addServer(ConfReader.getInstance().getIrcserver(), ConfReader.getInstance().getPort());
-        confBuilder.setSocketFactory(new UtilSSLSocketFactory().trustAllCertificates());
         confBuilder.addAutoJoinChannel("#" + ConfReader.getInstance().getChannel());
         confBuilder.setVersion(ConfReader.getInstance().getVersion());
         confBuilder.addListener(new IRCListener(this) );
