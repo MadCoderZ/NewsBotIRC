@@ -4,8 +4,8 @@
 This project has been entirely written in the Java language, so it basically can
 run on computers that are able to run Java code.
 
-We focus on handling memory in the best possible way, keep a clean code,
-stability and reliability.
+We focus on handling memory in the best possible way, keeping a clean code,
+always trying to use best programming practises, stability and reliability.
 
 Its purpose is to fetch from different sources (RSS and Atom) and publish them
 on an IRC channel on a specific IRC server. Think of it as a RSS client reader

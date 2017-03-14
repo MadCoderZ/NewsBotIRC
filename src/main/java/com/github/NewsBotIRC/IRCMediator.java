@@ -26,6 +26,7 @@ public class IRCMediator
     {
         Configuration configuration = null;
 
+        // check if SSL is enabled, otherwise it won't use SSL connection.
         if (ConfReader.getInstance().isSSL()) {
             configuration = new Configuration.Builder()
             .setAutoReconnect(ConfReader.getInstance().isAutoreconnect())
@@ -57,10 +58,24 @@ public class IRCMediator
             .buildConfiguration();
         }
 
+        // Print on stdout the bot's current version.
         System.out.println(ConfReader.getInstance().getVersion());
 
         this.bot = new PircBotX(configuration);
         this.newsReader = new NewsReader(this);
+
+        // Check if *identify* field is set on Configuration file, this way
+        // we send an auth command against NickServ with the password stored
+        // into NickServ_passwd field.
+        if (ConfReader.getInstance().isIndentify())
+        {
+            this.bot.send().identify(ConfReader.getInstance().getNickServ_passwd());
+            System.out.println(this.bot.getNick() +
+                    " has been succesfully authenticated (NickServ).");
+        } else {
+            System.out.println("You haven't configured the bot to authenticate"+
+                    "with NickServ. You can take a look into the Config file");
+        }
 
         new TimerNews(ConfReader.getInstance().getPollFrequency()).addTask( new NewsTask(this.newsReader) );
     }

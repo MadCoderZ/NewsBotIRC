@@ -25,6 +25,8 @@ public class ConfReader
     private final int port;
     private String[] rssUrls = null;
     private boolean ssl = false;
+    private boolean indentify = false;
+    private String NickServ_passwd = null;
     private CompositeConfiguration config = null;
 
     protected ConfReader()
@@ -176,5 +178,15 @@ public class ConfReader
 
     public int getPort() {
         return this.port;
+    }
+
+    public boolean isIndentify()
+    {
+        return indentify;
+    }
+
+    public String getNickServ_passwd()
+    {
+        return NickServ_passwd;
     }
 }
