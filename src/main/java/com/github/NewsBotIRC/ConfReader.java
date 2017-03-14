@@ -25,6 +25,8 @@ public class ConfReader
     private final int port;
     private String[] rssUrls = null;
     private boolean ssl = false;
+    private boolean identify = false;
+    private String nickserv_passwd = null;
     private CompositeConfiguration config = null;
 
     protected ConfReader()
@@ -50,6 +52,8 @@ public class ConfReader
         this.channel = config.getString("bot.channel");
         this.pollfrequency = config.getInt("rss.pollfrequency");
         this.ssl = config.getBoolean("bot.ssl");
+        this.identify = config.getBoolean("bot.identify");
+        this.nickserv_passwd = config.getString("bot.nickserv_passwd");
 
         this.rssUrls = config.getStringArray("rss.feed");
     }
@@ -176,5 +180,25 @@ public class ConfReader
 
     public int getPort() {
         return this.port;
+    }
+
+    public void setIdentify(boolean identify)
+    {
+        this.identify = identify;
+    }
+
+    public void setNickserv_passwd(String nickserv_passwd)
+    {
+        this.nickserv_passwd = nickserv_passwd;
+    }
+
+    public boolean isIdentifyEnabled()
+    {
+        return identify;
+    }
+
+    public String getNickserv_passwd()
+    {
+        return nickserv_passwd;
     }
 }
