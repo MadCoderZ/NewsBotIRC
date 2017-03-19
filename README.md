@@ -1,5 +1,6 @@
 ![](http://i.imgur.com/hrELgzg.png)
-## Java IRC Bot with RSS feed reader
+[![Build Status](https://travis-ci.org/MadCoderZ/NewsBotIRC.svg?branch=master)](https://travis-ci.org/MadCoderZ/NewsBotIRC)
+# Java IRC Bot with RSS feed reader
 
 This project has been entirely written in the Java language, so it basically can
 run on computers that are able to run Java code.
@@ -20,6 +21,6 @@ get started.
 
 ## Authors
 
-- Gerardo Canosa [gera.canosa@gmail.com](mailto:gera.canosa@gmail.com) _IRC:_ EtherNet at irc.mundochat.com.ar
-- Geronimo Poppino [gresco@gmail.com](mailto:gresco@gmail.com) _IRC:_ Geronimo at irc.mundochat.com.ar
+- Gerardo Canosa <[gera.canosa@gmail.com](mailto:gera.canosa@gmail.com)> _IRC:_ EtherNet at irc.mundochat.com.ar
+- Geronimo Poppino <[gresco@gmail.com](mailto:gresco@gmail.com)> _IRC:_ Geronimo at irc.mundochat.com.ar
 
