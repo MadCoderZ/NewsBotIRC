@@ -1,6 +1,6 @@
 ![](http://i.imgur.com/hrELgzg.png)
-[![Build Status](https://travis-ci.org/MadCoderZ/NewsBotIRC.svg?branch=master)](https://travis-ci.org/MadCoderZ/NewsBotIRC)
 # Java IRC Bot with RSS feed reader
+[![Build Status](https://travis-ci.org/MadCoderZ/NewsBotIRC.svg?branch=master)](https://travis-ci.org/MadCoderZ/NewsBotIRC)
 
 This project has been entirely written in the Java language, so it basically can
 run on computers that are able to run Java code.
@@ -15,6 +15,8 @@ but with IRC support.
 Everybody is welcome to cooperate, add new functions by creating a fork in
 GitHub, and also fix issues or propose features or modifications. We listen to
 the community and we want to keep working on it as a hobby.
+
+## Getting Started
 
 Please, check our [wiki page](https://github.com/MadCoderZ/NewsBotIRC/wiki) to
 get started.
