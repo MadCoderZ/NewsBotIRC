@@ -53,9 +53,6 @@ public class IRCMediator
         confBuilder.addListener(new IRCListener(this) );
         confBuilder.buildConfiguration();
 
-        // Print on stdout the bot's current version.
-        System.out.println(ConfReader.getInstance().getVersion());
-
         this.bot = new PircBotX(confBuilder.buildConfiguration());
         this.newsReader = new NewsReader(this);
 

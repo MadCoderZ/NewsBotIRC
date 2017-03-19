@@ -53,6 +53,7 @@ public class NewsReader
         try {
             feed = input.build(new XmlReader(new URL(newUrl)));
         } catch (FeedException | IOException e) {
+            System.out.println("ERROR:" + e.getMessage());
             return false;
         }
 

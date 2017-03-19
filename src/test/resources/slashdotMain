@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" media="screen" href="/~d/styles/rss1full.xsl"?><?xml-stylesheet type="text/css" media="screen" href="http://rss.slashdot.org/~d/styles/itemcontent.css"?><rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://purl.org/rss/1.0/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:taxo="http://purl.org/rss/1.0/modules/taxonomy/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:syn="http://purl.org/rss/1.0/modules/syndication/" xmlns:admin="http://webns.net/mvcb/">
+
+<channel rdf:about="https://slashdot.org/">
+<title>Slashdot</title>
+<link>https://slashdot.org/</link>
+<description>News for nerds, stuff that matters</description>
+<dc:language>en-us</dc:language>
+<dc:rights>Copyright 1997-2016, SlashdotMedia. All Rights Reserved.</dc:rights>
+<dc:date>2017-03-19T04:12:11+00:00</dc:date>
+<dc:publisher>Dice</dc:publisher>
+<dc:creator>help@slashdot.org</dc:creator>
+<dc:subject>Technology</dc:subject>
+<syn:updateBase>1970-01-01T00:00+00:00</syn:updateBase>
+<syn:updateFrequency>1</syn:updateFrequency>
+<syn:updatePeriod>hourly</syn:updatePeriod>
+<items>
+ <rdf:Seq>
+  <rdf:li rdf:resource="https://tech.slashdot.org/story/17/03/18/1934210/google-glass-enters-the-manufacturing-sector?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed" />
+  <rdf:li rdf:resource="https://yro.slashdot.org/story/17/03/18/2312217/cbs-reports-suspicious-cell-phone-tower-activity-in-washington-dc?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed" />
+  <rdf:li rdf:resource="https://idle.slashdot.org/story/17/03/18/2211211/court-fines-canadian-26500-for-unconscionably-stupid-balloon-chair-flight?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed" />
+  <rdf:li rdf:resource="https://yro.slashdot.org/story/17/03/18/2118240/chinas-police-will-shoot-illegal-drones-with-radio-jamming-rifles?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed" />
+  <rdf:li rdf:resource="https://science.slashdot.org/story/17/03/18/1851257/tech-billionaires-invest-in-linking-brains-to-computers?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed" />
+  <rdf:li rdf:resource="https://it.slashdot.org/story/17/03/18/0524205/bruce-schneier-calls-for-iot-legislation-argues-the-internet-is-becoming-one-giant-robot?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed" />
+  <rdf:li rdf:resource="https://tech.slashdot.org/story/17/03/18/1736250/googles-new-campus-will-open-its-restaurants-to-the-public?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed" />
+  <rdf:li rdf:resource="https://it.slashdot.org/story/17/03/18/046239/some-https-inspection-tools-actually-weaken-security?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed" />
+  <rdf:li rdf:resource="https://tech.slashdot.org/story/17/03/18/0323256/could-we-eliminate-spam-with-dmarc?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed" />
+  <rdf:li rdf:resource="https://news.slashdot.org/story/17/03/18/0152212/researchers-build-an-ai-thats-better-at-reading-lips-than-humans?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed" />
+  <rdf:li rdf:resource="https://science.slashdot.org/story/17/03/17/2341240/physicists-find-that-as-clocks-get-more-precise-time-gets-more-fuzzy?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed" />
+  <rdf:li rdf:resource="https://yro.slashdot.org/story/17/03/18/0047226/us-lawmakers-propose-minimum-seat-sizes-for-airlines?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed" />
+  <rdf:li rdf:resource="https://hardware.slashdot.org/story/17/03/18/003227/ask-slashdot-best-virtual-reality-headsets?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed" />
+  <rdf:li rdf:resource="https://tech.slashdot.org/story/17/03/18/0148223/southwest-airlines-is-doing-away-with-pneumatic-tubes-paper-tickets?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed" />
+  <rdf:li rdf:resource="https://science.slashdot.org/story/17/03/17/2340244/climate-shaped-the-human-nose-researchers-say?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed" />
+ </rdf:Seq>
+</items>
+<image rdf:resource="http://a.fsdn.com/sd/topics/topicslashdot.gif" />
+<textinput rdf:resource="https://slashdot.org/search.pl" />
+<atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="self" type="application/rdf+xml" href="http://rss.slashdot.org/slashdot/slashdotMain" /><feedburner:info xmlns:feedburner="http://rssnamespace.org/feedburner/ext/1.0" uri="slashdot/slashdotmain" /><atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="hub" href="http://pubsubhubbub.appspot.com/" /></channel>
+<image rdf:about="http://a.fsdn.com/sd/topics/topicslashdot.gif">
+<title>Slashdot</title>
+<url>http://a.fsdn.com/sd/topics/topicslashdot.gif</url>
+<link>https://slashdot.org/</link>
+</image>
+<item rdf:about="https://tech.slashdot.org/story/17/03/18/1934210/google-glass-enters-the-manufacturing-sector?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed">
+<title>Google Glass Enters The Manufacturing Sector</title>
+<link>https://tech.slashdot.org/story/17/03/18/1934210/google-glass-enters-the-manufacturing-sector?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed</link>
+<description>NPR recently profiled one of the 100 factory workers now using Google Glass at the agricultural equipment manufacturer AGCO. An anonymous reader quotes their report:
+Google Glass tells her what to do should she forget, for example, which part goes where. "I don't have to leave my area to go look at the computer every time I need to look up something," she says. With Google Glass, she scans the serial number on the part she's working on. This brings up manuals, photos or videos she may need. She can tap the side of headset or say "OK Glass" and use voice commands to leave notes for the next shift worker...
+ 
+Peggy Gullick, business process improvement director with AGCO, says the addition of Google Glass has been "a total game changer." Quality checks are now 20 percent faster, she says, and it's also helpful for on-the-job training of new employees... Tiffany Tsai, who writes about technology, says it's one of a growing number of companies -- including General Electric and Boeing -- testing it out... Companies working in the health care, entertainment and energy industries are listed as some of the Google Glass certified partners. 
+AGCO plans to have 200 workers using Google Glass by the end of this year.&lt;p&gt;&lt;div class="share_submission" style="position:relative;"&gt;
+&lt;a class="slashpop" href="http://twitter.com/home?status=Google+Glass+Enters+The+Manufacturing+Sector%3A+http%3A%2F%2Fbit.ly%2F2nm1gRC"&gt;&lt;img src="https://a.fsdn.com/sd/twitter_icon_large.png"&gt;&lt;/a&gt;
+&lt;a class="slashpop" href="http://www.facebook.com/sharer.php?u=https%3A%2F%2Ftech.slashdot.org%2Fstory%2F17%2F03%2F18%2F1934210%2Fgoogle-glass-enters-the-manufacturing-sector%3Futm_source%3Dslashdot%26utm_medium%3Dfacebook"&gt;&lt;img src="https://a.fsdn.com/sd/facebook_icon_large.png"&gt;&lt;/a&gt;
+
+&lt;a class="nobg" href="http://plus.google.com/share?url=https://tech.slashdot.org/story/17/03/18/1934210/google-glass-enters-the-manufacturing-sector?utm_source=slashdot&amp;amp;utm_medium=googleplus" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"&gt;&lt;img src="http://www.gstatic.com/images/icons/gplus-16.png" alt="Share on Google+"/&gt;&lt;/a&gt;                                                                                                                                                                              
+
+
+
+&lt;/div&gt;&lt;/p&gt;&lt;p&gt;&lt;a href="https://tech.slashdot.org/story/17/03/18/1934210/google-glass-enters-the-manufacturing-sector?utm_source=rss1.0moreanon&amp;amp;utm_medium=feed"&gt;Read more of this story&lt;/a&gt; at Slashdot.&lt;/p&gt;&lt;iframe src="https://slashdot.org/slashdot-it.pl?op=discuss&amp;amp;id=10379679&amp;amp;smallembed=1" style="height: 300px; width: 100%; border: none;"&gt;&lt;/iframe&gt;</description>
+<dc:creator>EditorDavid</dc:creator>
+<dc:date>2017-03-19T01:34:00+00:00</dc:date>
+<dc:subject>google</dc:subject>
+<slash:department>heading-to-headsets</slash:department>
+<slash:section>technology</slash:section>
+<slash:comments>17</slash:comments>
+<slash:hit_parade>17,17,6,5,1,1,0</slash:hit_parade>
+</item>
+<item rdf:about="https://yro.slashdot.org/story/17/03/18/2312217/cbs-reports-suspicious-cell-phone-tower-activity-in-washington-dc?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed">
+<title>CBS Reports 'Suspicious' Cell Phone Tower Activity In Washington DC</title>
+<link>https://yro.slashdot.org/story/17/03/18/2312217/cbs-reports-suspicious-cell-phone-tower-activity-in-washington-dc?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed</link>
+<description>"An unusually high amount of suspicious cell phone activity in the nation's capital has caught the attention of the Department of Homeland Security, raising concerns that U.S. officials are being monitored by a foreign entity," reports CBS News:
+The issue was first reported in the Washington Free Beacon, but a source at telecom security firm ESD America confirmed the spike in suspicious activity to CBS News. ESD America, hired preemptively for a DHS pilot program this January called ESD Overwatch, first noticed suspicious activity around cell phone towers in certain parts of the capital, including near the White House. This kind of activity can indicate that someone is monitoring specific individuals or their devices... According to the ESD America source, the first such spike of activity was in D.C. but there have been others in other parts of the country. Based on the type of technology used, the source continued, it is likely that the suspicious activity was being conducted by a foreign nation. 
+The news coincides with a letter sent to the DHS by two congressmen "deeply concerned" about vulnerabilities in the SS7 protocol underlying U.S. cellular networks, according to an article shared by Slashdot reader Trailrunner7. Senator Ron Wyden and Representative Ted Lieu are asking if the agency 
+has enough resources to address the threat. "Although there have been a few news stories about this topic, we suspect that most Americans simply have no idea how easy it is for a relatively sophisticated adversary to track their movements, tap their calls, and hack their smartphones."&lt;p&gt;&lt;div class="share_submission" style="position:relative;"&gt;
+&lt;a class="slashpop" href="http://twitter.com/home?status=CBS+Reports+'Suspicious'+Cell+Phone+Tower+Activity+In+Washington+DC%3A+http%3A%2F%2Fbit.ly%2F2mfQgWj"&gt;&lt;img src="https://a.fsdn.com/sd/twitter_icon_large.png"&gt;&lt;/a&gt;
+&lt;a class="slashpop" href="http://www.facebook.com/sharer.php?u=https%3A%2F%2Fyro.slashdot.org%2Fstory%2F17%2F03%2F18%2F2312217%2Fcbs-reports-suspicious-cell-phone-tower-activity-in-washington-dc%3Futm_source%3Dslashdot%26utm_medium%3Dfacebook"&gt;&lt;img src="https://a.fsdn.com/sd/facebook_icon_large.png"&gt;&lt;/a&gt;
+
+&lt;a class="nobg" href="http://plus.google.com/share?url=https://yro.slashdot.org/story/17/03/18/2312217/cbs-reports-suspicious-cell-phone-tower-activity-in-washington-dc?utm_source=slashdot&amp;amp;utm_medium=googleplus" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"&gt;&lt;img src="http://www.gstatic.com/images/icons/gplus-16.png" alt="Share on Google+"/&gt;&lt;/a&gt;                                                                                                                                                                              
+
+
+
+&lt;/div&gt;&lt;/p&gt;&lt;p&gt;&lt;a href="https://yro.slashdot.org/story/17/03/18/2312217/cbs-reports-suspicious-cell-phone-tower-activity-in-washington-dc?utm_source=rss1.0moreanon&amp;amp;utm_medium=feed"&gt;Read more of this story&lt;/a&gt; at Slashdot.&lt;/p&gt;&lt;iframe src="https://slashdot.org/slashdot-it.pl?op=discuss&amp;amp;id=10379869&amp;amp;smallembed=1" style="height: 300px; width: 100%; border: none;"&gt;&lt;/iframe&gt;</description>
+<dc:creator>EditorDavid</dc:creator>
+<dc:date>2017-03-18T23:34:00+00:00</dc:date>
+<dc:subject>government</dc:subject>
+<slash:department>news-about-networks</slash:department>
+<slash:section>yro</slash:section>
+<slash:comments>74</slash:comments>
+<slash:hit_parade>74,72,38,23,5,4,2</slash:hit_parade>
+</item>
+<item rdf:about="https://idle.slashdot.org/story/17/03/18/2211211/court-fines-canadian-26500-for-unconscionably-stupid-balloon-chair-flight?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed">
+<title>Court Fines Canadian $26,500 For 'Unconscionably Stupid' Balloon-Chair Flight</title>
+<link>https://idle.slashdot.org/story/17/03/18/2211211/court-fines-canadian-26500-for-unconscionably-stupid-balloon-chair-flight?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed</link>
+<description>In 2015, 27-year-old Daniel Boria tied over 100 helium balloons to a lawn chair and floated 2.5 miles above Calgary, "getting in the way of commercial aircraft and putting hundreds of lives at risk," reports the CBC. An anonymous reader quotes their report:
+
+Boria was ordered to pay $26,500 [USD $18,822] in fines when he was sentenced Friday, after pleading guilty in December to dangerous operation of an aircraft for the 2015 stunt... In handing down the sentence provincial court Judge Bruce Fraser called Boria's stunt "dumb and dangerous" and "unconscionably stupid. There was nothing fantastic, fun or exhilarating about it... There is no precedent for so foolish an escapade"...
+ 
+On July 5, 2015, Boria tied $13,000 worth of industrial-sized balloons to a Canadian Tire lawn chair and took to the skies to promote his cleaning company, with the plan to parachute into the Calgary Stampede chuckwagon races. Uncooperative weather forced him to bail early, and winds pushed his landing to Ogden Road, where he was arrested by police who had been monitoring Boria since he was spotted above the Stampede grounds... During the time he was in the air, 24 airplanes took off and landed in Calgary. 
+The judge agreed that $20,000 of the fine should be donated to a charity of Boria's choice, and later Boria "said the stunt was worthwhile and he has no regrets."&lt;p&gt;&lt;div class="share_submission" style="position:relative;"&gt;
+&lt;a class="slashpop" href="http://twitter.com/home?status=Court+Fines+Canadian+%2426%2C500+For+'Unconscionably+Stupid'+Balloon-Chair+Flight%3A+http%3A%2F%2Fbit.ly%2F2nm8eX8"&gt;&lt;img src="https://a.fsdn.com/sd/twitter_icon_large.png"&gt;&lt;/a&gt;
+&lt;a class="slashpop" href="http://www.facebook.com/sharer.php?u=https%3A%2F%2Fidle.slashdot.org%2Fstory%2F17%2F03%2F18%2F2211211%2Fcourt-fines-canadian-26500-for-unconscionably-stupid-balloon-chair-flight%3Futm_source%3Dslashdot%26utm_medium%3Dfacebook"&gt;&lt;img src="https://a.fsdn.com/sd/facebook_icon_large.png"&gt;&lt;/a&gt;
+
+&lt;a class="nobg" href="http://plus.google.com/share?url=https://idle.slashdot.org/story/17/03/18/2211211/court-fines-canadian-26500-for-unconscionably-stupid-balloon-chair-flight?utm_source=slashdot&amp;amp;utm_medium=googleplus" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"&gt;&lt;img src="http://www.gstatic.com/images/icons/gplus-16.png" alt="Share on Google+"/&gt;&lt;/a&gt;                                                                                                                                                                              
+
+
+
+&lt;/div&gt;&lt;/p&gt;&lt;p&gt;&lt;a href="https://idle.slashdot.org/story/17/03/18/2211211/court-fines-canadian-26500-for-unconscionably-stupid-balloon-chair-flight?utm_source=rss1.0moreanon&amp;amp;utm_medium=feed"&gt;Read more of this story&lt;/a&gt; at Slashdot.&lt;/p&gt;&lt;iframe src="https://slashdot.org/slashdot-it.pl?op=discuss&amp;amp;id=10379835&amp;amp;smallembed=1" style="height: 300px; width: 100%; border: none;"&gt;&lt;/iframe&gt;</description>
+<dc:creator>EditorDavid</dc:creator>
+<dc:date>2017-03-18T22:34:00+00:00</dc:date>
+<dc:subject>canada</dc:subject>
+<slash:department>balloon-payments</slash:department>
+<slash:section>idle</slash:section>
+<slash:comments>46</slash:comments>
+<slash:hit_parade>46,44,27,21,5,4,1</slash:hit_parade>
+</item>
+<item rdf:about="https://yro.slashdot.org/story/17/03/18/2118240/chinas-police-will-shoot-illegal-drones-with-radio-jamming-rifles?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed">
+<title>China's Police Will Shoot Illegal Drones With Radio-Jamming Rifles</title>
+<link>https://yro.slashdot.org/story/17/03/18/2118240/chinas-police-will-shoot-illegal-drones-with-radio-jamming-rifles?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed</link>
+<description>"Police in China are being equipped with new high-tech weaponry to help them fight back against illegal drone use," writes new submitter drunkdrone. Mashable reports:
+A Chinese city's police department is arming itself with more than 20 drone-jamming rifles...which work by emitting radio signals that force the drones to land, purportedly without damaging them. The drone-killing rifles will be used during the upcoming 2017 Wuhan Marathon, to raise security. Wuhan police demonstrated the drone-killing rifles last week, where they shot down six drones, according to the Chutian Metropolitan Daily. 
+Each rifle costs $36,265, and has a range of 0.6 miles.&lt;p&gt;&lt;div class="share_submission" style="position:relative;"&gt;
+&lt;a class="slashpop" href="http://twitter.com/home?status=China's+Police+Will+Shoot+Illegal+Drones+With+Radio-Jamming+Rifles%3A+http%3A%2F%2Fbit.ly%2F2mEaRz7"&gt;&lt;img src="https://a.fsdn.com/sd/twitter_icon_large.png"&gt;&lt;/a&gt;
+&lt;a class="slashpop" href="http://www.facebook.com/sharer.php?u=https%3A%2F%2Fyro.slashdot.org%2Fstory%2F17%2F03%2F18%2F2118240%2Fchinas-police-will-shoot-illegal-drones-with-radio-jamming-rifles%3Futm_source%3Dslashdot%26utm_medium%3Dfacebook"&gt;&lt;img src="https://a.fsdn.com/sd/facebook_icon_large.png"&gt;&lt;/a&gt;
+
+&lt;a class="nobg" href="http://plus.google.com/share?url=https://yro.slashdot.org/story/17/03/18/2118240/chinas-police-will-shoot-illegal-drones-with-radio-jamming-rifles?utm_source=slashdot&amp;amp;utm_medium=googleplus" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"&gt;&lt;img src="http://www.gstatic.com/images/icons/gplus-16.png" alt="Share on Google+"/&gt;&lt;/a&gt;                                                                                                                                                                              
+
+
+
+&lt;/div&gt;&lt;/p&gt;&lt;p&gt;&lt;a href="https://yro.slashdot.org/story/17/03/18/2118240/chinas-police-will-shoot-illegal-drones-with-radio-jamming-rifles?utm_source=rss1.0moreanon&amp;amp;utm_medium=feed"&gt;Read more of this story&lt;/a&gt; at Slashdot.&lt;/p&gt;&lt;iframe src="https://slashdot.org/slashdot-it.pl?op=discuss&amp;amp;id=10379789&amp;amp;smallembed=1" style="height: 300px; width: 100%; border: none;"&gt;&lt;/iframe&gt;</description>
+<dc:creator>EditorDavid</dc:creator>
+<dc:date>2017-03-18T21:34:00+00:00</dc:date>
+<dc:subject>china</dc:subject>
+<slash:department>rifles-vs-radio-waves</slash:department>
+<slash:section>yro</slash:section>
+<slash:comments>40</slash:comments>
+<slash:hit_parade>40,40,23,16,2,1,1</slash:hit_parade>
+</item>
+<item rdf:about="https://science.slashdot.org/story/17/03/18/1851257/tech-billionaires-invest-in-linking-brains-to-computers?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed">
+<title>Tech Billionaires Invest In Linking Brains To Computers</title>
+<link>https://science.slashdot.org/story/17/03/18/1851257/tech-billionaires-invest-in-linking-brains-to-computers?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed</link>
+<description>"To many in Silicon Valley, the brain looks like an unconquered frontier whose importance dwarfs any achievement made in computing or the Web," including Bryan Johnson, the founder of Braintree online payments, and Elon Musk. An anonymous reader quotes MIT Technology Review:
+Johnson is effectively jumping on an opportunity created by the Brain Initiative, an Obama-era project which plowed money into new schemes for recording neurons. That influx of cash has spurred the formation of several other startups, including Paradromics and Cortera, also developing novel hardware for collecting brain signals. As part of the government brain project, the defense R&amp;amp;D agency DARPA says it is close to announcing $60 million in contracts under a program to create a "high-fidelity" brain interface able to simultaneously record from one million neurons (the current record is about 200) and stimulate 100,000 at a time... 
+According to neuroscientists, several figures from the tech sector are currently scouring labs across the U.S. for technology that might fuse human and artificial intelligence. In addition to Johnson, Elon Musk has been teasing a project called "neural lace," which he said at a 2016 conference will lead to "symbiosis with machines." And Mark Zuckerberg declared in a 2015 Q&amp;amp;A that people will one day be able to share "full sensory and emotional experiences," not just photos. Facebook has been hiring neuroscientists for an undisclosed project at Building 8, its secretive hardware division. 
+Elon Musk complains that the current speeds for transferring signals from brains are "ridiculously slow".&lt;p&gt;&lt;div class="share_submission" style="position:relative;"&gt;
+&lt;a class="slashpop" href="http://twitter.com/home?status=Tech+Billionaires+Invest+In+Linking+Brains+To+Computers%3A+http%3A%2F%2Fbit.ly%2F2mfkn0a"&gt;&lt;img src="https://a.fsdn.com/sd/twitter_icon_large.png"&gt;&lt;/a&gt;
+&lt;a class="slashpop" href="http://www.facebook.com/sharer.php?u=https%3A%2F%2Fscience.slashdot.org%2Fstory%2F17%2F03%2F18%2F1851257%2Ftech-billionaires-invest-in-linking-brains-to-computers%3Futm_source%3Dslashdot%26utm_medium%3Dfacebook"&gt;&lt;img src="https://a.fsdn.com/sd/facebook_icon_large.png"&gt;&lt;/a&gt;
+
+&lt;a class="nobg" href="http://plus.google.com/share?url=https://science.slashdot.org/story/17/03/18/1851257/tech-billionaires-invest-in-linking-brains-to-computers?utm_source=slashdot&amp;amp;utm_medium=googleplus" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"&gt;&lt;img src="http://www.gstatic.com/images/icons/gplus-16.png" alt="Share on Google+"/&gt;&lt;/a&gt;                                                                                                                                                                              
+
+
+
+&lt;/div&gt;&lt;/p&gt;&lt;p&gt;&lt;a href="https://science.slashdot.org/story/17/03/18/1851257/tech-billionaires-invest-in-linking-brains-to-computers?utm_source=rss1.0moreanon&amp;amp;utm_medium=feed"&gt;Read more of this story&lt;/a&gt; at Slashdot.&lt;/p&gt;&lt;iframe src="https://slashdot.org/slashdot-it.pl?op=discuss&amp;amp;id=10379611&amp;amp;smallembed=1" style="height: 300px; width: 100%; border: none;"&gt;&lt;/iframe&gt;</description>
+<dc:creator>EditorDavid</dc:creator>
+<dc:date>2017-03-18T20:34:00+00:00</dc:date>
+<dc:subject>biotech</dc:subject>
+<slash:department>silicon-cerebellum</slash:department>
+<slash:section>science</slash:section>
+<slash:comments>47</slash:comments>
+<slash:hit_parade>47,46,29,22,8,1,0</slash:hit_parade>
+</item>
+<item rdf:about="https://it.slashdot.org/story/17/03/18/0524205/bruce-schneier-calls-for-iot-legislation-argues-the-internet-is-becoming-one-giant-robot?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed">
+<title>Bruce Schneier Calls for IoT Legislation, Argues The Internet Is Becoming One Giant Robot</title>
+<link>https://it.slashdot.org/story/17/03/18/0524205/bruce-schneier-calls-for-iot-legislation-argues-the-internet-is-becoming-one-giant-robot?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed</link>
+<description>"We're building a world-size robot, and we don't even realize it," security expert Bruce Schneier warned the Open Source Leadership Summit. As mobile computing and always-on devices combine with the various network-connected sensors, actuators, and cloud-based AI processing, "We are building an internet that senses, thinks, and acts." An anonymous reader quotes Linux.com:
+ You can think of it, he says, as an Internet that affects the world in a direct physical manner. This means Internet security becomes everything security. And, as the Internet physically affects our world, the threats become greater. "It's the same computers, it could be the same operating systems, the same apps, the same vulnerability, but there's a fundamental difference between when your spreadsheet crashes, and you lose your data, and when your car crashes and you lose your life," Schneier said...
+ 
+"I have 20 IoT-security best-practices documents from various organizations. But the primary barriers here are economic; these low-cost devices just don't have the dedicated security teams and patching/upgrade paths that our phones and computers do. This is why we also need regulation to force IoT companies to take security seriously from the beginning. I know regulation is a dirty word in our industry, but when people start dying, governments will take action. I see it as a choice not between government regulation and no government regulation, but between smart government regulation and stupid government regulation."&lt;p&gt;&lt;div class="share_submission" style="position:relative;"&gt;
+&lt;a class="slashpop" href="http://twitter.com/home?status=Bruce+Schneier+Calls+for+IoT+Legislation%2C+Argues+The+Internet+Is+Becoming+One+Giant+Robot%3A+http%3A%2F%2Fbit.ly%2F2mDQySk"&gt;&lt;img src="https://a.fsdn.com/sd/twitter_icon_large.png"&gt;&lt;/a&gt;
+&lt;a class="slashpop" href="http://www.facebook.com/sharer.php?u=https%3A%2F%2Fit.slashdot.org%2Fstory%2F17%2F03%2F18%2F0524205%2Fbruce-schneier-calls-for-iot-legislation-argues-the-internet-is-becoming-one-giant-robot%3Futm_source%3Dslashdot%26utm_medium%3Dfacebook"&gt;&lt;img src="https://a.fsdn.com/sd/facebook_icon_large.png"&gt;&lt;/a&gt;
+
+&lt;a class="nobg" href="http://plus.google.com/share?url=https://it.slashdot.org/story/17/03/18/0524205/bruce-schneier-calls-for-iot-legislation-argues-the-internet-is-becoming-one-giant-robot?utm_source=slashdot&amp;amp;utm_medium=googleplus" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"&gt;&lt;img src="http://www.gstatic.com/images/icons/gplus-16.png" alt="Share on Google+"/&gt;&lt;/a&gt;                                                                                                                                                                              
+
+
+
+&lt;/div&gt;&lt;/p&gt;&lt;p&gt;&lt;a href="https://it.slashdot.org/story/17/03/18/0524205/bruce-schneier-calls-for-iot-legislation-argues-the-internet-is-becoming-one-giant-robot?utm_source=rss1.0moreanon&amp;amp;utm_medium=feed"&gt;Read more of this story&lt;/a&gt; at Slashdot.&lt;/p&gt;&lt;iframe src="https://slashdot.org/slashdot-it.pl?op=discuss&amp;amp;id=10377275&amp;amp;smallembed=1" style="height: 300px; width: 100%; border: none;"&gt;&lt;/iframe&gt;</description>
+<dc:creator>EditorDavid</dc:creator>
+<dc:date>2017-03-18T19:34:00+00:00</dc:date>
+<dc:subject>botnet</dc:subject>
+<slash:department>Congress-vs-connected-devices</slash:department>
+<slash:section>it</slash:section>
+<slash:comments>63</slash:comments>
+<slash:hit_parade>63,61,38,36,13,7,1</slash:hit_parade>
+</item>
+<item rdf:about="https://tech.slashdot.org/story/17/03/18/1736250/googles-new-campus-will-open-its-restaurants-to-the-public?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed">
+<title>Google's New Campus Will Open Its Restaurants To The Public</title>
+<link>https://tech.slashdot.org/story/17/03/18/1736250/googles-new-campus-will-open-its-restaurants-to-the-public?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed</link>
+<description>Google's new 18-acre campus will feature a 595,000-square foot building for 2,400 employees, most of them engineers -- and its bottom floor will be open to the public. An anonymous reader quotes Recode:
+People will be able to walk through the middle of the building, where they can shop in retail stores and dine at cafes also frequented by Googlers... A summary of plans from Google also describes spaces for workshops and demonstrations of new technologies such as virtual reality. Visitors might encounter a pop-up store devoted to virtual reality or demonstrations of smart-home devices made by Alphabet subsidiary Nest, according to the spokesperson... This is the first time Google has built a campus from the ground up...
+ Generally speaking, Bay Area tech companies have tended to of cut their workplaces off from the communities surrounding them. Employees take private buses to their campuses, and stay on-site for non-work activities like meals in private cafeterias and exercise classes. Google offers similar amenities to its employees, but makes its open, grassy areas open to anyone. 
+The San Francisco Chronicle reports Google's new building will be "shaped to resemble a puffy white cloud, with solar panels on the roof... The campus also will have a plaza where the public can soak in performances."&lt;p&gt;&lt;div class="share_submission" style="position:relative;"&gt;
+&lt;a class="slashpop" href="http://twitter.com/home?status=Google's+New+Campus+Will+Open+Its+Restaurants+To+The+Public%3A+http%3A%2F%2Fbit.ly%2F2nDiAip"&gt;&lt;img src="https://a.fsdn.com/sd/twitter_icon_large.png"&gt;&lt;/a&gt;
+&lt;a class="slashpop" href="http://www.facebook.com/sharer.php?u=https%3A%2F%2Ftech.slashdot.org%2Fstory%2F17%2F03%2F18%2F1736250%2Fgoogles-new-campus-will-open-its-restaurants-to-the-public%3Futm_source%3Dslashdot%26utm_medium%3Dfacebook"&gt;&lt;img src="https://a.fsdn.com/sd/facebook_icon_large.png"&gt;&lt;/a&gt;
+
+&lt;a class="nobg" href="http://plus.google.com/share?url=https://tech.slashdot.org/story/17/03/18/1736250/googles-new-campus-will-open-its-restaurants-to-the-public?utm_source=slashdot&amp;amp;utm_medium=googleplus" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"&gt;&lt;img src="http://www.gstatic.com/images/icons/gplus-16.png" alt="Share on Google+"/&gt;&lt;/a&gt;                                                                                                                                                                              
+
+
+
+&lt;/div&gt;&lt;/p&gt;&lt;p&gt;&lt;a href="https://tech.slashdot.org/story/17/03/18/1736250/googles-new-campus-will-open-its-restaurants-to-the-public?utm_source=rss1.0moreanon&amp;amp;utm_medium=feed"&gt;Read more of this story&lt;/a&gt; at Slashdot.&lt;/p&gt;&lt;iframe src="https://slashdot.org/slashdot-it.pl?op=discuss&amp;amp;id=10379491&amp;amp;smallembed=1" style="height: 300px; width: 100%; border: none;"&gt;&lt;/iframe&gt;</description>
+<dc:creator>EditorDavid</dc:creator>
+<dc:date>2017-03-18T18:34:00+00:00</dc:date>
+<dc:subject>google</dc:subject>
+<slash:department>snacking-with-search-engines</slash:department>
+<slash:section>technology</slash:section>
+<slash:comments>62</slash:comments>
+<slash:hit_parade>62,60,37,32,3,2,0</slash:hit_parade>
+</item>
+<item rdf:about="https://it.slashdot.org/story/17/03/18/046239/some-https-inspection-tools-actually-weaken-security?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed">
+<title>Some HTTPS Inspection Tools Actually Weaken Security</title>
+<link>https://it.slashdot.org/story/17/03/18/046239/some-https-inspection-tools-actually-weaken-security?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed</link>
+<description>America's Department of Homeland Security issued a new warning this week. An anonymous reader quotes IT World:
+Companies that use security products to inspect HTTPS traffic might inadvertently make their users' encrypted connections less secure and expose them to man-in-the-middle attacks, the U.S. Computer Emergency Readiness Team warns. US-CERT, a division of the Department of Homeland Security, published an advisory after a recent survey showed that HTTPS inspection products don't mirror the security attributes of the original connections between clients and servers. "All systems behind a hypertext transfer protocol secure (HTTPS) interception product are potentially affected," US-CERT said in its alert. 
+Slashdot reader msm1267 quotes Threatpost:
+HTTPS inspection boxes sit between clients and servers, decrypting and inspecting encrypted traffic before re-encrypting it and forwarding it to the destination server... The client cannot verify how the inspection tool is validating certificates, or whether there is an attacker positioned between the proxy and the target server.&lt;p&gt;&lt;div class="share_submission" style="position:relative;"&gt;
+&lt;a class="slashpop" href="http://twitter.com/home?status=Some+HTTPS+Inspection+Tools+Actually+Weaken+Security%3A+http%3A%2F%2Fbit.ly%2F2meGXGg"&gt;&lt;img src="https://a.fsdn.com/sd/twitter_icon_large.png"&gt;&lt;/a&gt;
+&lt;a class="slashpop" href="http://www.facebook.com/sharer.php?u=https%3A%2F%2Fit.slashdot.org%2Fstory%2F17%2F03%2F18%2F046239%2Fsome-https-inspection-tools-actually-weaken-security%3Futm_source%3Dslashdot%26utm_medium%3Dfacebook"&gt;&lt;img src="https://a.fsdn.com/sd/facebook_icon_large.png"&gt;&lt;/a&gt;
+
+&lt;a class="nobg" href="http://plus.google.com/share?url=https://it.slashdot.org/story/17/03/18/046239/some-https-inspection-tools-actually-weaken-security?utm_source=slashdot&amp;amp;utm_medium=googleplus" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"&gt;&lt;img src="http://www.gstatic.com/images/icons/gplus-16.png" alt="Share on Google+"/&gt;&lt;/a&gt;                                                                                                                                                                              
+
+
+
+&lt;/div&gt;&lt;/p&gt;&lt;p&gt;&lt;a href="https://it.slashdot.org/story/17/03/18/046239/some-https-inspection-tools-actually-weaken-security?utm_source=rss1.0moreanon&amp;amp;utm_medium=feed"&gt;Read more of this story&lt;/a&gt; at Slashdot.&lt;/p&gt;&lt;iframe src="https://slashdot.org/slashdot-it.pl?op=discuss&amp;amp;id=10377093&amp;amp;smallembed=1" style="height: 300px; width: 100%; border: none;"&gt;&lt;/iframe&gt;</description>
+<dc:creator>EditorDavid</dc:creator>
+<dc:date>2017-03-18T17:34:00+00:00</dc:date>
+<dc:subject>security</dc:subject>
+<slash:department>muddle-in-the-middle</slash:department>
+<slash:section>it</slash:section>
+<slash:comments>65</slash:comments>
+<slash:hit_parade>65,64,44,40,5,1,1</slash:hit_parade>
+</item>
+<item rdf:about="https://tech.slashdot.org/story/17/03/18/0323256/could-we-eliminate-spam-with-dmarc?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed">
+<title>Could We Eliminate Spam With DMARC?</title>
+<link>https://tech.slashdot.org/story/17/03/18/0323256/could-we-eliminate-spam-with-dmarc?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed</link>
+<description>An anonymous reader writes: 
+"The spam problem would not only be significantly reduced, it'd probably almost go away," argues Paul Edmunds, the head of technology from the cybercrimes division of the U.K.'s National Crime Agency -- suggesting that more businesses should be using DMARC, an email validation system that uses both the Sender Policy Framework (SPF) and DomainKeys Identified Mail (DKIM). "Edmunds argued, if DMARC was rolled out everywhere in order to verify if messages come from legitimate domains, it would be a major blow to spam distributors and take a big step towards protecting organizations from this type of crime..." reports ZDNet. "However, according to a recent survey by the Global Cyber Alliance, DMARC isn't widely used and only 15% of cybersecurity vendors themselves are using DMARC to prevent email spoofing. 
+
+Earlier this month America's FTC also reported that 86% of major online businesses used SPF to help ISPs authenticate their emails -- but fewer than 10% have implemented DMARC.&lt;p&gt;&lt;div class="share_submission" style="position:relative;"&gt;
+&lt;a class="slashpop" href="http://twitter.com/home?status=Could+We+Eliminate+Spam+With+DMARC%3F%3A+http%3A%2F%2Fbit.ly%2F2meKLr1"&gt;&lt;img src="https://a.fsdn.com/sd/twitter_icon_large.png"&gt;&lt;/a&gt;
+&lt;a class="slashpop" href="http://www.facebook.com/sharer.php?u=https%3A%2F%2Ftech.slashdot.org%2Fstory%2F17%2F03%2F18%2F0323256%2Fcould-we-eliminate-spam-with-dmarc%3Futm_source%3Dslashdot%26utm_medium%3Dfacebook"&gt;&lt;img src="https://a.fsdn.com/sd/facebook_icon_large.png"&gt;&lt;/a&gt;
+
+&lt;a class="nobg" href="http://plus.google.com/share?url=https://tech.slashdot.org/story/17/03/18/0323256/could-we-eliminate-spam-with-dmarc?utm_source=slashdot&amp;amp;utm_medium=googleplus" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"&gt;&lt;img src="http://www.gstatic.com/images/icons/gplus-16.png" alt="Share on Google+"/&gt;&lt;/a&gt;                                                                                                                                                                              
+
+
+
+&lt;/div&gt;&lt;/p&gt;&lt;p&gt;&lt;a href="https://tech.slashdot.org/story/17/03/18/0323256/could-we-eliminate-spam-with-dmarc?utm_source=rss1.0moreanon&amp;amp;utm_medium=feed"&gt;Read more of this story&lt;/a&gt; at Slashdot.&lt;/p&gt;&lt;iframe src="https://slashdot.org/slashdot-it.pl?op=discuss&amp;amp;id=10377045&amp;amp;smallembed=1" style="height: 300px; width: 100%; border: none;"&gt;&lt;/iframe&gt;</description>
+<dc:creator>EditorDavid</dc:creator>
+<dc:date>2017-03-18T16:34:00+00:00</dc:date>
+<dc:subject>communications</dc:subject>
+<slash:department>Domain-based-Message-Authentication,-Reporting-and-Conformance</slash:department>
+<slash:section>technology</slash:section>
+<slash:comments>105</slash:comments>
+<slash:hit_parade>105,104,68,59,17,10,6</slash:hit_parade>
+</item>
+<item rdf:about="https://news.slashdot.org/story/17/03/18/0152212/researchers-build-an-ai-thats-better-at-reading-lips-than-humans?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed">
+<title>Researchers Build An AI That's Better At Reading Lips Than Humans</title>
+<link>https://news.slashdot.org/story/17/03/18/0152212/researchers-build-an-ai-thats-better-at-reading-lips-than-humans?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed</link>
+<description>An anonymous reader quotes the BBC:
+
+Scientists at Oxford say they've invented an artificial intelligence system that can lip-read better than humans. The system, which has been trained on thousands of hours of BBC News programs, has been developed in collaboration with Google's DeepMind AI division. "Watch, Attend and Spell", as the system has been called, can now watch silent speech and get about 50% of the words correct. That may not sound too impressive - but when the researchers supplied the same clips to professional lip-readers, they got only 12% of words right...
+
+ 
+The system now recognizes 17,500 words, and one of the researchers says, "As it keeps watching TV, it will learn."&lt;p&gt;&lt;div class="share_submission" style="position:relative;"&gt;
+&lt;a class="slashpop" href="http://twitter.com/home?status=Researchers+Build+An+AI+That's+Better+At+Reading+Lips+Than+Humans%3A+http%3A%2F%2Fbit.ly%2F2nCScFy"&gt;&lt;img src="https://a.fsdn.com/sd/twitter_icon_large.png"&gt;&lt;/a&gt;
+&lt;a class="slashpop" href="http://www.facebook.com/sharer.php?u=https%3A%2F%2Fnews.slashdot.org%2Fstory%2F17%2F03%2F18%2F0152212%2Fresearchers-build-an-ai-thats-better-at-reading-lips-than-humans%3Futm_source%3Dslashdot%26utm_medium%3Dfacebook"&gt;&lt;img src="https://a.fsdn.com/sd/facebook_icon_large.png"&gt;&lt;/a&gt;
+
+&lt;a class="nobg" href="http://plus.google.com/share?url=https://news.slashdot.org/story/17/03/18/0152212/researchers-build-an-ai-thats-better-at-reading-lips-than-humans?utm_source=slashdot&amp;amp;utm_medium=googleplus" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"&gt;&lt;img src="http://www.gstatic.com/images/icons/gplus-16.png" alt="Share on Google+"/&gt;&lt;/a&gt;                                                                                                                                                                              
+
+
+
+&lt;/div&gt;&lt;/p&gt;&lt;p&gt;&lt;a href="https://news.slashdot.org/story/17/03/18/0152212/researchers-build-an-ai-thats-better-at-reading-lips-than-humans?utm_source=rss1.0moreanon&amp;amp;utm_medium=feed"&gt;Read more of this story&lt;/a&gt; at Slashdot.&lt;/p&gt;&lt;iframe src="https://slashdot.org/slashdot-it.pl?op=discuss&amp;amp;id=10376957&amp;amp;smallembed=1" style="height: 300px; width: 100%; border: none;"&gt;&lt;/iframe&gt;</description>
+<dc:creator>EditorDavid</dc:creator>
+<dc:date>2017-03-18T15:34:00+00:00</dc:date>
+<dc:subject>ai</dc:subject>
+<slash:department>just-like-HAL</slash:department>
+<slash:section>news</slash:section>
+<slash:comments>56</slash:comments>
+<slash:hit_parade>56,54,34,30,8,2,0</slash:hit_parade>
+</item>
+<item rdf:about="https://science.slashdot.org/story/17/03/17/2341240/physicists-find-that-as-clocks-get-more-precise-time-gets-more-fuzzy?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed">
+<title>Physicists Find That As Clocks Get More Precise, Time Gets More Fuzzy</title>
+<link>https://science.slashdot.org/story/17/03/17/2341240/physicists-find-that-as-clocks-get-more-precise-time-gets-more-fuzzy?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed</link>
+<description>Physicists "have combined two grand theories of physics to conclude not only is time not universally consistent, any clock we use to measure it will blur the flow of time in its surrounding space." An anonymous reader quotes ScienceAlert:
+
+A team of physicists from the University of Vienna and the Austrian Academy of Sciences have applied quantum mechanics and general relativity to argue that increasing the precision of measurements on clocks in the same space also increases their warping of time... [W]hile the theories are both supported by experiments, they usually don't play well together, forcing physicists to consider a new theory that will allow them both to be correct at the same time...
+ 
+In this case, the physicists hypothesized the act of measuring time in greater detail requires the possibility of increasing amounts of energy, in turn making measurements in the immediate neighborhood of any time-keeping devices less precise. "Our findings suggest that we need to re-examine our ideas about the nature of time when both quantum mechanics and general relativity are taken into account," says researcher Esteban Castro. The article opens with the statement that "time is weird," noting that despite our own human-centric expectations, "the Universe doesn't have a master clock to run by."&lt;p&gt;&lt;div class="share_submission" style="position:relative;"&gt;
+&lt;a class="slashpop" href="http://twitter.com/home?status=Physicists+Find+That+As+Clocks+Get+More+Precise%2C+Time+Gets+More+Fuzzy%3A+http%3A%2F%2Fbit.ly%2F2nknpQh"&gt;&lt;img src="https://a.fsdn.com/sd/twitter_icon_large.png"&gt;&lt;/a&gt;
+&lt;a class="slashpop" href="http://www.facebook.com/sharer.php?u=https%3A%2F%2Fscience.slashdot.org%2Fstory%2F17%2F03%2F17%2F2341240%2Fphysicists-find-that-as-clocks-get-more-precise-time-gets-more-fuzzy%3Futm_source%3Dslashdot%26utm_medium%3Dfacebook"&gt;&lt;img src="https://a.fsdn.com/sd/facebook_icon_large.png"&gt;&lt;/a&gt;
+
+&lt;a class="nobg" href="http://plus.google.com/share?url=https://science.slashdot.org/story/17/03/17/2341240/physicists-find-that-as-clocks-get-more-precise-time-gets-more-fuzzy?utm_source=slashdot&amp;amp;utm_medium=googleplus" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"&gt;&lt;img src="http://www.gstatic.com/images/icons/gplus-16.png" alt="Share on Google+"/&gt;&lt;/a&gt;                                                                                                                                                                              
+
+
+
+&lt;/div&gt;&lt;/p&gt;&lt;p&gt;&lt;a href="https://science.slashdot.org/story/17/03/17/2341240/physicists-find-that-as-clocks-get-more-precise-time-gets-more-fuzzy?utm_source=rss1.0moreanon&amp;amp;utm_medium=feed"&gt;Read more of this story&lt;/a&gt; at Slashdot.&lt;/p&gt;&lt;iframe src="https://slashdot.org/slashdot-it.pl?op=discuss&amp;amp;id=10376857&amp;amp;smallembed=1" style="height: 300px; width: 100%; border: none;"&gt;&lt;/iframe&gt;</description>
+<dc:creator>EditorDavid</dc:creator>
+<dc:date>2017-03-18T14:34:00+00:00</dc:date>
+<dc:subject>science</dc:subject>
+<slash:department>time-for-a-new-theory</slash:department>
+<slash:section>science</slash:section>
+<slash:comments>129</slash:comments>
+<slash:hit_parade>129,124,73,63,21,11,7</slash:hit_parade>
+</item>
+<item rdf:about="https://yro.slashdot.org/story/17/03/18/0047226/us-lawmakers-propose-minimum-seat-sizes-for-airlines?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed">
+<title>US Lawmakers Propose Minimum Seat Sizes For Airlines</title>
+<link>https://yro.slashdot.org/story/17/03/18/0047226/us-lawmakers-propose-minimum-seat-sizes-for-airlines?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed</link>
+<description>The size of each passenger's seat on an airplane -- as well as the distance between rows of seats -- should be standardized, according to legislation proposed by two American lawmakers. Slashdot reader AmiMoJo quotes Consumerist: 
+The text of the bill does not specify any dimensions for seat widths or legroom. Rather, if the legislation is passed, the particulars would be left up to the FAA to sort out... Though seat size may vary from airline to airline, Cohen notes that the average distance between rows of seats has dropped from 35 inches before airline deregulation in the 1970s, to around 31 inches today. Your backside is getting the squeeze, as well, as the average width of an airline seat has also shrunk from 18 inches to about 16.5 inches.&lt;p&gt;&lt;div class="share_submission" style="position:relative;"&gt;
+&lt;a class="slashpop" href="http://twitter.com/home?status=US+Lawmakers+Propose+Minimum+Seat+Sizes+For+Airlines%3A+http%3A%2F%2Fbit.ly%2F2nkxnRV"&gt;&lt;img src="https://a.fsdn.com/sd/twitter_icon_large.png"&gt;&lt;/a&gt;
+&lt;a class="slashpop" href="http://www.facebook.com/sharer.php?u=https%3A%2F%2Fyro.slashdot.org%2Fstory%2F17%2F03%2F18%2F0047226%2Fus-lawmakers-propose-minimum-seat-sizes-for-airlines%3Futm_source%3Dslashdot%26utm_medium%3Dfacebook"&gt;&lt;img src="https://a.fsdn.com/sd/facebook_icon_large.png"&gt;&lt;/a&gt;
+
+&lt;a class="nobg" href="http://plus.google.com/share?url=https://yro.slashdot.org/story/17/03/18/0047226/us-lawmakers-propose-minimum-seat-sizes-for-airlines?utm_source=slashdot&amp;amp;utm_medium=googleplus" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"&gt;&lt;img src="http://www.gstatic.com/images/icons/gplus-16.png" alt="Share on Google+"/&gt;&lt;/a&gt;                                                                                                                                                                              
+
+
+
+&lt;/div&gt;&lt;/p&gt;&lt;p&gt;&lt;a href="https://yro.slashdot.org/story/17/03/18/0047226/us-lawmakers-propose-minimum-seat-sizes-for-airlines?utm_source=rss1.0moreanon&amp;amp;utm_medium=feed"&gt;Read more of this story&lt;/a&gt; at Slashdot.&lt;/p&gt;&lt;iframe src="https://slashdot.org/slashdot-it.pl?op=discuss&amp;amp;id=10376897&amp;amp;smallembed=1" style="height: 300px; width: 100%; border: none;"&gt;&lt;/iframe&gt;</description>
+<dc:creator>EditorDavid</dc:creator>
+<dc:date>2017-03-18T13:34:00+00:00</dc:date>
+<dc:subject>government</dc:subject>
+<slash:department>measures-about-measurements</slash:department>
+<slash:section>yro</slash:section>
+<slash:comments>195</slash:comments>
+<slash:hit_parade>195,193,101,83,24,6,6</slash:hit_parade>
+</item>
+<item rdf:about="https://hardware.slashdot.org/story/17/03/18/003227/ask-slashdot-best-virtual-reality-headsets?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed">
+<title>Ask Slashdot: Best Virtual Reality Headsets?</title>
+<link>https://hardware.slashdot.org/story/17/03/18/003227/ask-slashdot-best-virtual-reality-headsets?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed</link>
+<description>Quantus347 writes: Straightforward question: I held off for a year to let the various manufacturers shake out the bugs, but now it's down to either a virtual-reality system or a new generation console. So I ask you, the Slashdot community, what are your personal experiences with any of the various VR systems out there? What are their strengths and weaknesses? What little things annoy you the most? What features make a given product the best (or worst) option? "Sprinkle us with wisdom from your mighty brain!" For reference, the HTC Vive costs $799.00, while the Oculus Rift with Oculus Touch motion controllers costs $598 (which is the price after the recent markdown from $799). These prices do not include the necessary hardware required to power each headset. The PlayStation VR ($399.99), Samsung Gear VR ($99.99), and Google Daydream View ($79.00) are also available for less moolah.&lt;p&gt;&lt;div class="share_submission" style="position:relative;"&gt;
+&lt;a class="slashpop" href="http://twitter.com/home?status=Ask+Slashdot%3A+Best+Virtual+Reality+Headsets%3F%3A+http%3A%2F%2Fbit.ly%2F2mDaPY2"&gt;&lt;img src="https://a.fsdn.com/sd/twitter_icon_large.png"&gt;&lt;/a&gt;
+&lt;a class="slashpop" href="http://www.facebook.com/sharer.php?u=https%3A%2F%2Fhardware.slashdot.org%2Fstory%2F17%2F03%2F18%2F003227%2Fask-slashdot-best-virtual-reality-headsets%3Futm_source%3Dslashdot%26utm_medium%3Dfacebook"&gt;&lt;img src="https://a.fsdn.com/sd/facebook_icon_large.png"&gt;&lt;/a&gt;
+
+&lt;a class="nobg" href="http://plus.google.com/share?url=https://hardware.slashdot.org/story/17/03/18/003227/ask-slashdot-best-virtual-reality-headsets?utm_source=slashdot&amp;amp;utm_medium=googleplus" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"&gt;&lt;img src="http://www.gstatic.com/images/icons/gplus-16.png" alt="Share on Google+"/&gt;&lt;/a&gt;                                                                                                                                                                              
+
+
+
+&lt;/div&gt;&lt;/p&gt;&lt;p&gt;&lt;a href="https://hardware.slashdot.org/story/17/03/18/003227/ask-slashdot-best-virtual-reality-headsets?utm_source=rss1.0moreanon&amp;amp;utm_medium=feed"&gt;Read more of this story&lt;/a&gt; at Slashdot.&lt;/p&gt;&lt;iframe src="https://slashdot.org/slashdot-it.pl?op=discuss&amp;amp;id=10376869&amp;amp;smallembed=1" style="height: 300px; width: 100%; border: none;"&gt;&lt;/iframe&gt;</description>
+<dc:creator>BeauHD</dc:creator>
+<dc:date>2017-03-18T13:00:00+00:00</dc:date>
+<dc:subject>playstation</dc:subject>
+<slash:department>best-bang-for-your-buck</slash:department>
+<slash:section>hardware</slash:section>
+<slash:comments>116</slash:comments>
+<slash:hit_parade>116,114,79,65,6,4,2</slash:hit_parade>
+</item>
+<item rdf:about="https://tech.slashdot.org/story/17/03/18/0148223/southwest-airlines-is-doing-away-with-pneumatic-tubes-paper-tickets?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed">
+<title>Southwest Airlines Is Doing Away With Pneumatic Tubes, Paper Tickets</title>
+<link>https://tech.slashdot.org/story/17/03/18/0148223/southwest-airlines-is-doing-away-with-pneumatic-tubes-paper-tickets?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed</link>
+<description>As part of Southwest's biggest tech upgrade in its 45 years of existence, the company will doing away with several of its antiquated practices, including paper tickets and the use of pneumatic tubes to send messages at airports. Consumerist reports: The airline says the goal of these upgrades is to keep planes moving in and out of airports as quickly as possible. "We're looking for minutes," Chief Operating Officer Mike Van de Ven told Bloomberg. "How do I save a minute here, a minute there? In 2017, we are more deliberate in our continuous improvement efforts." The new reservation system will allow Southwest to accept foreign money -- something its rivals can already do -- bounce back faster from storms, and have more control over price changes and schedules. Ramp workers will be getting tablets with real-time information to speed up airplanes' "turn time" -- how quickly they can deboard and reboard passengers and take off again. Tarmac staffers also won't be using pneumatic tubes anymore to send notes via canister about lost luggage and other communications to the cargo workers in charge of calculating jet weight and balance. Digital transmissions will replace that system, as well as printouts for workers who transport bags to and fro. Customers will be seeing changes as well, as the new reservation system means Southwest can ditch paper tickets altogether and stick with electronic tickets only.&lt;p&gt;&lt;div class="share_submission" style="position:relative;"&gt;
+&lt;a class="slashpop" href="http://twitter.com/home?status=Southwest+Airlines+Is+Doing+Away+With+Pneumatic+Tubes%2C+Paper+Tickets%3A+http%3A%2F%2Fbit.ly%2F2mCGGbn"&gt;&lt;img src="https://a.fsdn.com/sd/twitter_icon_large.png"&gt;&lt;/a&gt;
+&lt;a class="slashpop" href="http://www.facebook.com/sharer.php?u=https%3A%2F%2Ftech.slashdot.org%2Fstory%2F17%2F03%2F18%2F0148223%2Fsouthwest-airlines-is-doing-away-with-pneumatic-tubes-paper-tickets%3Futm_source%3Dslashdot%26utm_medium%3Dfacebook"&gt;&lt;img src="https://a.fsdn.com/sd/facebook_icon_large.png"&gt;&lt;/a&gt;
+
+&lt;a class="nobg" href="http://plus.google.com/share?url=https://tech.slashdot.org/story/17/03/18/0148223/southwest-airlines-is-doing-away-with-pneumatic-tubes-paper-tickets?utm_source=slashdot&amp;amp;utm_medium=googleplus" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"&gt;&lt;img src="http://www.gstatic.com/images/icons/gplus-16.png" alt="Share on Google+"/&gt;&lt;/a&gt;                                                                                                                                                                              
+
+
+
+&lt;/div&gt;&lt;/p&gt;&lt;p&gt;&lt;a href="https://tech.slashdot.org/story/17/03/18/0148223/southwest-airlines-is-doing-away-with-pneumatic-tubes-paper-tickets?utm_source=rss1.0moreanon&amp;amp;utm_medium=feed"&gt;Read more of this story&lt;/a&gt; at Slashdot.&lt;/p&gt;&lt;iframe src="https://slashdot.org/slashdot-it.pl?op=discuss&amp;amp;id=10376947&amp;amp;smallembed=1" style="height: 300px; width: 100%; border: none;"&gt;&lt;/iframe&gt;</description>
+<dc:creator>BeauHD</dc:creator>
+<dc:date>2017-03-18T10:00:00+00:00</dc:date>
+<dc:subject>communications</dc:subject>
+<slash:department>get-with-the-times</slash:department>
+<slash:section>technology</slash:section>
+<slash:comments>70</slash:comments>
+<slash:hit_parade>70,68,40,33,13,4,3</slash:hit_parade>
+</item>
+<item rdf:about="https://science.slashdot.org/story/17/03/17/2340244/climate-shaped-the-human-nose-researchers-say?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed">
+<title>Climate Shaped the Human Nose, Researchers Say</title>
+<link>https://science.slashdot.org/story/17/03/17/2340244/climate-shaped-the-human-nose-researchers-say?utm_source=rss1.0mainlinkanon&amp;utm_medium=feed</link>
+<description>An anonymous reader quotes a report from The Guardian: Human noses have been shaped by climate, according to research probing variation in the human snout. Researchers say their findings back up the theory that wider nostrils developed in populations living in warm, humid conditions, while populations living in high latitudes, such as northern Europe, developed narrower nostrils as an adaptation to the chilly, dry conditions. Writing in the journal Plos Genetics, researchers from the U.S., Ireland and Belgium describe how they began to unpick variations in nose shape by using 3D facial imaging to take a host of measurements from 476 volunteers of south Asian, east Asian, west African and northern European ancestry. The results revealed that only two out of seven nose-related traits were found to differ more between the populations than would be expected from the impact of random, chance changes in genetic makeup over time. The authors say that suggests variations in those traits have been influenced by natural selection. With further analysis, based on data from participants of west African and European ancestry, confirming that nose shape is highly heritable, the team looked to see if there was a link between nose shape and climate. The results showed that nostril width is linked to temperature and absolute humidity, with participants whose ancestors lived in warm-humid climates on average having wider nostrils than those whose ancestors lived in cool-dry climates. That, says Arslan Zaidi, co-author of the study from Pennsylvania State University, could be because narrower nasal passages help to increase the moisture content of air and warm it -- a bonus for those in higher latitudes.&lt;p&gt;&lt;div class="share_submission" style="position:relative;"&gt;
+&lt;a class="slashpop" href="http://twitter.com/home?status=Climate+Shaped+the+Human+Nose%2C+Researchers+Say%3A+http%3A%2F%2Fbit.ly%2F2mdgTey"&gt;&lt;img src="https://a.fsdn.com/sd/twitter_icon_large.png"&gt;&lt;/a&gt;
+&lt;a class="slashpop" href="http://www.facebook.com/sharer.php?u=https%3A%2F%2Fscience.slashdot.org%2Fstory%2F17%2F03%2F17%2F2340244%2Fclimate-shaped-the-human-nose-researchers-say%3Futm_source%3Dslashdot%26utm_medium%3Dfacebook"&gt;&lt;img src="https://a.fsdn.com/sd/facebook_icon_large.png"&gt;&lt;/a&gt;
+
+&lt;a class="nobg" href="http://plus.google.com/share?url=https://science.slashdot.org/story/17/03/17/2340244/climate-shaped-the-human-nose-researchers-say?utm_source=slashdot&amp;amp;utm_medium=googleplus" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"&gt;&lt;img src="http://www.gstatic.com/images/icons/gplus-16.png" alt="Share on Google+"/&gt;&lt;/a&gt;                                                                                                                                                                              
+
+
+
+&lt;/div&gt;&lt;/p&gt;&lt;p&gt;&lt;a href="https://science.slashdot.org/story/17/03/17/2340244/climate-shaped-the-human-nose-researchers-say?utm_source=rss1.0moreanon&amp;amp;utm_medium=feed"&gt;Read more of this story&lt;/a&gt; at Slashdot.&lt;/p&gt;&lt;iframe src="https://slashdot.org/slashdot-it.pl?op=discuss&amp;amp;id=10376853&amp;amp;smallembed=1" style="height: 300px; width: 100%; border: none;"&gt;&lt;/iframe&gt;</description>
+<dc:creator>BeauHD</dc:creator>
+<dc:date>2017-03-18T07:00:00+00:00</dc:date>
+<dc:subject>earth</dc:subject>
+<slash:department>you-get-what-you-get-and-you-don't-throw-a-fit</slash:department>
+<slash:section>science</slash:section>
+<slash:comments>55</slash:comments>
+<slash:hit_parade>55,51,26,21,1,1,1</slash:hit_parade>
+</item>
+<textinput rdf:about="https://slashdot.org/search.pl">
+<title>Search Slashdot</title>
+<description>Search Slashdot stories</description>
+<name>query</name>
+<link>https://slashdot.org/search.pl</link>
+</textinput>
+</rdf:RDF>
