@@ -1,9 +1,9 @@
 {
   "name": "NewsBotIRC",
   "scripts": {
-     "postdeploy": "cp target/classes/newsbot.properties-for-pull-requests newsbot.properties"
   },
   "env": {
+    "TESTING_PULL_REQUEST": ""
   },
   "formation": {
   },
