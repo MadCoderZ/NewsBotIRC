@@ -15,4 +15,4 @@ WORKDIR /home/newsbot
 
 RUN mvn -e install
 
-CMD ["java","-jar","target/NewsBotIRC-0.1.2-SNAPSHOT.jar"]
+CMD ["java","-jar","target/NewsBotIRC-0.2-SNAPSHOT.jar"]

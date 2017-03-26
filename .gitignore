@@ -1,9 +1,10 @@
 target/*
 nb-configuration.xml
-NewsBotGG.iml
+*.iml
 nbactions.xml
 dependency-reduced-pom.xml
 .DS_Store
 .sync/ID
 .sync/IgnoreList
 .sync/StreamsList
+/nbproject/

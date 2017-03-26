@@ -1,7 +1,6 @@
 package com.github.NewsBotIRC;
 
-import com.rometools.rome.feed.synd.SyndFeed;
-import com.rometools.rome.io.FeedException;
+import com.github.NewsBotIRC.feedreaders.NewsFeed;
 import org.pircbotx.Channel;
 import org.pircbotx.Configuration;
 import org.pircbotx.PircBotX;
@@ -12,6 +11,7 @@ import java.net.MalformedURLException;
 import java.util.Iterator;
 import java.util.List;
 import org.pircbotx.UtilSSLSocketFactory;
+import org.pircbotx.cap.SASLCapHandler;
 
 /**
  * Created by Geronimo on 13/6/16.
@@ -24,42 +24,35 @@ public class IRCMediator
 
     public IRCMediator()
     {
-        Configuration configuration = null;
+        Configuration.Builder confBuilder = new Configuration.Builder();
 
-        if (ConfReader.getInstance().isSSL()) {
-            configuration = new Configuration.Builder()
-            .setAutoReconnect(ConfReader.getInstance().isAutoreconnect())
-            .setAutoReconnectAttempts(ConfReader.getInstance().getReconnectattempts())
-            .setAutoReconnectDelay(ConfReader.getInstance().getDelaybetweenretries())
-            .setRealName(ConfReader.getInstance().getRealname())
-            .setName(ConfReader.getInstance().getNick())
-            .setLogin(ConfReader.getInstance().getLogin())
-            .setAutoNickChange(true)
-            .addServer(ConfReader.getInstance().getIrcserver(), ConfReader.getInstance().getPort())
-            .setSocketFactory(new UtilSSLSocketFactory().trustAllCertificates())
-            .addAutoJoinChannel("#" + ConfReader.getInstance().getChannel())
-            .setVersion(ConfReader.getInstance().getVersion())
-            .addListener( new IRCListener(this) )
-            .buildConfiguration();
-        } else {
-            configuration = new Configuration.Builder()
-            .setAutoReconnect(ConfReader.getInstance().isAutoreconnect())
-            .setAutoReconnectAttempts(ConfReader.getInstance().getReconnectattempts())
-            .setAutoReconnectDelay(ConfReader.getInstance().getDelaybetweenretries())
-            .setRealName(ConfReader.getInstance().getRealname())
-            .setName(ConfReader.getInstance().getNick())
-            .setLogin(ConfReader.getInstance().getLogin())
-            .setAutoNickChange(true)
-            .addServer(ConfReader.getInstance().getIrcserver(), ConfReader.getInstance().getPort())
-            .addAutoJoinChannel("#" + ConfReader.getInstance().getChannel())
-            .setVersion(ConfReader.getInstance().getVersion())
-            .addListener( new IRCListener(this) )
-            .buildConfiguration();
+        // check if SSL is enabled, otherwise it won't use SSL connection.
+        if (ConfReader.getInstance().isSSL())
+        {
+            confBuilder.setSocketFactory(new UtilSSLSocketFactory().trustAllCertificates());
         }
 
-        System.out.println(ConfReader.getInstance().getVersion());
+        // It tries to authenticate using SASL (it doesn't work on all networks)
+        if (ConfReader.getInstance().isIdentifyEnabled())
+        {
+            confBuilder.addCapHandler(new SASLCapHandler(ConfReader.getInstance().getNick(),
+                    ConfReader.getInstance().getNickserv_passwd(), true));
+        }
 
-        this.bot = new PircBotX(configuration);
+        confBuilder.setAutoReconnect(ConfReader.getInstance().isAutoreconnect());
+        confBuilder.setAutoReconnectAttempts(ConfReader.getInstance().getReconnectattempts());
+        confBuilder.setAutoReconnectDelay(ConfReader.getInstance().getDelaybetweenretries());
+        confBuilder.setRealName(ConfReader.getInstance().getRealname());
+        confBuilder.setName(ConfReader.getInstance().getNick());
+        confBuilder.setLogin(ConfReader.getInstance().getLogin());
+        confBuilder.setAutoNickChange(true);
+        confBuilder.addServer(ConfReader.getInstance().getIrcserver(), ConfReader.getInstance().getPort());
+        confBuilder.addAutoJoinChannel("#" + ConfReader.getInstance().getChannel());
+        confBuilder.setVersion(ConfReader.getInstance().getVersion());
+        confBuilder.addListener(new IRCListener(this) );
+        confBuilder.buildConfiguration();
+
+        this.bot = new PircBotX(confBuilder.buildConfiguration());
         this.newsReader = new NewsReader(this);
 
         new TimerNews(ConfReader.getInstance().getPollFrequency()).addTask( new NewsTask(this.newsReader) );
@@ -74,13 +67,14 @@ public class IRCMediator
         }
     }
 
-    public void listFeeds() throws IOException, FeedException
+    public void listFeeds() throws IOException
     {
-        List<SyndFeed> feeds = this.newsReader.getNewsFeeds();
+        List<NewsFeed> feeds = this.newsReader.getNewsFeeds();
 
         int i = 0;
-        for (SyndFeed myFeed : feeds) {
-            this.showMessage("[" + i + "] <> " + myFeed.getTitleEx().getValue());
+        for (NewsFeed myFeed : feeds)
+        {
+            this.showMessage("[" + i + "] <> " + myFeed.getTitle());
             ++i;
         }
     }
@@ -104,7 +98,7 @@ public class IRCMediator
         try {
             this.bot.startBot();
         } catch (IOException | IrcException e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 }
