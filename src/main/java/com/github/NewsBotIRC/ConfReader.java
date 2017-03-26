@@ -27,6 +27,7 @@ public class ConfReader
     private boolean ssl = false;
     private boolean identify = false;
     private String nickserv_passwd = null;
+    private String feedReader = null;
     private CompositeConfiguration config = null;
 
     protected ConfReader()
@@ -54,6 +55,7 @@ public class ConfReader
         this.ssl = config.getBoolean("bot.ssl");
         this.identify = config.getBoolean("bot.identify");
         this.nickserv_passwd = config.getString("bot.nickserv_passwd");
+        this.feedReader = config.getString("bot.feedreader");
 
         this.rssUrls = config.getStringArray("rss.feed");
     }
@@ -200,5 +202,10 @@ public class ConfReader
     public String getNickserv_passwd()
     {
         return nickserv_passwd;
+    }
+
+    public String getFeedReader()
+    {
+        return this.feedReader;
     }
 }

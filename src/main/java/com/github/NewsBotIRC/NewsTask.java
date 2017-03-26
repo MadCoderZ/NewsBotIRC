@@ -1,6 +1,5 @@
 package com.github.NewsBotIRC;
 
-import com.rometools.rome.io.FeedException;
 import java.util.TimerTask;
 
 /**
@@ -8,18 +7,16 @@ import java.util.TimerTask;
  */
 public class NewsTask extends TimerTask
 {
-    private NewsReader newsReader;
+    private final NewsReader newsReader;
 
     public NewsTask(NewsReader newsReader)
     {
         this.newsReader = newsReader;
     }
 
-    public void run() {
-        try {
-            this.newsReader.readNews();
-        } catch (FeedException e) {
-            System.out.println(e.getMessage());
-        }
+    @Override
+    public void run()
+    {
+        this.newsReader.readNews();
     }
 }

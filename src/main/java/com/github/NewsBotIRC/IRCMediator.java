@@ -1,7 +1,6 @@
 package com.github.NewsBotIRC;
 
-import com.rometools.rome.feed.synd.SyndFeed;
-import com.rometools.rome.io.FeedException;
+import com.github.NewsBotIRC.feedreaders.NewsFeed;
 import org.pircbotx.Channel;
 import org.pircbotx.Configuration;
 import org.pircbotx.PircBotX;
@@ -68,13 +67,14 @@ public class IRCMediator
         }
     }
 
-    public void listFeeds() throws IOException, FeedException
+    public void listFeeds() throws IOException
     {
-        List<SyndFeed> feeds = this.newsReader.getNewsFeeds();
+        List<NewsFeed> feeds = this.newsReader.getNewsFeeds();
 
         int i = 0;
-        for (SyndFeed myFeed : feeds) {
-            this.showMessage("[" + i + "] <> " + myFeed.getTitleEx().getValue());
+        for (NewsFeed myFeed : feeds)
+        {
+            this.showMessage("[" + i + "] <> " + myFeed.getTitle());
             ++i;
         }
     }

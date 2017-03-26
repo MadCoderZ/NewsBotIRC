@@ -1,24 +1,22 @@
 package com.github.NewsBotIRC;
 
+import com.github.NewsBotIRC.feedreaders.NewsEntry;
+import com.github.NewsBotIRC.feedreaders.NewsFactory;
+import com.github.NewsBotIRC.feedreaders.NewsFeed;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.*;
 
-import com.rometools.rome.feed.synd.SyndEntry;
-import com.rometools.rome.feed.synd.SyndFeed;
-import com.rometools.rome.io.FeedException;
-import com.rometools.rome.io.SyndFeedInput;
-import com.rometools.rome.io.XmlReader;
 import java.util.stream.Collectors;
 import org.pircbotx.Colors;
 
-public class NewsReader
+public final class NewsReader
 {
     private int pass = 0;
     private List<URL> feeds;
     private IRCMediator mediator;
-    private Set<SyndEntry> oldEntries;
+    private Set<NewsEntry> oldEntries;
 
     NewsReader(IRCMediator mediator)
     {
@@ -34,33 +32,27 @@ public class NewsReader
 
             this.loadNews();
 
-        } catch (IOException | FeedException e) {
+        } catch (IOException e) {
             System.out.println("NewsReader() Exception: " + e.getMessage());
         }
     }
 
-    public boolean addFeedUrl(String newUrl)
+    public boolean addFeedUrl(String url)
             throws MalformedURLException
     {
-        URL nURL = new URL(newUrl);
-        if (!this.feeds.stream().noneMatch((url) -> (url.equals(nURL)))) {
+        URL nURL = new URL(url);
+        if (this.feeds.stream().anyMatch(u -> u.equals(nURL))) {
             return false;
         }
 
-        SyndFeedInput input = new SyndFeedInput();
-        SyndFeed feed;
-
-        try {
-            feed = input.build(new XmlReader(new URL(newUrl)));
-        } catch (FeedException | IOException e) {
-            System.out.println("ERROR:" + e.getMessage());
-            return false;
-        }
+        String feedReader = ConfReader.getInstance().getFeedReader();
+        NewsFeed feed = NewsFactory.getInstance().createFeed(feedReader, url);
+        if (!feed.isValid()) return false;
 
         this.feeds.add(nURL);
         this.oldEntries.addAll(feed.getEntries()); // mark all entries as read
 
-        System.out.println("Added Feed -> " + newUrl);
+        System.out.println("Added Feed -> " + url);
 
         return true;
     }
@@ -78,49 +70,54 @@ public class NewsReader
         return false;
     }
 
-    public List<SyndFeed> getNewsFeeds() throws IOException, FeedException
+    public List<NewsFeed> getNewsFeeds() throws IOException
     {
-        List<SyndFeed> newsFeeds = new ArrayList<>();
+        List<NewsFeed> newsFeeds = new ArrayList<>();
 
-        for (URL myFeed : this.feeds) {
-            SyndFeedInput input = new SyndFeedInput();
-            SyndFeed feed = input.build(new XmlReader(myFeed));
+        String feedReader = ConfReader.getInstance().getFeedReader();
+        this.feeds.stream()
+                .map(url -> NewsFactory.getInstance().createFeed(feedReader,
+                                                                url.toString()))
+                .forEachOrdered((feed) -> {
+                    if (feed.isValid()) newsFeeds.add(feed);
+                });
 
-            newsFeeds.add(feed);
-        }
         return newsFeeds;
     }
 
-    private List<SyndEntry> getAllEntries() throws IOException, FeedException
+    private List<NewsEntry> getAllEntries() throws IOException
     {
-        List<SyndEntry> newEntries = new ArrayList<>();
+        List<NewsEntry> newEntries = new ArrayList<>();
 
-        for (URL myFeed : this.feeds) {
-            SyndFeedInput input = new SyndFeedInput();
-            SyndFeed feed = input.build(new XmlReader(myFeed));
-
-            newEntries.addAll(feed.getEntries());
-        }
+        String feedReader = ConfReader.getInstance().getFeedReader();
+        this.feeds.stream()
+                .map(url -> NewsFactory.getInstance().createFeed(feedReader,
+                        url.toString())).forEachOrdered(
+                                feed -> {
+                                    if (feed.isValid()) {
+                                        newEntries.addAll(feed.getEntries());
+                                    }
+                                });
         return newEntries;
     }
 
-    private void loadNews() throws IOException, FeedException
+    private void loadNews() throws IOException
     {
         System.out.println("loadNews(): Pre-loading news, please wait...");
         this.oldEntries.addAll(this.getAllEntries());
     }
 
-    public void readNews() throws FeedException
+    public void readNews()
     {
         System.out.println("readNews(): checking for updates...");
         try {
             Set<String> oldLinks = this.oldEntries.stream()
-                    .map(SyndEntry::getLink)
+                    .map(NewsEntry::getLink)
                     .collect(Collectors.toSet());
 
-            List<SyndEntry> allEntries = this.getAllEntries();
+            List<NewsEntry> allEntries = this.getAllEntries();
 
-            Set<SyndEntry> newEntries = allEntries.stream()
+            Set<NewsEntry> newEntries = allEntries.stream()
                     .filter(e -> !oldLinks.contains(e.getLink()))
                     .collect(Collectors.toSet());
 
@@ -138,11 +135,14 @@ public class NewsReader
         }
     }
 
-    private void showEntry(SyndEntry entry)
+    private void showEntry(NewsEntry entry)
     {
-        String domain = entry.getLink().replaceFirst(".*https?://([\\w.-]+)/.*", "<$1>");
+        String domain = entry.getLink().replaceFirst(".*https?://([\\w.-]+)/.*",
+                                                                        "<$1>");
         String link = UrlShortener.shortenUrl(entry.getLink());
 
-        this.mediator.showMessage("\"" + Colors.DARK_GRAY + entry.getTitle() + Colors.NORMAL + "\" " + Colors.ITALICS + domain + Colors.NORMAL + " <" + link + ">");
+        this.mediator.showMessage("\"" + Colors.DARK_GRAY + entry.getTitle()
+                + Colors.NORMAL + "\" " + Colors.ITALICS + domain
+                + Colors.NORMAL + " <" + link + ">");
     }
 }

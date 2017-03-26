@@ -25,7 +25,6 @@ package com.github.NewsBotIRC;
 
 import java.io.File;
 import java.net.MalformedURLException;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -53,6 +52,7 @@ public class NewsReaderTest
 
     /**
      * Test of addFeedUrl method, of class NewsReader.
+     * @throws java.lang.Exception
      */
     @Test
     public void testAddFeedUrl() throws Exception
@@ -67,6 +67,7 @@ public class NewsReaderTest
 
     /**
      * Test of removeFeed method, of class NewsReader.
+     * @throws java.net.MalformedURLException
      */
     @Test
     public void testRemoveFeed() throws MalformedURLException
@@ -82,6 +83,7 @@ public class NewsReaderTest
 
     /**
      * Test of getNewsFeeds method, of class NewsReader.
+     * @throws java.lang.Exception
      */
     @Test
     public void testGetNewsFeeds() throws Exception
