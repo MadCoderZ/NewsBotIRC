@@ -37,11 +37,9 @@ public class ConfReader
         this.config = new CompositeConfiguration();
 
         try {
-            FileInputStream f = new FileInputStream("newsbot.properties");
-            PropertiesConfiguration p = new PropertiesConfiguration();
-            p.load(f);
-            this.config.addConfiguration(p);
-        } catch (ConfigurationException | FileNotFoundException e) {
+            this.config.addConfiguration(
+                    new PropertiesConfiguration("newsbot.properties"));
+        } catch (ConfigurationException e) {
             System.err.println(e.getMessage());
             System.exit(1);
         }
