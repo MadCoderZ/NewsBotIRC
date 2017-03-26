@@ -37,7 +37,7 @@ public final class NewsReader
         }
     }
 
-    public boolean addFeedUrl(String url)
+    public synchronized boolean addFeedUrl(String url)
             throws MalformedURLException
     {
         URL nURL = new URL(url);
@@ -57,7 +57,7 @@ public final class NewsReader
         return true;
     }
 
-    public boolean removeFeed(int index)
+    public synchronized boolean removeFeed(int index)
     {
         if (index >= this.feeds.size() || index < 0 || this.feeds.isEmpty())
             return false;
@@ -70,7 +70,7 @@ public final class NewsReader
         return false;
     }
 
-    public List<NewsFeed> getNewsFeeds() throws IOException
+    public synchronized List<NewsFeed> getNewsFeeds() throws IOException
     {
         List<NewsFeed> newsFeeds = new ArrayList<>();
 
@@ -107,7 +107,7 @@ public final class NewsReader
         this.oldEntries.addAll(this.getAllEntries());
     }
 
-    public void readNews()
+    public synchronized void readNews()
     {
         System.out.println("readNews(): checking for updates...");
         try {
