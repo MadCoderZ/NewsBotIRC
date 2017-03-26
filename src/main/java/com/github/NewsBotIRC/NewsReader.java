@@ -25,13 +25,10 @@ public final class NewsReader
         this.oldEntries = new HashSet();
 
         try {
-
-            for (String myUrl : ConfReader.getInstance().getRssUrls()) {
+            for (String myUrl : ConfReader.getInstance().getRssUrls())
+            {
                 this.addFeedUrl(myUrl);
             }
-
-            this.loadNews();
-
         } catch (IOException e) {
             System.out.println("NewsReader() Exception: " + e.getMessage());
         }
@@ -99,12 +96,6 @@ public final class NewsReader
                                     }
                                 });
         return newEntries;
-    }
-
-    private void loadNews() throws IOException
-    {
-        System.out.println("loadNews(): Pre-loading news, please wait...");
-        this.oldEntries.addAll(this.getAllEntries());
     }
 
     public synchronized void readNews()
