@@ -38,11 +38,8 @@ public class ConfReader
         this.config = new CompositeConfiguration();
 
         try {
-            PropertiesConfiguration p = new PropertiesConfiguration();
-            InputStream in =
-                    getClass().getClassLoader().getResourceAsStream("newsbot.properties");
-            p.load(in);
-            this.config.addConfiguration(p);
+            this.config.addConfiguration(
+                    new PropertiesConfiguration("newsbot.properties"));
         } catch (ConfigurationException e) {
             System.err.println(e.getMessage());
             System.exit(1);
