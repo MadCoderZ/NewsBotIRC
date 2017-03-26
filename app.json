@@ -3,7 +3,7 @@
   "scripts": {
   },
   "env": {
-    "TESTING_PULL_REQUEST": ""
+    "TESTING_PULL_REQUEST": "1"
   },
   "formation": {
   },
