@@ -1,5 +1,7 @@
 package com.github.NewsBotIRC;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import org.apache.commons.configuration.CompositeConfiguration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
@@ -35,8 +37,11 @@ public class ConfReader
         this.config = new CompositeConfiguration();
 
         try {
-            this.config.addConfiguration(new PropertiesConfiguration("newsbot.properties"));
-        } catch (ConfigurationException e) {
+            FileInputStream f = new FileInputStream("newsbot.properties");
+            PropertiesConfiguration p = new PropertiesConfiguration();
+            p.load(f);
+            this.config.addConfiguration(p);
+        } catch (ConfigurationException | FileNotFoundException e) {
             System.err.println(e.getMessage());
             System.exit(1);
         }
