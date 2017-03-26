@@ -31,9 +31,12 @@ public class IRCListener extends ListenerAdapter
         actionableCmds.forEach(c -> c.action(this.mediator, cmdParams));
     }
 
+    @Override
     public void onConnect(ConnectEvent event)
     {
-        if (event.getBot().isNickservIdentified()) return;
+        if (!ConfReader.getInstance().isIdentifyEnabled() ||
+                event.getBot().isNickservIdentified()) return;
+
         event.getBot().send().identify(
                 ConfReader.getInstance().getNickserv_passwd());
     }
