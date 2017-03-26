@@ -1,7 +1,7 @@
 {
   "name": "NewsBotIRC",
   "scripts": {
-    "postdeploy": "mv target/newsbot.properties-pull-request-from-master target/newsbot.properties"
+    "postdeploy": "mv newsbot.properties-pull-request-from-master newsbot.properties; ls"
   },
   "env": {
   },
