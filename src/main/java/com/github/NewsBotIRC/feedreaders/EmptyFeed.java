@@ -24,45 +24,35 @@
 
 package com.github.NewsBotIRC.feedreaders;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Geronimo
  */
-public final class NewsFactory
+public class EmptyFeed extends NewsFeed
 {
-    private static NewsFactory instance = null;
 
-    Map<String, NewsFeed> feedReaders;
-
-    protected NewsFactory()
+    public EmptyFeed()
     {
-        this.feedReaders = new HashMap<>();
-
-        this.addFeedType("rometools", new RomeToolsFeed());
     }
 
-    public void addFeedType(String feedType, NewsFeed feedImplemenetation)
+    @Override
+    public boolean isValid()
     {
-        this.feedReaders.put(feedType, feedImplemenetation);
+        return false;
     }
 
-    public NewsFeed createFeed(String feedType, String feedURL)
+    @Override
+    public String getTitle()
     {
-        Optional<NewsFeed> feed =
-                Optional.ofNullable(this.feedReaders.get(feedType));
-
-        feed.ifPresent(f -> f.setURL(feedURL));
-
-        return feed.map(f -> (NewsFeed) f.clone()).orElse(new EmptyFeed());
+        return new String();
     }
 
-    public static NewsFactory getInstance()
+    @Override
+    public List<NewsEntry> getEntries()
     {
-        if (instance == null) instance = new NewsFactory();
-        return instance;
+        return new ArrayList();
     }
 }

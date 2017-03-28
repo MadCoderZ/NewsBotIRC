@@ -21,48 +21,54 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.github.NewsBotIRC.feedreaders;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import com.github.NewsBotIRC.ConfReader;
+import java.io.File;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  *
  * @author Geronimo
  */
-public final class NewsFactory
+public class NewsFactoryTest
 {
-    private static NewsFactory instance = null;
+    String feedPath;
 
-    Map<String, NewsFeed> feedReaders;
-
-    protected NewsFactory()
+    public NewsFactoryTest()
     {
-        this.feedReaders = new HashMap<>();
-
-        this.addFeedType("rometools", new RomeToolsFeed());
     }
 
-    public void addFeedType(String feedType, NewsFeed feedImplemenetation)
+    @Before
+    public void setUp()
     {
-        this.feedReaders.put(feedType, feedImplemenetation);
+        ClassLoader classLoader = getClass().getClassLoader();
+        File file = new File(classLoader.getResource("slashdotMain").getFile());
+        this.feedPath = file.getAbsolutePath();
     }
 
-    public NewsFeed createFeed(String feedType, String feedURL)
+    /**
+     * Test of createFeed method, of class NewsFactory.
+     */
+    @Test
+    public void testCreateFeed()
     {
-        Optional<NewsFeed> feed =
-                Optional.ofNullable(this.feedReaders.get(feedType));
+        System.out.println("createFeed");
+        String validFeedReader = ConfReader.getInstance().getFeedReader();
+        NewsFeed feed = NewsFactory.getInstance().createFeed(validFeedReader, "");
+        assertNotNull(feed);
+        assertFalse(feed.isValid());
 
-        feed.ifPresent(f -> f.setURL(feedURL));
+        feed = NewsFactory.getInstance().createFeed(validFeedReader,
+                "file://" + this.feedPath);
+        assertNotNull(feed);
+        assertTrue(feed.isValid());
 
-        return feed.map(f -> (NewsFeed) f.clone()).orElse(new EmptyFeed());
-    }
-
-    public static NewsFactory getInstance()
-    {
-        if (instance == null) instance = new NewsFactory();
-        return instance;
+        feed = NewsFactory.getInstance().createFeed("non-existant-reader",
+                "file://" + this.feedPath);
+        assertNotNull(feed);
+        assertFalse(feed.isValid());
     }
 }

@@ -64,6 +64,7 @@ public class RomeToolsFeed extends NewsFeed
     @Override
     public boolean isValid()
     {
+        if (this.feed != null) return true;
         return this.read();
     }
 
