@@ -3,6 +3,7 @@ package com.github.NewsBotIRC;
 import org.apache.commons.configuration.CompositeConfiguration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
+import org.apache.logging.log4j.LogManager;
 
 /**
  *
@@ -43,7 +44,7 @@ public class ConfReader
             this.config.addConfiguration(
                     new PropertiesConfiguration(propFilename));
         } catch (ConfigurationException e) {
-            System.err.println(e.getMessage());
+            LogManager.getLogger().error(e.getMessage());
             System.exit(1);
         }
 

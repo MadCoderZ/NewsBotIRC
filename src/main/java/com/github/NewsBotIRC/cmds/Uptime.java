@@ -34,7 +34,7 @@ public class Uptime implements Cmd
 
         long elapsedSeconds = uptime / secondsInMilli;
 
-        m.showMessage(elapsedDays + " days, " + elapsedHours + " hours, " +
+        m.sendMessage(elapsedDays + " days, " + elapsedHours + " hours, " +
                 elapsedMinutes + " minutes, " + elapsedSeconds + " seconds");
     }
 }

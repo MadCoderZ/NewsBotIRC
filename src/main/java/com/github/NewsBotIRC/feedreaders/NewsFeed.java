@@ -25,6 +25,7 @@
 package com.github.NewsBotIRC.feedreaders;
 
 import java.util.List;
+import org.apache.logging.log4j.LogManager;
 
 /**
  *
@@ -63,7 +64,7 @@ public abstract class NewsFeed implements Cloneable
       try {
          clone = super.clone();
       } catch (CloneNotSupportedException e) {
-          System.err.println("ERROR:" + e.getMessage());
+          LogManager.getLogger().error(e.getMessage());
       }
 
       return clone;

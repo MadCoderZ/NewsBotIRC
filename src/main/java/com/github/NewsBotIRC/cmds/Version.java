@@ -14,6 +14,6 @@ public class Version implements Cmd {
     @Override
     public void action(IRCMediator m, String params)
     {
-        m.showMessage(ConfReader.getInstance().getVersion());
+        m.sendMessage(ConfReader.getInstance().getVersion());
     }
 }

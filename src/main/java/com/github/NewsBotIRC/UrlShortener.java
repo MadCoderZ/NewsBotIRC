@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import org.apache.logging.log4j.LogManager;
 
 /**
  * Created by Geronimo on 11/6/16.
@@ -26,7 +27,7 @@ public class UrlShortener {
             shortenedUrl = reader.readLine();
 
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            LogManager.getLogger().error(e.getMessage());
         }
         return shortenedUrl;
     }

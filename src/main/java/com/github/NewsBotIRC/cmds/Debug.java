@@ -23,7 +23,7 @@ public class Debug implements Cmd
         // Calculate the used memory
         long memory = runtime.totalMemory() - runtime.freeMemory();
         long usedMB = (memory / 1024) / 1024;
-        m.showMessage("Used memory: " + usedMB + " Megabytes");
+        m.sendMessage("Used memory: " + usedMB + " Megabytes");
     }
 }
 
