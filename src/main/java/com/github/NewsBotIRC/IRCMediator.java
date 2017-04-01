@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Iterator;
 import java.util.List;
+import org.apache.logging.log4j.LogManager;
 import org.pircbotx.UtilSSLSocketFactory;
 import org.pircbotx.cap.SASLCapHandler;
 
@@ -98,8 +99,7 @@ public class IRCMediator
         try {
             this.bot.startBot();
         } catch (IOException | IrcException e) {
-
-            e.printStackTrace();
+            LogManager.getLogger().error(e.getMessage());
         }
     }
 }
