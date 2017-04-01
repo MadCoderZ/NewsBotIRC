@@ -3,6 +3,7 @@ package com.github.NewsBotIRC;
 import com.github.NewsBotIRC.feedreaders.NewsEntry;
 import com.github.NewsBotIRC.feedreaders.NewsFactory;
 import com.github.NewsBotIRC.feedreaders.NewsFeed;
+import com.github.NewsBotIRC.output.Outputter;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -10,20 +11,19 @@ import java.util.*;
 
 import java.util.stream.Collectors;
 import org.apache.logging.log4j.LogManager;
-import org.pircbotx.Colors;
 
 public final class NewsReader
 {
     private int pass = 0;
     private List<URL> feeds;
-    private IRCMediator mediator;
     private Set<NewsEntry> oldEntries;
+    private final Outputter outputter;
 
-    NewsReader(IRCMediator mediator)
+    NewsReader(Outputter outputter)
     {
-        this.mediator = mediator;
         this.feeds = new ArrayList<>();
         this.oldEntries = new HashSet();
+        this.outputter = outputter;
 
         try {
             for (String myUrl : ConfReader.getInstance().getRssUrls())
@@ -31,7 +31,8 @@ public final class NewsReader
                 this.addFeedUrl(myUrl);
             }
         } catch (IOException e) {
-            LogManager.getLogger().info("NewsReader() Exception: " + e.getMessage());
+            LogManager.getLogger().info("NewsReader() Exception: "
+                    + e.getMessage());
         }
     }
 
@@ -113,7 +114,7 @@ public final class NewsReader
                     .filter(e -> !oldLinks.contains(e.getLink()))
                     .collect(Collectors.toSet());
 
-            newEntries.forEach(e -> this.showEntry(e));
+            newEntries.forEach(e -> this.outputEntry(e));
 
             if (this.pass++ > 3) {
                 this.oldEntries.clear(); // do not let it to grow too much
@@ -127,14 +128,8 @@ public final class NewsReader
         }
     }
 
-    private void showEntry(NewsEntry entry)
+    private void outputEntry(NewsEntry entry)
     {
-        String domain = entry.getLink().replaceFirst(".*https?://([\\w.-]+)/.*",
-                                                                        "<$1>");
-        String link = UrlShortener.shortenUrl(entry.getLink());
-
-        this.mediator.sendMessage("\"" + Colors.DARK_GRAY + entry.getTitle()
-                + Colors.NORMAL + "\" " + Colors.ITALICS + domain
-                + Colors.NORMAL + " <" + link + ">");
+        this.outputter.append(entry);
     }
 }
