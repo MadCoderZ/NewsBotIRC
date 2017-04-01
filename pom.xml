@@ -4,16 +4,40 @@
 
     <groupId>com.github.NewsBotIRC</groupId>
     <artifactId>NewsBotIRC</artifactId>
-    <version>0.2-SNAPSHOT</version>
+    <version>0.2.1</version>
 
     <name>NewsBotIRC</name>
-    <url>http://maven.apache.org</url>
+    <url>https://github.com/MadCoderZ/NewsBotIRC</url>
+    <inceptionYear>2016-2017</inceptionYear>
+
+    <developers>
+        <developer>
+            <id>gcanosa</id>
+            <name>Gerardo Canosa</name>
+            <email>gera.canosa@gmail.com</email>
+            <url>https://github.com/gcanosa</url>
+            <timezone>-3</timezone>
+        </developer>
+        <developer>
+            <id>gpoppino</id>
+            <name>Geronimo Poppino</name>
+            <email>gresco@gmail.com</email>
+            <url>https://github.com/gpoppino</url>
+            <timezone>-3</timezone>
+        </developer>
+    </developers>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
