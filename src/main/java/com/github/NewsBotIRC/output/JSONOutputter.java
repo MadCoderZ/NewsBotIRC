@@ -26,27 +26,35 @@ package com.github.NewsBotIRC.output;
 
 import com.github.NewsBotIRC.UrlShortener;
 import com.github.NewsBotIRC.feedreaders.NewsEntry;
-import org.apache.logging.log4j.LogManager;
+import org.json.JSONObject;
 
 /**
  *
  * @author Geronimo
  */
-public class ConsoleOutputter implements Outputter
+public class JSONOutputter implements Outputter
 {
+    StringBuilder strBuilder;
+
+    public JSONOutputter()
+    {
+        this.strBuilder = new StringBuilder();
+    }
 
     @Override
     public void append(NewsEntry entry)
     {
-        String link = UrlShortener.shortenUrl(entry.getLink());
+        JSONObject json = new JSONObject();
 
-        LogManager.getLogger().info(entry.getTitle() + " <" + link + ">");
+        json.append("title", entry.getTitle());
+        json.append("link", UrlShortener.shortenUrl(entry.getLink()));
+
+        this.strBuilder.append(json.toString());
     }
 
     @Override
     public String getOutput()
     {
-        return "Only appends data";
+        return this.strBuilder.toString();
     }
-
 }

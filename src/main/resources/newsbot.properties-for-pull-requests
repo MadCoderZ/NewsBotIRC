@@ -44,6 +44,10 @@ bot.channel = heroku-pr
 # Available options: rometools
 bot.feedreader = rometools
 
+# Valid presets:
+# IRC (RSS to IRC), JSON (RSS to JSON), CONSOLE (RSS to CONSOLE)
+bot.preset = IRC
+
 # How often fetch RSS feeds list ? 180s as minimum. recommended to avoid throttling rss feeds.
 rss.pollfrequency = 180
 

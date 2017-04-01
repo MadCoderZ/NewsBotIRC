@@ -25,13 +25,19 @@ public class ConfReader
     private String ircserver = null;
     private String channel = null;
     private final int pollfrequency;
-    private final int port;
+    private int port = 0;
     private String[] rssUrls = null;
     private boolean ssl = false;
     private boolean identify = false;
     private String nickserv_passwd = null;
     private String feedReader = null;
     private CompositeConfiguration config = null;
+
+    public enum Preset {
+        IRC, JSON, CONSOLE
+    }
+
+    private Preset preset = null;
 
     protected ConfReader()
     {
@@ -65,6 +71,7 @@ public class ConfReader
         this.identify = config.getBoolean("bot.identify");
         this.nickserv_passwd = config.getString("bot.nickserv_passwd");
         this.feedReader = config.getString("bot.feedreader");
+        this.preset = Preset.valueOf(config.getString("bot.preset"));
 
         this.rssUrls = config.getStringArray("rss.feed");
     }
@@ -198,11 +205,13 @@ public class ConfReader
         this.login = login;
     }
 
-    public int getPollFrequency() {
+    public int getPollFrequency()
+    {
         return this.pollfrequency;
     }
 
-    public int getPort() {
+    public int getPort()
+    {
         return this.port;
     }
 
@@ -229,5 +238,10 @@ public class ConfReader
     public String getFeedReader()
     {
         return this.feedReader;
+    }
+
+    public Preset getPreset()
+    {
+        return this.preset;
     }
 }

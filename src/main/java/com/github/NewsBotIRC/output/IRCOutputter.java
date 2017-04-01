@@ -27,6 +27,7 @@ package com.github.NewsBotIRC.output;
 import com.github.NewsBotIRC.IRCMediator;
 import com.github.NewsBotIRC.UrlShortener;
 import com.github.NewsBotIRC.feedreaders.NewsEntry;
+import org.apache.logging.log4j.LogManager;
 import org.pircbotx.Colors;
 
 /**
@@ -35,6 +36,7 @@ import org.pircbotx.Colors;
  */
 public class IRCOutputter implements Outputter
 {
+
     public IRCOutputter()
     {
     }
@@ -49,5 +51,11 @@ public class IRCOutputter implements Outputter
         IRCMediator.getInstance().sendMessage("\"" + Colors.DARK_GRAY
                 + entry.getTitle() + Colors.NORMAL + "\" " + Colors.ITALICS
                 + domain + Colors.NORMAL + " <" + link + ">");
+    }
+
+    @Override
+    public String getOutput()
+    {
+        return "Only appends data";
     }
 }

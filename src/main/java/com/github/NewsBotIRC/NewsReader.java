@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import java.util.stream.Collectors;
 import org.apache.logging.log4j.LogManager;
@@ -17,13 +19,18 @@ public final class NewsReader
     private int pass = 0;
     private List<URL> feeds;
     private Set<NewsEntry> oldEntries;
-    private final Outputter outputter;
+    private Outputter outputter = null;
 
     NewsReader(Outputter outputter)
     {
         this.feeds = new ArrayList<>();
         this.oldEntries = new HashSet();
-        this.outputter = outputter;
+        try {
+            this.outputter = outputter.getClass().newInstance();
+        } catch (InstantiationException | IllegalAccessException e) {
+            LogManager.getLogger().error(e.getMessage());
+            return;
+        }
 
         try {
             for (String myUrl : ConfReader.getInstance().getRssUrls())
@@ -100,7 +107,7 @@ public final class NewsReader
         return newEntries;
     }
 
-    public synchronized void readNews()
+    public synchronized Outputter readNews()
     {
         LogManager.getLogger().info("readNews(): checking for updates...");
         try {
@@ -114,7 +121,7 @@ public final class NewsReader
                     .filter(e -> !oldLinks.contains(e.getLink()))
                     .collect(Collectors.toSet());
 
-            newEntries.forEach(e -> this.outputEntry(e));
+            newEntries.forEach(e -> this.outputter.append(e));
 
             if (this.pass++ > 3) {
                 this.oldEntries.clear(); // do not let it to grow too much
@@ -126,10 +133,7 @@ public final class NewsReader
         } catch (IOException e) {
             LogManager.getLogger().error(e.getMessage());
         }
-    }
 
-    private void outputEntry(NewsEntry entry)
-    {
-        this.outputter.append(entry);
+        return this.outputter;
     }
 }

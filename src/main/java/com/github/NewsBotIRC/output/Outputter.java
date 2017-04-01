@@ -33,4 +33,5 @@ import com.github.NewsBotIRC.feedreaders.NewsEntry;
 public interface Outputter
 {
     public void append(NewsEntry entry);
+    public String getOutput();
 }

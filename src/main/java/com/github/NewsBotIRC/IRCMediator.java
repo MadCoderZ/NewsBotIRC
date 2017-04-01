@@ -21,10 +21,10 @@ import org.pircbotx.cap.SASLCapHandler;
  */
 public class IRCMediator
 {
+    private static IRCMediator instance = null;
+
     private final PircBotX bot;
     private final NewsReader newsReader;
-
-    private static IRCMediator instance = null;
 
     protected IRCMediator()
     {
@@ -59,7 +59,9 @@ public class IRCMediator
         this.bot = new PircBotX(confBuilder.buildConfiguration());
         this.newsReader = new NewsReader(new IRCOutputter());
 
-        new TimerNews(ConfReader.getInstance().getPollFrequency()).addTask( new NewsTask(this.newsReader) );
+        new NewsTimer(ConfReader.getInstance().getPollFrequency()).addTask(
+                        new NewsTask(newsReader)
+        );
     }
 
     public static IRCMediator getInstance()
@@ -103,7 +105,7 @@ public class IRCMediator
         return this.newsReader.removeFeed(index);
     }
 
-    public void start()
+    public void startIRCClient()
     {
         try {
             this.bot.startBot();
