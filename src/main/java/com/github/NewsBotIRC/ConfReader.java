@@ -1,6 +1,7 @@
 package com.github.NewsBotIRC;
 
 import org.apache.commons.configuration.CompositeConfiguration;
+import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.logging.log4j.LogManager;
@@ -12,6 +13,7 @@ import org.apache.logging.log4j.LogManager;
 public class ConfReader
 {
     private static ConfReader instance = null;
+    private static Configuration appProperties = null;
 
     private boolean autoreconnect = false;
     private int reconnectattempts;
@@ -71,6 +73,19 @@ public class ConfReader
     {
         if (instance == null) instance = new ConfReader();
         return instance;
+    }
+
+    public static Configuration getAppProperties()
+    {
+        if (appProperties == null) {
+            try {
+                appProperties = new PropertiesConfiguration(
+                    ConfReader.class.getClass().getResource("/application.properties"));
+            } catch (ConfigurationException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return appProperties;
     }
 
     public boolean isSSL()
