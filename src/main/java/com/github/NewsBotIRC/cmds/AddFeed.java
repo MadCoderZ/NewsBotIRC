@@ -2,6 +2,7 @@ package com.github.NewsBotIRC.cmds;
 
 import com.github.NewsBotIRC.IRCMediator;
 import java.net.MalformedURLException;
+import org.apache.logging.log4j.LogManager;
 
 public class AddFeed implements Cmd
 {
@@ -16,15 +17,16 @@ public class AddFeed implements Cmd
     public void action(IRCMediator m, String params)
     {
         if (!params.startsWith("http")) {
-            m.showMessage("Invalid feed");
+            m.sendMessage("Invalid feed");
+            LogManager.getLogger().error("Invalid feed");
             return;
         }
 
         try {
             m.addFeed(params);
         } catch (MalformedURLException e) {
-            System.out.println(e.getMessage());
-            m.showMessage("Invalid feed");
+            LogManager.getLogger().error(e.getMessage() + " Invalid feed.");
+            m.sendMessage("Invalid feed");
         }
     }
 

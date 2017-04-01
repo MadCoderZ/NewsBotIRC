@@ -18,14 +18,14 @@ public class RemoveFeed implements Cmd
         try {
             index = Integer.parseInt(params);
         } catch (NumberFormatException e) {
-            m.showMessage("ERROR: could not remove feed!");
+            m.sendMessage("ERROR: could not remove feed!");
             return;
         }
 
         if (m.removeFeed(index)) {
-            m.showMessage("Success!");
+            m.sendMessage("Success!");
         } else {
-            m.showMessage("ERROR: could not remove feed!");
+            m.sendMessage("ERROR: could not remove feed!");
         }
     }
 }

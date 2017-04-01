@@ -2,6 +2,7 @@ package com.github.NewsBotIRC.cmds;
 
 import com.github.NewsBotIRC.IRCMediator;
 import java.io.IOException;
+import org.apache.logging.log4j.LogManager;
 
 public class ListFeeds implements Cmd
 {
@@ -15,11 +16,11 @@ public class ListFeeds implements Cmd
     public void action(IRCMediator m, String params)
     {
         try {
-            m.showMessage("--> BEGIN");
+            m.sendMessage("--> BEGIN");
             m.listFeeds();
-            m.showMessage("--> END");
+            m.sendMessage("--> END");
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            LogManager.getLogger().error(e.getMessage());
         }
     }
 }

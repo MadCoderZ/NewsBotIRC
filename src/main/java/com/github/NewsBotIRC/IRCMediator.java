@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Iterator;
 import java.util.List;
+import org.apache.logging.log4j.LogManager;
 import org.pircbotx.UtilSSLSocketFactory;
 import org.pircbotx.cap.SASLCapHandler;
 
@@ -58,7 +59,7 @@ public class IRCMediator
         new TimerNews(ConfReader.getInstance().getPollFrequency()).addTask( new NewsTask(this.newsReader) );
     }
 
-    public void showMessage(String message)
+    public void sendMessage(String message)
     {
         Iterator<Channel> channels = this.bot.getUserChannelDao().getAllChannels().iterator();
         while (channels.hasNext()) {
@@ -74,7 +75,7 @@ public class IRCMediator
         int i = 0;
         for (NewsFeed myFeed : feeds)
         {
-            this.showMessage("[" + i + "] <> " + myFeed.getTitle());
+            this.sendMessage("[" + i + "] <> " + myFeed.getTitle());
             ++i;
         }
     }
@@ -82,9 +83,9 @@ public class IRCMediator
     public void addFeed(String url) throws MalformedURLException
     {
         if ( !this.newsReader.addFeedUrl(url) ) {
-            this.showMessage("ERROR: invalid or duplicate feed!");
+            this.sendMessage("ERROR: invalid or duplicate feed!");
         } else {
-            this.showMessage("Success!");
+            this.sendMessage("Success!");
         }
     }
 
@@ -98,7 +99,7 @@ public class IRCMediator
         try {
             this.bot.startBot();
         } catch (IOException | IrcException e) {
-            e.printStackTrace();
+            LogManager.getLogger().error(e.getMessage());
         }
     }
 }

@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.*;
 
 import java.util.stream.Collectors;
+import org.apache.logging.log4j.LogManager;
 import org.pircbotx.Colors;
 
 public final class NewsReader
@@ -30,7 +31,7 @@ public final class NewsReader
                 this.addFeedUrl(myUrl);
             }
         } catch (IOException e) {
-            System.out.println("NewsReader() Exception: " + e.getMessage());
+            LogManager.getLogger().info("NewsReader() Exception: " + e.getMessage());
         }
     }
 
@@ -49,7 +50,7 @@ public final class NewsReader
         this.feeds.add(nURL);
         this.oldEntries.addAll(feed.getEntries()); // mark all entries as read
 
-        System.out.println("Added Feed -> " + url);
+        LogManager.getLogger().info("Added Feed -> " + url);
 
         return true;
     }
@@ -100,7 +101,7 @@ public final class NewsReader
 
     public synchronized void readNews()
     {
-        System.out.println("readNews(): checking for updates...");
+        LogManager.getLogger().info("readNews(): checking for updates...");
         try {
             Set<String> oldLinks = this.oldEntries.stream()
                     .map(NewsEntry::getLink)
@@ -122,7 +123,7 @@ public final class NewsReader
                 this.oldEntries.addAll(newEntries);
             }
         } catch (IOException e) {
-            System.out.println("ERROR: " + e.getMessage());
+            LogManager.getLogger().error(e.getMessage());
         }
     }
 
@@ -132,7 +133,7 @@ public final class NewsReader
                                                                         "<$1>");
         String link = UrlShortener.shortenUrl(entry.getLink());
 
-        this.mediator.showMessage("\"" + Colors.DARK_GRAY + entry.getTitle()
+        this.mediator.sendMessage("\"" + Colors.DARK_GRAY + entry.getTitle()
                 + Colors.NORMAL + "\" " + Colors.ITALICS + domain
                 + Colors.NORMAL + " <" + link + ">");
     }

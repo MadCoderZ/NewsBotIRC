@@ -33,6 +33,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 import static java.util.stream.Collectors.toList;
+import org.apache.logging.log4j.LogManager;
 
 /**
  *
@@ -52,10 +53,10 @@ public class RomeToolsFeed extends NewsFeed
         try {
             this.feed = input.build(new XmlReader(new URL( this.getURL() )));
         } catch (MalformedURLException ex) {
-            System.out.println("ERROR:" + ex.getMessage());
+            LogManager.getLogger().error(ex.getMessage());
             return false;
         } catch (IOException | IllegalArgumentException | FeedException ex) {
-            System.out.println("ERROR:" + ex.getMessage());
+            LogManager.getLogger().error(ex.getMessage());
             return false;
         }
         return true;
