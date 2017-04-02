@@ -1,6 +1,7 @@
 package com.github.NewsBotIRC;
 
 import com.github.NewsBotIRC.feedreaders.NewsFeed;
+import com.github.NewsBotIRC.output.IRCOutputter;
 import org.pircbotx.Channel;
 import org.pircbotx.Configuration;
 import org.pircbotx.PircBotX;
@@ -20,10 +21,12 @@ import org.pircbotx.cap.SASLCapHandler;
  */
 public class IRCMediator
 {
+    private static IRCMediator instance = null;
+
     private final PircBotX bot;
     private final NewsReader newsReader;
 
-    public IRCMediator()
+    protected IRCMediator()
     {
         Configuration.Builder confBuilder = new Configuration.Builder();
 
@@ -54,9 +57,17 @@ public class IRCMediator
         confBuilder.buildConfiguration();
 
         this.bot = new PircBotX(confBuilder.buildConfiguration());
-        this.newsReader = new NewsReader(this);
+        this.newsReader = new NewsReader(new IRCOutputter());
 
-        new TimerNews(ConfReader.getInstance().getPollFrequency()).addTask( new NewsTask(this.newsReader) );
+        new NewsTimer(ConfReader.getInstance().getPollFrequency()).addTask(
+                        new NewsTask(newsReader)
+        );
+    }
+
+    public static IRCMediator getInstance()
+    {
+        if (instance == null) instance = new IRCMediator();
+        return instance;
     }
 
     public void sendMessage(String message)
@@ -94,7 +105,7 @@ public class IRCMediator
         return this.newsReader.removeFeed(index);
     }
 
-    public void start()
+    public void startIRCClient()
     {
         try {
             this.bot.startBot();

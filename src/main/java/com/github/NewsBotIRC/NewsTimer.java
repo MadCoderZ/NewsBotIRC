@@ -6,12 +6,12 @@ import java.util.TimerTask;
 /**
  * Created by Gerardo Canosa on 9/6/16
  */
-public class TimerNews
+public class NewsTimer
 {
         private final Timer timer;
         private final int seconds;
 
-        public TimerNews(int seconds)
+        public NewsTimer(int seconds)
         {
             this.seconds = seconds;
             timer = new Timer();
