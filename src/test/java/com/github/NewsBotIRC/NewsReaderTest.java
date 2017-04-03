@@ -23,6 +23,7 @@
  */
 package com.github.NewsBotIRC;
 
+import com.github.NewsBotIRC.ConfReader.Input;
 import com.github.NewsBotIRC.output.ConsoleOutputter;
 import java.io.File;
 import java.net.MalformedURLException;
@@ -56,14 +57,14 @@ public class NewsReaderTest
      * @throws java.lang.Exception
      */
     @Test
-    public void testAddFeedUrl() throws Exception
+    public void testAddFeed() throws Exception
     {
         System.out.println("addFeedUrl");
         NewsReader newsReader = new NewsReader(new ConsoleOutputter());
 
-        assertTrue(newsReader.addFeedUrl("file://" + this.feedPath));
-        assertFalse(newsReader.addFeedUrl("file://not_valid_feed.xml"));
-        assertFalse(newsReader.addFeedUrl("file://" + this.feedPath));
+        assertTrue(newsReader.addFeed(Input.RSS, "file:" + this.feedPath));
+        assertFalse(newsReader.addFeed(Input.RSS, "file:/not_valid_feed.xml"));
+        assertFalse(newsReader.addFeed(Input.RSS, "file:" + this.feedPath));
     }
 
     /**
@@ -76,7 +77,7 @@ public class NewsReaderTest
         System.out.println("removeFeed");
         NewsReader newsReader = new NewsReader(new ConsoleOutputter());
 
-        newsReader.addFeedUrl("file://" + this.feedPath);
+        newsReader.addFeed(Input.RSS, "file:" + this.feedPath);
 
         assertTrue(newsReader.removeFeed(0));
         assertFalse(newsReader.removeFeed(0));
@@ -92,7 +93,7 @@ public class NewsReaderTest
         System.out.println("getNewsFeeds");
         NewsReader newsReader = new NewsReader(new ConsoleOutputter());
 
-        newsReader.addFeedUrl("file://" + this.feedPath);
+        newsReader.addFeed(Input.RSS, "file:" + this.feedPath);
         assertEquals(1, newsReader.getNewsFeeds().size());
 
         newsReader.removeFeed(0);

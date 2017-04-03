@@ -1,5 +1,6 @@
 package com.github.NewsBotIRC;
 
+import com.github.NewsBotIRC.ConfReader.Input;
 import com.github.NewsBotIRC.feedreaders.NewsEntry;
 import com.github.NewsBotIRC.feedreaders.NewsFactory;
 import com.github.NewsBotIRC.feedreaders.NewsFeed;
@@ -8,8 +9,6 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import java.util.stream.Collectors;
 import org.apache.logging.log4j.LogManager;
@@ -17,7 +16,7 @@ import org.apache.logging.log4j.LogManager;
 public final class NewsReader
 {
     private int pass = 0;
-    private List<URL> feeds;
+    private List<NewsFeed> feeds;
     private Set<NewsEntry> oldEntries;
     private Outputter outputter = null;
 
@@ -28,37 +27,51 @@ public final class NewsReader
         try {
             this.outputter = outputter.getClass().newInstance();
         } catch (InstantiationException | IllegalAccessException e) {
-            LogManager.getLogger().error(e.getMessage());
+            LogManager.getLogger(NewsReader.class).error(e.getMessage());
             return;
         }
 
-        try {
-            for (String myUrl : ConfReader.getInstance().getRssUrls())
-            {
-                this.addFeedUrl(myUrl);
-            }
-        } catch (IOException e) {
-            LogManager.getLogger().info("NewsReader() Exception: "
-                    + e.getMessage());
+        ConfReader config = ConfReader.getInstance();
+        switch (config.getInput()) {
+            case RSS:
+                for (String myURL : config.getRssUrls()) {
+                    this.addFeed(Input.RSS, myURL);
+                }
+                break;
+            case DB:
+                this.addFeed(Input.DB,
+                        "https://github.com/MadCoderZ/NewsBotIRC/");
+                break;
         }
     }
 
-    public synchronized boolean addFeedUrl(String url)
-            throws MalformedURLException
+    public boolean addFeed(Input input, String url)
     {
-        URL nURL = new URL(url);
-        if (this.feeds.stream().anyMatch(u -> u.equals(nURL))) {
+        if (this.feeds.stream().anyMatch(f -> f.getURL().equals(url))) {
             return false;
         }
 
-        String feedReader = ConfReader.getInstance().getFeedReader();
-        NewsFeed feed = NewsFactory.getInstance().createFeed(feedReader, url);
-        if (!feed.isValid()) return false;
+        URL nURL;
+        try {
+            nURL = new URL(url);
+        } catch (MalformedURLException e) {
+            LogManager.getLogger(NewsReader.class).error(e.getMessage());
+            LogManager.getLogger(NewsReader.class).error("Invalid Feed URL -> "
+                    + url);
+            return false;
+        }
 
-        this.feeds.add(nURL);
+        NewsFeed feed = NewsFactory.getInstance().createFeed(input, url);
+        if (!feed.isValid()) {
+            LogManager.getLogger(NewsReader.class).error("Invalid Feed -> "
+                    + url);
+            return false;
+        }
+
+        this.feeds.add(feed);
         this.oldEntries.addAll(feed.getEntries()); // mark all entries as read
 
-        LogManager.getLogger().info("Added Feed -> " + url);
+        LogManager.getLogger(NewsReader.class).info("Added Feed -> " + url);
 
         return true;
     }
@@ -68,9 +81,9 @@ public final class NewsReader
         if (index >= this.feeds.size() || index < 0 || this.feeds.isEmpty())
             return false;
 
-        URL urlToRemove = this.feeds.get(index);
-        if (urlToRemove != null) {
-            this.feeds.remove(urlToRemove);
+        NewsFeed feedToRemove = this.feeds.get(index);
+        if (feedToRemove != null) {
+            this.feeds.remove(feedToRemove);
             return true;
         }
         return false;
@@ -78,38 +91,22 @@ public final class NewsReader
 
     public synchronized List<NewsFeed> getNewsFeeds() throws IOException
     {
-        List<NewsFeed> newsFeeds = new ArrayList<>();
-
-        String feedReader = ConfReader.getInstance().getFeedReader();
-        this.feeds.stream()
-                .map(url -> NewsFactory.getInstance().createFeed(feedReader,
-                                                                url.toString()))
-                .forEachOrdered((feed) -> {
-                    if (feed.isValid()) newsFeeds.add(feed);
-                });
-
-        return newsFeeds;
+        return this.feeds;
     }
 
     private List<NewsEntry> getAllEntries() throws IOException
     {
-        List<NewsEntry> newEntries = new ArrayList<>();
+        List<NewsEntry> allEntries = new ArrayList<>();
 
-        String feedReader = ConfReader.getInstance().getFeedReader();
-        this.feeds.stream()
-                .map(url -> NewsFactory.getInstance().createFeed(feedReader,
-                        url.toString())).forEachOrdered(
-                                feed -> {
-                                    if (feed.isValid()) {
-                                        newEntries.addAll(feed.getEntries());
-                                    }
-                                });
-        return newEntries;
+        this.feeds.stream().forEachOrdered(feed ->
+                                        allEntries.addAll(feed.getEntries()));
+        return allEntries;
     }
 
     public synchronized Outputter readNews()
     {
-        LogManager.getLogger().info("readNews(): checking for updates...");
+        LogManager.getLogger(NewsReader.class)
+                .debug("readNews(): checking for updates...");
         try {
             Set<String> oldLinks = this.oldEntries.stream()
                     .map(NewsEntry::getLink)
@@ -131,7 +128,7 @@ public final class NewsReader
                 this.oldEntries.addAll(newEntries);
             }
         } catch (IOException e) {
-            LogManager.getLogger().error(e.getMessage());
+            LogManager.getLogger(NewsReader.class).error(e.getMessage());
         }
 
         return this.outputter;

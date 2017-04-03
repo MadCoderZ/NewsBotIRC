@@ -1,5 +1,6 @@
 package com.github.NewsBotIRC;
 
+import com.github.NewsBotIRC.output.Outputter;
 import java.util.TimerTask;
 
 /**
@@ -17,6 +18,7 @@ public class NewsTask extends TimerTask
     @Override
     public void run()
     {
-        this.newsReader.readNews();
+        Outputter outputter = this.newsReader.readNews();
+        outputter.save();
     }
 }

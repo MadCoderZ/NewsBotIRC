@@ -20,7 +20,7 @@ public class ListFeeds implements Cmd
             m.listFeeds();
             m.sendMessage("--> END");
         } catch (IOException e) {
-            LogManager.getLogger().error(e.getMessage());
+            LogManager.getLogger(ListFeeds.class).error(e.getMessage());
         }
     }
 }

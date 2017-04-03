@@ -50,4 +50,15 @@ public class RomeToolsEntry implements NewsEntry
     {
         return this.entry.getLink();
     }
+
+    @Override
+    public void setTitle(String title)
+    {
+
+    }
+
+    @Override
+    public void setLink(String link)
+    {
+    }
 }

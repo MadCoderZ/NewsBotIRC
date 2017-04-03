@@ -25,9 +25,8 @@
 package com.github.NewsBotIRC.output;
 
 import com.github.NewsBotIRC.IRCMediator;
-import com.github.NewsBotIRC.UrlShortener;
+import com.github.NewsBotIRC.util.URLShortener;
 import com.github.NewsBotIRC.feedreaders.NewsEntry;
-import org.apache.logging.log4j.LogManager;
 import org.pircbotx.Colors;
 
 /**
@@ -46,7 +45,7 @@ public class IRCOutputter implements Outputter
     {
         String domain = entry.getLink().replaceFirst(".*https?://([\\w.-]+)/.*",
                                                                         "<$1>");
-        String link = UrlShortener.shortenUrl(entry.getLink());
+        String link = URLShortener.shortenUrl(entry.getLink());
 
         IRCMediator.getInstance().sendMessage("\"" + Colors.DARK_GRAY
                 + entry.getTitle() + Colors.NORMAL + "\" " + Colors.ITALICS
@@ -57,5 +56,10 @@ public class IRCOutputter implements Outputter
     public String getOutput()
     {
         return "Only appends data";
+    }
+
+    @Override
+    public void save()
+    {
     }
 }

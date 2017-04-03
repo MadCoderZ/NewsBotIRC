@@ -1,21 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="INFO">
+<Configuration status="info">
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
         </Console>
-        <File name="File" fileName="newsbot.log" immediateFlush="false" append="true">
+        <RollingFile name="DebugFile" fileName="newsbot-debug.log" immediateFlush="false" append="true"
+                filePattern="newsbot-debug.%d.%i.log.gz">
+            <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <TimeBasedTriggeringPolicy/>
+        </RollingFile>
+        <File name="ErrorFile" fileName="newsbot-error.log" immediateFlush="false" append="true">
             <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </File>
     </Appenders>
     <Loggers>
-        <Root level="ERROR">
-            <AppenderRef ref="Console" />
-            <AppenderRef ref="File"/>
+        <Root level="error">
+            <AppenderRef ref="Console"/>
         </Root>
-        <Root level="DEBUG">
-            <AppenderRef ref="Console" />
-            <AppenderRef ref="File"/>
-        </Root>
+        <Logger name="com.github.NewsBotIRC" level="debug" additivity="false">
+            <AppenderRef ref="ErrorFile" level="error"/>
+            <AppenderRef ref="DebugFile" level="debug"/>
+            <AppenderRef ref="Console" level="info"/>
+        </Logger>
     </Loggers>
 </Configuration>

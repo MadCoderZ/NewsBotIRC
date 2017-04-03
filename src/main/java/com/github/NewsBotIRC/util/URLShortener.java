@@ -1,4 +1,4 @@
-package com.github.NewsBotIRC;
+package com.github.NewsBotIRC.util;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,7 +11,7 @@ import org.apache.logging.log4j.LogManager;
 /**
  * Created by Geronimo on 11/6/16.
  */
-public class UrlShortener {
+public class URLShortener {
 
     public static String shortenUrl(String myUrl)
     {
@@ -27,7 +27,7 @@ public class UrlShortener {
             shortenedUrl = reader.readLine();
 
         } catch (IOException e) {
-            LogManager.getLogger().error(e.getMessage());
+            LogManager.getLogger(URLShortener.class).error(e.getMessage());
         }
         return shortenedUrl;
     }

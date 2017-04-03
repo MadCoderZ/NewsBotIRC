@@ -32,4 +32,6 @@ public interface NewsEntry
 {
     public String getTitle();
     public String getLink();
+    public void setTitle(String title);
+    public void setLink(String link);
 }

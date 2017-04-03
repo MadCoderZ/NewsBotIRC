@@ -1,6 +1,7 @@
 package com.github.NewsBotIRC;
 
 import com.github.NewsBotIRC.output.ConsoleOutputter;
+import com.github.NewsBotIRC.output.DBOutputter;
 import com.github.NewsBotIRC.output.JSONOutputter;
 import com.github.NewsBotIRC.output.Outputter;
 import org.apache.logging.log4j.LogManager;
@@ -16,7 +17,7 @@ public class NewsBot
     {
         NewsReader newsReader;
         ConfReader config = ConfReader.getInstance();
-        switch(config.getPreset()) {
+        switch(config.getOutput()) {
             case IRC:
                 IRCMediator.getInstance().startIRCClient();
                 break;
@@ -33,6 +34,12 @@ public class NewsBot
                 break;
             case CONSOLE:
                 newsReader = new NewsReader(new ConsoleOutputter());
+                new NewsTimer(config.getPollFrequency()).addTask(
+                        new NewsTask(newsReader)
+                );
+                break;
+            case DB:
+                newsReader = new NewsReader(new DBOutputter());
                 new NewsTimer(config.getPollFrequency()).addTask(
                         new NewsTask(newsReader)
                 );
