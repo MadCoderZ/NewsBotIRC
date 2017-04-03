@@ -24,6 +24,7 @@
 
 package com.github.NewsBotIRC.feedreaders;
 
+import com.github.NewsBotIRC.ConfReader.Input;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -36,21 +37,22 @@ public final class NewsFactory
 {
     private static NewsFactory instance = null;
 
-    Map<String, NewsFeed> feedReaders;
+    Map<Input, NewsFeed> feedReaders;
 
     protected NewsFactory()
     {
         this.feedReaders = new HashMap<>();
 
-        this.addFeedType("rometools", new RomeToolsFeed());
+        this.addFeedType(Input.RSS, new RomeToolsFeed());
+        this.addFeedType(Input.DB, new DBFeed());
     }
 
-    public void addFeedType(String feedType, NewsFeed feedImplemenetation)
+    public void addFeedType(Input feedType, NewsFeed feedImplemenetation)
     {
         this.feedReaders.put(feedType, feedImplemenetation);
     }
 
-    public NewsFeed createFeed(String feedType, String feedURL)
+    public NewsFeed createFeed(Input feedType, String feedURL)
     {
         Optional<NewsFeed> feed =
                 Optional.ofNullable(this.feedReaders.get(feedType));

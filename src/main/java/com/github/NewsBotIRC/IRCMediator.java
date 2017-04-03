@@ -1,5 +1,6 @@
 package com.github.NewsBotIRC;
 
+import com.github.NewsBotIRC.ConfReader.Input;
 import com.github.NewsBotIRC.feedreaders.NewsFeed;
 import com.github.NewsBotIRC.output.IRCOutputter;
 import org.pircbotx.Channel;
@@ -93,7 +94,7 @@ public class IRCMediator
 
     public void addFeed(String url) throws MalformedURLException
     {
-        if ( !this.newsReader.addFeedUrl(url) ) {
+        if (!this.newsReader.addFeed(Input.RSS, url)) {
             this.sendMessage("ERROR: invalid or duplicate feed!");
         } else {
             this.sendMessage("Success!");
@@ -110,7 +111,7 @@ public class IRCMediator
         try {
             this.bot.startBot();
         } catch (IOException | IrcException e) {
-            LogManager.getLogger().error(e.getMessage());
+            LogManager.getLogger(IRCMediator.class).error(e.getMessage());
         }
     }
 }

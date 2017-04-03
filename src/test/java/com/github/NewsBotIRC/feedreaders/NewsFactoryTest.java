@@ -23,7 +23,7 @@
  */
 package com.github.NewsBotIRC.feedreaders;
 
-import com.github.NewsBotIRC.ConfReader;
+import com.github.NewsBotIRC.ConfReader.Input;
 import java.io.File;
 import org.junit.Before;
 import org.junit.Test;
@@ -56,19 +56,17 @@ public class NewsFactoryTest
     public void testCreateFeed()
     {
         System.out.println("createFeed");
-        String validFeedReader = ConfReader.getInstance().getFeedReader();
-        NewsFeed feed = NewsFactory.getInstance().createFeed(validFeedReader, "");
+        NewsFeed feed = NewsFactory.getInstance().createFeed(Input.RSS, "");
         assertNotNull(feed);
         assertFalse(feed.isValid());
 
-        feed = NewsFactory.getInstance().createFeed(validFeedReader,
-                "file://" + this.feedPath);
+        feed = NewsFactory.getInstance().createFeed(Input.DB, "");
         assertNotNull(feed);
         assertTrue(feed.isValid());
 
-        feed = NewsFactory.getInstance().createFeed("non-existant-reader",
+        feed = NewsFactory.getInstance().createFeed(Input.RSS,
                 "file://" + this.feedPath);
         assertNotNull(feed);
-        assertFalse(feed.isValid());
+        assertTrue(feed.isValid());
     }
 }

@@ -64,7 +64,7 @@ public abstract class NewsFeed implements Cloneable
       try {
          clone = super.clone();
       } catch (CloneNotSupportedException e) {
-          LogManager.getLogger().error(e.getMessage());
+          LogManager.getLogger(NewsFeed.class).error(e.getMessage());
       }
 
       return clone;

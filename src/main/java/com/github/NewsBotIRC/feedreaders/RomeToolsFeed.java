@@ -31,6 +31,7 @@ import com.rometools.rome.io.XmlReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import static java.util.stream.Collectors.toList;
 import org.apache.logging.log4j.LogManager;
@@ -53,10 +54,10 @@ public class RomeToolsFeed extends NewsFeed
         try {
             this.feed = input.build(new XmlReader(new URL( this.getURL() )));
         } catch (MalformedURLException ex) {
-            LogManager.getLogger().error(ex.getMessage());
+            LogManager.getLogger(RomeToolsFeed.class).error(ex.getMessage());
             return false;
         } catch (IOException | IllegalArgumentException | FeedException ex) {
-            LogManager.getLogger().error(ex.getMessage());
+            LogManager.getLogger(RomeToolsFeed.class).error(ex.getMessage());
             return false;
         }
         return true;
@@ -65,7 +66,6 @@ public class RomeToolsFeed extends NewsFeed
     @Override
     public boolean isValid()
     {
-        if (this.feed != null) return true;
         return this.read();
     }
 
@@ -79,7 +79,7 @@ public class RomeToolsFeed extends NewsFeed
     @Override
     public List<NewsEntry> getEntries()
     {
-        if (this.feed == null) this.read();
+        if (!this.read()) return new ArrayList<>();
         return this.feed.getEntries().stream()
                 .map(e -> new RomeToolsEntry(e))
                 .collect(toList());

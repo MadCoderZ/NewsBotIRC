@@ -24,7 +24,7 @@
 
 package com.github.NewsBotIRC.output;
 
-import com.github.NewsBotIRC.UrlShortener;
+import com.github.NewsBotIRC.util.URLShortener;
 import com.github.NewsBotIRC.feedreaders.NewsEntry;
 import org.json.JSONObject;
 
@@ -47,7 +47,7 @@ public class JSONOutputter implements Outputter
         JSONObject json = new JSONObject();
 
         json.append("title", entry.getTitle());
-        json.append("link", UrlShortener.shortenUrl(entry.getLink()));
+        json.append("link", URLShortener.shortenUrl(entry.getLink()));
 
         this.strBuilder.append(json.toString());
     }
@@ -56,5 +56,10 @@ public class JSONOutputter implements Outputter
     public String getOutput()
     {
         return this.strBuilder.toString();
+    }
+
+    @Override
+    public void save()
+    {
     }
 }

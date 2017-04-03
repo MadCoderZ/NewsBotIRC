@@ -18,14 +18,15 @@ public class AddFeed implements Cmd
     {
         if (!params.startsWith("http")) {
             m.sendMessage("Invalid feed");
-            LogManager.getLogger().error("Invalid feed");
+            LogManager.getLogger(AddFeed.class).error("Invalid feed");
             return;
         }
 
         try {
             m.addFeed(params);
         } catch (MalformedURLException e) {
-            LogManager.getLogger().error(e.getMessage() + " Invalid feed.");
+            LogManager.getLogger(AddFeed.class).error(e.getMessage()
+                    + " Invalid feed.");
             m.sendMessage("Invalid feed");
         }
     }

@@ -22,17 +22,71 @@
  * THE SOFTWARE.
  */
 
-package com.github.NewsBotIRC.output;
+package com.github.NewsBotIRC.feedreaders;
 
-import com.github.NewsBotIRC.feedreaders.NewsEntry;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import org.hibernate.annotations.GenericGenerator;
+
 
 /**
  *
  * @author Geronimo
  */
-public interface Outputter
+@Entity
+@Table(name = "NEWS")
+public class DBEntry implements NewsEntry
 {
-    public void append(NewsEntry entry);
-    public String getOutput();
-    public void save();
+    private Long id;
+    private String title;
+    private String link;
+
+    public DBEntry()
+    {
+    }
+
+    public DBEntry(String title, String link)
+    {
+        this.title = title;
+        this.link = link;
+    }
+
+    @Id
+    @GeneratedValue(generator="increment")
+    @GenericGenerator(name="increment", strategy = "increment")
+    public Long getId()
+    {
+        return id;
+    }
+
+    public void setId(Long id)
+    {
+        this.id = id;
+    }
+
+    @Override
+    public String getTitle()
+    {
+        return this.title;
+    }
+
+    @Override
+    public String getLink()
+    {
+        return this.link;
+    }
+
+    @Override
+    public void setTitle(String title)
+    {
+        this.title = title;
+    }
+
+    @Override
+    public void setLink(String link)
+    {
+        this.link = link;
+    }
 }

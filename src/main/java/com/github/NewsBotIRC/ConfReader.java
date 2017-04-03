@@ -30,14 +30,22 @@ public class ConfReader
     private boolean ssl = false;
     private boolean identify = false;
     private String nickserv_passwd = null;
-    private String feedReader = null;
+    private String DBURL = null;
+    private String DBUser = null;
+    private String DBPassword = null;
+    private String DBDriver = null;
     private CompositeConfiguration config = null;
 
-    public enum Preset {
-        IRC, JSON, CONSOLE
+    public enum Input {
+        RSS, DB
     }
 
-    private Preset preset = null;
+    public enum Output {
+        IRC, JSON, CONSOLE, DB
+    }
+
+    private Output output = null;
+    private Input input = null;
 
     protected ConfReader()
     {
@@ -52,7 +60,7 @@ public class ConfReader
             this.config.addConfiguration(
                     new PropertiesConfiguration(propFilename));
         } catch (ConfigurationException e) {
-            LogManager.getLogger().error(e.getMessage());
+            LogManager.getLogger(ConfReader.class).error(e.getMessage());
             System.exit(1);
         }
 
@@ -70,10 +78,13 @@ public class ConfReader
         this.ssl = config.getBoolean("bot.ssl");
         this.identify = config.getBoolean("bot.identify");
         this.nickserv_passwd = config.getString("bot.nickserv_passwd");
-        this.feedReader = config.getString("bot.feedreader");
-        this.preset = Preset.valueOf(config.getString("bot.preset"));
-
+        this.input = Input.valueOf(config.getString("bot.input"));
+        this.output = Output.valueOf(config.getString("bot.output"));
         this.rssUrls = config.getStringArray("rss.feed");
+        this.DBURL = config.getString("bot.db.url");
+        this.DBUser = config.getString("bot.db.user");
+        this.DBPassword = config.getString("bot.db.password");
+        this.DBDriver = config.getString("bot.db.driver");
     }
 
     public static ConfReader getInstance()
@@ -235,13 +246,33 @@ public class ConfReader
         return nickserv_passwd;
     }
 
-    public String getFeedReader()
+    public Input getInput()
     {
-        return this.feedReader;
+        return this.input;
     }
 
-    public Preset getPreset()
+    public Output getOutput()
     {
-        return this.preset;
+        return this.output;
+    }
+
+    public String getDBURL()
+    {
+        return this.DBURL;
+    }
+
+    public String getDBUser()
+    {
+        return this.DBUser;
+    }
+
+    public String getDBPassword()
+    {
+        return this.DBPassword;
+    }
+
+    public String getDBDriver()
+    {
+        return this.DBDriver;
     }
 }

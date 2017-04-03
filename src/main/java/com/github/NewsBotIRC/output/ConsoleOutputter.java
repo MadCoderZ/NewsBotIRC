@@ -24,7 +24,7 @@
 
 package com.github.NewsBotIRC.output;
 
-import com.github.NewsBotIRC.UrlShortener;
+import com.github.NewsBotIRC.util.URLShortener;
 import com.github.NewsBotIRC.feedreaders.NewsEntry;
 import org.apache.logging.log4j.LogManager;
 
@@ -34,13 +34,13 @@ import org.apache.logging.log4j.LogManager;
  */
 public class ConsoleOutputter implements Outputter
 {
-
     @Override
     public void append(NewsEntry entry)
     {
-        String link = UrlShortener.shortenUrl(entry.getLink());
+        String link = URLShortener.shortenUrl(entry.getLink());
 
-        LogManager.getLogger().info(entry.getTitle() + " <" + link + ">");
+        LogManager.getLogger(ConsoleOutputter.class)
+                .info(entry.getTitle() + " <" + link + ">");
     }
 
     @Override
@@ -49,4 +49,8 @@ public class ConsoleOutputter implements Outputter
         return "Only appends data";
     }
 
+    @Override
+    public void save()
+    {
+    }
 }
