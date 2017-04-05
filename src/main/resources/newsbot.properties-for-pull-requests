@@ -53,6 +53,9 @@ bot.db.user = postgres
 bot.db.password = postgres
 bot.db.jdbcDriver = org.postgresql.Driver
 
+# Maximum items returned in JSON format by HTTP GET
+bot.json.max_results = 30
+
 # How often fetch RSS feeds list ? 180s as minimum. recommended to avoid throttling rss feeds.
 rss.pollfrequency = 180
 

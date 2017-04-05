@@ -24,8 +24,10 @@
 
 package com.github.NewsBotIRC.output;
 
+import com.github.NewsBotIRC.ConfReader;
 import com.github.NewsBotIRC.util.URLShortener;
 import com.github.NewsBotIRC.feedreaders.NewsEntry;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -34,28 +36,34 @@ import org.json.JSONObject;
  */
 public class JSONOutputter implements Outputter
 {
-    StringBuilder strBuilder;
+    int limit;
+    JSONArray result;
 
     public JSONOutputter()
     {
-        this.strBuilder = new StringBuilder();
+        result = new JSONArray();
+        this.limit = ConfReader.getInstance().getJsonMaxResults();
     }
 
     @Override
     public void append(NewsEntry entry)
     {
-        JSONObject json = new JSONObject();
+        if (this.result.length() == this.limit) {
+            this.result.remove(0);
+        }
 
-        json.append("title", entry.getTitle());
-        json.append("link", URLShortener.shortenUrl(entry.getLink()));
+        JSONObject object = new JSONObject();
 
-        this.strBuilder.append(json.toString());
+        object.append("title", entry.getTitle());
+        object.append("link", URLShortener.shortenUrl(entry.getLink()));
+
+        this.result.put(object);
     }
 
     @Override
     public String getOutput()
     {
-        return this.strBuilder.toString();
+        return this.result.toString();
     }
 
     @Override

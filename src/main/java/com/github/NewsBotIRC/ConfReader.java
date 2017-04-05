@@ -34,6 +34,8 @@ public class ConfReader
     private String DBUser = null;
     private String DBPassword = null;
     private String DBDriver = null;
+    private final int jsonMaxResults;
+
     private CompositeConfiguration config = null;
 
     public enum Input {
@@ -85,6 +87,7 @@ public class ConfReader
         this.DBUser = config.getString("bot.db.user");
         this.DBPassword = config.getString("bot.db.password");
         this.DBDriver = config.getString("bot.db.driver");
+        this.jsonMaxResults = config.getInt("bot.json.max_results", 30);
     }
 
     public static ConfReader getInstance()
@@ -274,5 +277,10 @@ public class ConfReader
     public String getDBDriver()
     {
         return this.DBDriver;
+    }
+
+    public int getJsonMaxResults()
+    {
+        return jsonMaxResults;
     }
 }
