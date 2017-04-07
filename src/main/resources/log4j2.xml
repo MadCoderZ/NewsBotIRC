@@ -4,12 +4,12 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
         </Console>
-        <RollingFile name="DebugFile" fileName="newsbot-debug.log" immediateFlush="false" append="true"
+        <RollingFile name="DebugFile" fileName="newsbot-debug.log" append="true"
                 filePattern="newsbot-debug.%d.%i.log.gz">
             <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
             <TimeBasedTriggeringPolicy/>
         </RollingFile>
-        <File name="ErrorFile" fileName="newsbot-error.log" immediateFlush="false" append="true">
+        <File name="ErrorFile" fileName="newsbot-error.log" append="true">
             <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </File>
     </Appenders>
