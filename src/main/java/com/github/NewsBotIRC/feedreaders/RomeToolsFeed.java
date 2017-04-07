@@ -79,7 +79,7 @@ public class RomeToolsFeed extends NewsFeed
     @Override
     public List<NewsEntry> getEntries()
     {
-        if (!this.read()) return new ArrayList<>();
+        if (!this.read() && this.feed == null) return new ArrayList<>();
         return this.feed.getEntries().stream()
                 .map(e -> new RomeToolsEntry(e))
                 .collect(toList());
