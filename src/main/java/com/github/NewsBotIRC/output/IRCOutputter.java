@@ -27,6 +27,7 @@ package com.github.NewsBotIRC.output;
 import com.github.NewsBotIRC.IRCMediator;
 import com.github.NewsBotIRC.util.URLShortener;
 import com.github.NewsBotIRC.feedreaders.NewsEntry;
+import com.github.NewsBotIRC.util.LocalDateTimeAdjuster;
 import org.pircbotx.Colors;
 
 /**
@@ -46,10 +47,11 @@ public class IRCOutputter implements Outputter
         String domain = entry.getLink().replaceFirst(".*https?://([\\w.-]+)/.*",
                                                                         "<$1>");
         String link = URLShortener.shortenUrl(entry.getLink());
+        String timeAgo = LocalDateTimeAdjuster.timeAgo(entry.getLocalDateTime());
 
         IRCMediator.getInstance().sendMessage("\"" + Colors.DARK_GRAY
-                + entry.getTitle() + Colors.NORMAL + "\" " + Colors.ITALICS
-                + domain + Colors.NORMAL + " <" + link + ">");
+                + entry.getTitle() + Colors.NORMAL + "\" " + timeAgo + " "
+                + Colors.ITALICS + domain + Colors.NORMAL + " <" + link + ">");
     }
 
     @Override
