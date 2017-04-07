@@ -95,9 +95,10 @@ public final class NewsReader
 
     private List<NewsEntry> getAllEntries() throws IOException
     {
-        List<NewsEntry> allEntries = new ArrayList<>();
+       List<NewsEntry> allEntries =
+               Collections.synchronizedList(new ArrayList<>());
 
-        this.feeds.stream().forEachOrdered(feed ->
+        this.feeds.parallelStream().forEach(feed ->
                                         allEntries.addAll(feed.getEntries()));
         return allEntries;
     }
