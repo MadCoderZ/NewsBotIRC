@@ -43,7 +43,7 @@ public class DBFeed extends NewsFeed
     public DBFeed()
     {
         this.offset = 0;
-        this.limit = 15;
+        this.limit = ConfReader.getInstance().getDBLimit();
     }
 
     private EntityManager getEntityManager()

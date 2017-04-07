@@ -35,6 +35,7 @@ public class ConfReader
     private String DBPassword = null;
     private String DBDriver = null;
     private final int jsonMaxResults;
+    private final int DBLimit;
 
     private CompositeConfiguration config = null;
 
@@ -88,6 +89,7 @@ public class ConfReader
         this.DBPassword = config.getString("bot.db.password");
         this.DBDriver = config.getString("bot.db.driver");
         this.jsonMaxResults = config.getInt("bot.json.max_results", 30);
+        this.DBLimit = config.getInt("bot.db.limit", 30);
     }
 
     public static ConfReader getInstance()
@@ -281,6 +283,11 @@ public class ConfReader
 
     public int getJsonMaxResults()
     {
-        return jsonMaxResults;
+        return this.jsonMaxResults;
+    }
+
+    public int getDBLimit()
+    {
+        return this.DBLimit;
     }
 }
