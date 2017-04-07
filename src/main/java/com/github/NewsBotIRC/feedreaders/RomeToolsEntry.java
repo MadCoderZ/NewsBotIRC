@@ -29,7 +29,6 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.util.Date;
-import org.apache.logging.log4j.LogManager;
 
 /**
  *
@@ -47,7 +46,8 @@ public class RomeToolsEntry implements NewsEntry
     @Override
     public String getTitle()
     {
-        return this.entry.getTitle();
+        String title = this.entry.getTitle().replaceAll("\n", "");
+        return title.trim();
     }
 
     @Override
