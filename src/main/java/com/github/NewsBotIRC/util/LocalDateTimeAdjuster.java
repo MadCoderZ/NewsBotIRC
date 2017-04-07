@@ -22,39 +22,33 @@
  * THE SOFTWARE.
  */
 
-package com.github.NewsBotIRC.output;
+package com.github.NewsBotIRC.util;
 
-import com.github.NewsBotIRC.util.URLShortener;
-import com.github.NewsBotIRC.feedreaders.NewsEntry;
-import com.github.NewsBotIRC.util.LocalDateTimeAdjuster;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.LocalDateTime;
 import org.apache.logging.log4j.LogManager;
 
 /**
  *
  * @author Geronimo
  */
-public class ConsoleOutputter implements Outputter
+public class LocalDateTimeAdjuster
 {
-    @Override
-    public void append(NewsEntry entry)
+    public static String timeAgo(LocalDateTime ldt)
     {
-        String link = URLShortener.shortenUrl(entry.getLink());
-        String timeAgo =
-                LocalDateTimeAdjuster.timeAgo(entry.getLocalDateTime());
+        Duration d = Duration.between(ldt, LocalDateTime.now());
 
-
-        LogManager.getLogger(ConsoleOutputter.class)
-                .info(entry.getTitle() + " " + timeAgo +  " <" + link + ">");
+        if (d.toDays() > 0) {
+            return d.toDays() + " day(s) ago";
+        }
+        if (d.toHours() > 0) {
+            return d.toHours() + " hour(s) ago";
+        }
+        if (d.toMinutes() > 0) {
+            return d.toMinutes() + " minute(s) ago";
+        }
+        return "just now";
     }
 
-    @Override
-    public String getOutput()
-    {
-        return "Only appends data";
-    }
-
-    @Override
-    public void save()
-    {
-    }
 }

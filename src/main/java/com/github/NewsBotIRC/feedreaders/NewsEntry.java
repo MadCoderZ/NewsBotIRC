@@ -24,6 +24,8 @@
 
 package com.github.NewsBotIRC.feedreaders;
 
+import java.time.LocalDateTime;
+
 /**
  *
  * @author Geronimo
@@ -34,4 +36,6 @@ public interface NewsEntry
     public String getLink();
     public void setTitle(String title);
     public void setLink(String link);
+    public LocalDateTime getLocalDateTime();
+    public void setLocalDateTime(LocalDateTime ldt);
 }

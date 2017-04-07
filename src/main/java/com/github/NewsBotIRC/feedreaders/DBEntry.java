@@ -24,10 +24,13 @@
 
 package com.github.NewsBotIRC.feedreaders;
 
+import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 
 
@@ -42,15 +45,17 @@ public class DBEntry implements NewsEntry
     private Long id;
     private String title;
     private String link;
+    private LocalDateTime ldt;
 
     public DBEntry()
     {
     }
 
-    public DBEntry(String title, String link)
+    public DBEntry(String title, String link, LocalDateTime ldt)
     {
         this.title = title;
         this.link = link;
+        this.ldt = ldt;
     }
 
     @Id
@@ -88,5 +93,17 @@ public class DBEntry implements NewsEntry
     public void setLink(String link)
     {
         this.link = link;
+    }
+
+    @Override
+    public LocalDateTime getLocalDateTime()
+    {
+        return this.ldt;
+    }
+
+    @Override
+    public void setLocalDateTime(LocalDateTime ldt)
+    {
+        this.ldt = ldt;
     }
 }
