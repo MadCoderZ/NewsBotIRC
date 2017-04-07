@@ -32,6 +32,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 
 /**
@@ -72,12 +73,14 @@ public class DBEntry implements NewsEntry
     }
 
     @Override
+    @Type(type="text")
     public String getTitle()
     {
         return this.title;
     }
 
     @Override
+    @Type(type="text")
     public String getLink()
     {
         return this.link;
