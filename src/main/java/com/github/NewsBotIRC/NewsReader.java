@@ -15,7 +15,6 @@ import org.apache.logging.log4j.LogManager;
 
 public final class NewsReader
 {
-    private int pass = 0;
     private List<NewsFeed> feeds;
     private Set<NewsEntry> oldEntries;
     private Outputter outputter = null;
@@ -112,20 +111,29 @@ public final class NewsReader
                     .map(NewsEntry::getLink)
                     .collect(Collectors.toSet());
 
-            List<NewsEntry> allEntries = this.getAllEntries();
+            Set<NewsEntry> allEntries = new HashSet<>(this.getAllEntries());
 
             Set<NewsEntry> newEntries = allEntries.stream()
-                    .filter(e -> !oldLinks.contains(e.getLink()))
+                    .filter(e -> !oldLinks.contains(e.getLink()) &&
+                            !e.getTitle().isEmpty())
                     .collect(Collectors.toSet());
 
             newEntries.forEach(e -> this.outputter.append(e));
 
-            if (this.pass++ > 3) {
-                this.oldEntries.clear(); // do not let it to grow too much
-                this.oldEntries.addAll(allEntries);
-                this.pass = 0;
-            } else {
-                this.oldEntries.addAll(newEntries);
+            this.oldEntries.addAll(newEntries);
+            Set<String> allLinks = allEntries.stream()
+                    .map(NewsEntry::getLink)
+                    .collect(Collectors.toSet());
+
+            Set<NewsEntry> toRemove = this.oldEntries.stream()
+                    .filter(e -> !allLinks.contains(e.getLink()))
+                    .collect(Collectors.toSet());
+
+            if (toRemove.size() > 0) {
+                LogManager.getLogger(NewsReader.class).debug(
+                        "Cleaning old entries... size: " +
+                                toRemove.size());
+                this.oldEntries.removeAll(toRemove);
             }
         } catch (IOException e) {
             LogManager.getLogger(NewsReader.class).error(e.getMessage());
