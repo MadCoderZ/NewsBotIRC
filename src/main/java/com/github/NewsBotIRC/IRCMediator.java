@@ -53,7 +53,14 @@ public class IRCMediator
         confBuilder.setAutoNickChange(true);
         confBuilder.addServer(ConfReader.getInstance().getIrcserver(), ConfReader.getInstance().getPort());
         confBuilder.addAutoJoinChannel("#" + ConfReader.getInstance().getChannel());
-        confBuilder.setVersion(ConfReader.getInstance().getVersion());
+
+        confBuilder.setVersion(
+                ConfReader.getAppProperties().getString("application.name") +
+                " v" + ConfReader.getAppProperties()
+                        .getString("application.version") +
+                " " + ConfReader.getAppProperties()
+                        .getString("application.buildnumber")
+        );
         confBuilder.addListener(new IRCListener(this) );
         confBuilder.buildConfiguration();
 

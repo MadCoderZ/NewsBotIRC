@@ -17,7 +17,8 @@ public class Version implements Cmd {
     {
         Configuration config = ConfReader.getAppProperties();
         m.sendMessage(config.getString("application.name") + " v" +
-                config.getString("application.version") + " by " +
+                config.getString("application.version") + " " +
+                config.getString("application.buildnumber") + " by " +
                 config.getString("application.developers") + " (" +
                 config.getString("application.inceptionYear") + ")"
         );

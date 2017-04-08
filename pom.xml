@@ -31,6 +31,12 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <scm>
+        <connection>scm:git:file://localhost/</connection>
+        <developerConnection>scm:git:file://localhost/</developerConnection>
+        <url>scm:git:file://localhost/</url>
+    </scm>
+
     <build>
         <resources>
             <resource>
@@ -60,13 +66,36 @@
                         </goals>
                         <configuration>
                             <transformers>
-                                            <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                                    <mainClass>com.github.NewsBotIRC.NewsBot</mainClass>
-                                                </transformer>
-                                        </transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>com.github.NewsBotIRC.NewsBot</mainClass>
+                                </transformer>
+                            </transformers>
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>buildnumber-maven-plugin</artifactId>
+                <version>1.4</version>
+                <executions>
+                  <execution>
+                    <phase>initialize</phase>
+                    <goals>
+                      <goal>create</goal>
+                      <goal>create-timestamp</goal>
+                    </goals>
+                  </execution>
+                </executions>
+                <configuration>
+                  <doCheck>false</doCheck>
+                  <doUpdate>false</doUpdate>
+                  <timestampFormat>{0,date,yyyyMMdd}</timestampFormat>
+                  <shortRevisionLength>7</shortRevisionLength>
+                  <items>
+                    <item>timestamp</item>
+                  </items>
+                </configuration>
             </plugin>
         </plugins>
     </build>
