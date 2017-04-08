@@ -1,5 +1,6 @@
 FROM maven:alpine
 
+RUN apk --update add git
 RUN adduser -D newsbot && mkdir /home/newsbot/.m2
 
 ADD . /home/newsbot
