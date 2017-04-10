@@ -81,10 +81,9 @@ public class DBOutputter implements Outputter
 
         EntityManager entityManager =
                 entityManagerFactory.createEntityManager();
-
         entityManager.getTransaction().begin();
         this.entries.forEach(e ->
-                entityManager.persist(
+                entityManager.merge(
                         new DBEntry(e.getTitle(), e.getLink(),
                                 e.getLocalDateTime())));
         entityManager.getTransaction().commit();

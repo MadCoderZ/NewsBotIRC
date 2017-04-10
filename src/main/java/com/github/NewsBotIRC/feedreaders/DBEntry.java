@@ -25,12 +25,11 @@
 package com.github.NewsBotIRC.feedreaders;
 
 import java.time.LocalDateTime;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
@@ -81,6 +80,7 @@ public class DBEntry implements NewsEntry
 
     @Override
     @Type(type="text")
+    @Column(unique=true)
     public String getLink()
     {
         return this.link;
