@@ -34,6 +34,9 @@ import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceException;
+import javax.persistence.Query;
+import org.apache.logging.log4j.LogManager;
 
 /**
  *
@@ -79,15 +82,24 @@ public class DBOutputter implements Outputter
     {
         if (this.entries.isEmpty()) return;
 
-        EntityManager entityManager =
+        EntityManager em =
                 entityManagerFactory.createEntityManager();
-        entityManager.getTransaction().begin();
-        this.entries.forEach(e ->
-                entityManager.merge(
-                        new DBEntry(e.getTitle(), e.getLink(),
-                                e.getLocalDateTime())));
-        entityManager.getTransaction().commit();
-        entityManager.close();
+
+        em.getTransaction().begin();
+        this.entries.stream()
+                .map(e -> new DBEntry(e.getTitle(), e.getLink(), e.getLocalDateTime()))
+                .filter(dbEntry -> { String l = dbEntry.getLink();
+                    Query query = em.createQuery("SELECT COUNT(e) FROM DBEntry e WHERE e.link = '" + l + "'");
+                    Long duplicates = (Long)query.getSingleResult();
+                    return duplicates == 0;})
+                .forEach(dbEntry -> em.persist(dbEntry));
+        try {
+            em.getTransaction().commit();
+        } catch (PersistenceException ex) {
+                LogManager.getLogger(DBOutputter.class).error(ex.getMessage());
+        }
+
+        em.close();
         this.entries.clear();
     }
 }

@@ -24,6 +24,7 @@
 
 package com.github.NewsBotIRC.feedreaders;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -40,7 +41,7 @@ import org.hibernate.annotations.Type;
  */
 @Entity
 @Table(name = "NEWS")
-public class DBEntry implements NewsEntry
+public class DBEntry implements NewsEntry, Serializable
 {
     private Long id;
     private String title;
