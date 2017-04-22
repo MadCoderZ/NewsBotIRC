@@ -95,7 +95,10 @@ public class RomeToolsEntry implements NewsEntry
     @Override
     public String getDescription()
     {
-        return HTMLParser.stripHTML( this.entry.getDescription().getValue() );
+        if (this.entry.getDescription() != null) {
+            return HTMLParser.stripHTML( this.entry.getDescription().getValue() );
+        }
+        return "";
     }
 
     @Override
