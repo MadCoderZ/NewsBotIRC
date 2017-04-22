@@ -22,22 +22,20 @@
  * THE SOFTWARE.
  */
 
-package com.github.NewsBotIRC.feedreaders;
+package com.github.NewsBotIRC.util;
 
-import java.time.LocalDateTime;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 /**
  *
  * @author Geronimo
  */
-public interface NewsEntry
+public class HTMLParser
 {
-    public String getTitle();
-    public String getLink();
-    public String getDescription();
-    public LocalDateTime getLocalDateTime();
-    public void setTitle(String title);
-    public void setLink(String link);
-    public void setDescription(String desc);
-    public void setLocalDateTime(LocalDateTime ldt);
+    public static String stripHTML(String html)
+    {
+        Document doc = Jsoup.parse(html);
+        return doc.body().text();
+    }
 }

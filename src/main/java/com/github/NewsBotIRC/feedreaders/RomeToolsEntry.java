@@ -24,6 +24,7 @@
 
 package com.github.NewsBotIRC.feedreaders;
 
+import com.github.NewsBotIRC.util.HTMLParser;
 import com.rometools.rome.feed.synd.SyndEntry;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -86,5 +87,16 @@ public class RomeToolsEntry implements NewsEntry
     public void setLocalDateTime(LocalDateTime ldt)
     {
         this.entry.setPublishedDate(Date.from(ldt.toInstant(ZoneOffset.UTC)));
+    }
+
+    @Override
+    public String getDescription()
+    {
+        return HTMLParser.stripHTML( this.entry.getDescription().getValue() );
+    }
+
+    @Override
+    public void setDescription(String desc)
+    {
     }
 }

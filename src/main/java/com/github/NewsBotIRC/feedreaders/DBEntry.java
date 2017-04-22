@@ -46,16 +46,18 @@ public class DBEntry implements NewsEntry, Serializable
     private Long id;
     private String title;
     private String link;
+    private String description;
     private LocalDateTime ldt;
 
     public DBEntry()
     {
     }
 
-    public DBEntry(String title, String link, LocalDateTime ldt)
+    public DBEntry(String title, String link, String description, LocalDateTime ldt)
     {
         this.title = title;
         this.link = link;
+        this.description = description;
         this.ldt = ldt;
     }
 
@@ -109,5 +111,18 @@ public class DBEntry implements NewsEntry, Serializable
     public void setLocalDateTime(LocalDateTime ldt)
     {
         this.ldt = ldt;
+    }
+
+    @Override
+    @Type(type="text")
+    public String getDescription()
+    {
+        return this.description;
+    }
+
+    @Override
+    public void setDescription(String desc)
+    {
+        this.description = desc;
     }
 }

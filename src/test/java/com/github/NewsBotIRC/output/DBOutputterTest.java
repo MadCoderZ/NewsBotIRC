@@ -81,13 +81,13 @@ public class DBOutputterTest
         System.out.println("save");
         DBOutputter instance = new DBOutputter();
 
-        instance.append(new DBEntry("News Title01", this.duplicateLink,
+        instance.append(new DBEntry("News Title01", this.duplicateLink, "My desc",
                 LocalDateTime.of(2017, Month.APRIL, 20, 21, 15, 20)));
-        instance.append(new DBEntry("News Title01", this.duplicateLink,
+        instance.append(new DBEntry("News Title01", this.duplicateLink, "My desc",
                 LocalDateTime.of(2017, Month.APRIL, 20, 21, 15, 20)));
-        instance.append(new DBEntry("News Title01", this.duplicateLink,
+        instance.append(new DBEntry("News Title01", this.duplicateLink, "My desc",
                 LocalDateTime.of(2017, Month.APRIL, 20, 21, 15, 20)));
-        instance.append(new DBEntry("News Title02", "http://www.geronimo.guru",
+        instance.append(new DBEntry("News Title02", "http://www.geronimo.guru", "My little site",
                 LocalDateTime.of(2017, Month.APRIL, 20, 21, 20, 30)));
 
         instance.save();
@@ -101,7 +101,8 @@ public class DBOutputterTest
         EntityManager em =
                 emFactory.createEntityManager();
 
-        Query query = em.createQuery("SELECT COUNT(e) FROM DBEntry e WHERE e.link = '" + this.duplicateLink + "'");
+        Query query = em.createQuery("SELECT COUNT(e) FROM DBEntry e WHERE e.link = '" +
+                this.duplicateLink + "'");
 
         Long duplicates = (Long)query.getSingleResult();
 
