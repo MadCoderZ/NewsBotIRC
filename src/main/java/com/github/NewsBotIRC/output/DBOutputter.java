@@ -87,7 +87,7 @@ public class DBOutputter implements Outputter
 
         em.getTransaction().begin();
         this.entries.stream()
-                .map(e -> new DBEntry(e.getTitle(), e.getLink(), e.getDescription(), e.getLocalDateTime()))
+                .map(e -> new DBEntry(e))
                 .filter(dbEntry -> { String l = dbEntry.getLink();
                     Query query = em.createQuery("SELECT COUNT(e) FROM DBEntry e WHERE e.link = '" + l + "'");
                     Long duplicates = (Long)query.getSingleResult();

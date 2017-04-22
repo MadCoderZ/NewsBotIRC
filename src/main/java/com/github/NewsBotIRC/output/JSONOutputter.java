@@ -58,6 +58,7 @@ public class JSONOutputter implements Outputter
         object.append("link", URLShortener.shortenUrl(entry.getLink()));
         object.append("description", entry.getDescription());
         object.append("date", entry.getLocalDateTime());
+        object.append("categories", entry.getCategories());
 
         this.result.put(object);
     }

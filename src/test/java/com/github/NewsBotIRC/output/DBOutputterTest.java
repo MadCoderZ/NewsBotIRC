@@ -27,7 +27,9 @@ import com.github.NewsBotIRC.ConfReader;
 import com.github.NewsBotIRC.feedreaders.DBEntry;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -81,14 +83,15 @@ public class DBOutputterTest
         System.out.println("save");
         DBOutputter instance = new DBOutputter();
 
-        instance.append(new DBEntry("News Title01", this.duplicateLink, "My desc",
+        List<String> categories = Arrays.asList("weird", "science");
+        instance.append(new DBEntry("News Title01", this.duplicateLink, "My desc", categories,
                 LocalDateTime.of(2017, Month.APRIL, 20, 21, 15, 20)));
-        instance.append(new DBEntry("News Title01", this.duplicateLink, "My desc",
+        instance.append(new DBEntry("News Title01", this.duplicateLink, "My desc", categories,
                 LocalDateTime.of(2017, Month.APRIL, 20, 21, 15, 20)));
-        instance.append(new DBEntry("News Title01", this.duplicateLink, "My desc",
+        instance.append(new DBEntry("News Title01", this.duplicateLink, "My desc", categories,
                 LocalDateTime.of(2017, Month.APRIL, 20, 21, 15, 20)));
         instance.append(new DBEntry("News Title02", "http://www.geronimo.guru", "My little site",
-                LocalDateTime.of(2017, Month.APRIL, 20, 21, 20, 30)));
+                categories, LocalDateTime.of(2017, Month.APRIL, 20, 21, 20, 30)));
 
         instance.save();
 

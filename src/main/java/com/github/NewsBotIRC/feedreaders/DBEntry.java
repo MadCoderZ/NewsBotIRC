@@ -26,8 +26,12 @@ package com.github.NewsBotIRC.feedreaders;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -48,17 +52,28 @@ public class DBEntry implements NewsEntry, Serializable
     private String link;
     private String description;
     private LocalDateTime ldt;
+    private List<String> categories;
 
     public DBEntry()
     {
     }
 
-    public DBEntry(String title, String link, String description, LocalDateTime ldt)
+    public DBEntry(String title, String link, String description, List<String> categories, LocalDateTime ldt)
     {
         this.title = title;
         this.link = link;
         this.description = description;
+        this.categories = categories;
         this.ldt = ldt;
+    }
+
+    public DBEntry(NewsEntry entry)
+    {
+        this.title = entry.getTitle();
+        this.link = entry.getLink();
+        this.description = entry.getDescription();
+        this.ldt = entry.getLocalDateTime();
+        this.categories = entry.getCategories();
     }
 
     @Id
@@ -124,5 +139,19 @@ public class DBEntry implements NewsEntry, Serializable
     public void setDescription(String desc)
     {
         this.description = desc;
+    }
+
+    @Override
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name="Categories")
+    public List<String> getCategories()
+    {
+        return this.categories;
+    }
+
+    @Override
+    public void setCategories(List<String> categories)
+    {
+        this.categories = categories;
     }
 }

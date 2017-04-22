@@ -42,9 +42,16 @@ public class ConsoleOutputter implements Outputter
         String timeAgo =
                 LocalDateTimeAdjuster.timeAgo(entry.getLocalDateTime());
 
+        String categories = new String();
+        for (String c : entry.getCategories()) {
+            if (categories.isEmpty()) categories += c;
+            else categories += "; " + c;
+        }
 
-        LogManager.getLogger(ConsoleOutputter.class)
-                .info(entry.getTitle() + " " + timeAgo +  " <" + link + ">");
+        String output = "\"" + entry.getTitle() + "\" " + timeAgo +  " <" + link + ">";
+        if (!categories.isEmpty()) output += " [" + categories.trim() + "]";
+
+        LogManager.getLogger(ConsoleOutputter.class).info(output);
     }
 
     @Override

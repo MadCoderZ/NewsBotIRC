@@ -25,11 +25,14 @@
 package com.github.NewsBotIRC.feedreaders;
 
 import com.github.NewsBotIRC.util.HTMLParser;
+import com.rometools.rome.feed.synd.SyndCategory;
 import com.rometools.rome.feed.synd.SyndEntry;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.util.Date;
+import java.util.List;
+import static java.util.stream.Collectors.toList;
 
 /**
  *
@@ -97,6 +100,20 @@ public class RomeToolsEntry implements NewsEntry
 
     @Override
     public void setDescription(String desc)
+    {
+    }
+
+    @Override
+    public List<String> getCategories()
+    {
+        return this.entry.getCategories()
+                .stream()
+                .map(SyndCategory::getName)
+                .collect(toList());
+    }
+
+    @Override
+    public void setCategories(List<String> categories)
     {
     }
 }
