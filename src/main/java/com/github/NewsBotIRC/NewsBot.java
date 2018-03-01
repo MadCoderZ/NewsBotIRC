@@ -34,13 +34,13 @@ public class NewsBot
                 break;
             case CONSOLE:
                 newsReader = new NewsReader(new ConsoleOutputter());
-                new NewsTimer(config.getPollFrequency()).addTask(
+                new NewsExecutor(config.getPollFrequency()).addTask(
                         new NewsTask(newsReader)
                 );
                 break;
             case DB:
                 newsReader = new NewsReader(new DBOutputter());
-                new NewsTimer(config.getPollFrequency()).addTask(
+                new NewsExecutor(config.getPollFrequency()).addTask(
                         new NewsTask(newsReader)
                 );
                 break;

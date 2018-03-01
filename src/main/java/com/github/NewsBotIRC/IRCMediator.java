@@ -67,7 +67,7 @@ public class IRCMediator
         this.bot = new PircBotX(confBuilder.buildConfiguration());
         this.newsReader = new NewsReader(new IRCOutputter());
 
-        new NewsTimer(ConfReader.getInstance().getPollFrequency()).addTask(
+        new NewsExecutor(ConfReader.getInstance().getPollFrequency()).addTask(
                         new NewsTask(newsReader)
         );
     }

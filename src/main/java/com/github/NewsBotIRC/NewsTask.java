@@ -1,12 +1,12 @@
 package com.github.NewsBotIRC;
 
 import com.github.NewsBotIRC.output.Outputter;
-import java.util.TimerTask;
+import org.apache.logging.log4j.LogManager;
 
 /**
  * Created by Geronimo Poppino on 11/6/16
  */
-public class NewsTask extends TimerTask
+public class NewsTask implements Runnable
 {
     private final NewsReader newsReader;
 
@@ -18,7 +18,13 @@ public class NewsTask extends TimerTask
     @Override
     public void run()
     {
-        Outputter outputter = this.newsReader.readNews();
-        outputter.save();
+        Outputter outputter;
+        try {
+            outputter = this.newsReader.readNews();
+            outputter.save();
+        } catch (Throwable t) {
+            LogManager.getLogger(NewsTask.class).debug(t.getMessage());
+            t.getStackTrace();
+        }
     }
 }

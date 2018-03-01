@@ -138,6 +138,8 @@ public final class NewsReader
             }
         } catch (IOException e) {
             LogManager.getLogger(NewsReader.class).error(e.getMessage());
+        } catch (Exception e) {
+            LogManager.getLogger(NewsReader.class).error(e.getMessage());
         }
 
         return this.outputter;

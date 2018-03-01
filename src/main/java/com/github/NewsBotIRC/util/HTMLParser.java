@@ -35,7 +35,8 @@ public class HTMLParser
 {
     public static String stripHTML(String html)
     {
-        Document doc = Jsoup.parse(html);
-        return doc.body().text();
+        Document doc = Jsoup.parseBodyFragment(html.trim());
+        if (doc.body().hasText()) return doc.body().text();
+        return "";
     }
 }
