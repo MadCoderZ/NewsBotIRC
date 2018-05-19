@@ -31,9 +31,9 @@ import com.rometools.rome.io.XmlReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import static java.util.stream.Collectors.toList;
+import java.util.Set;
+import java.util.TreeSet;
+import static java.util.stream.Collectors.toSet;
 import org.apache.logging.log4j.LogManager;
 
 /**
@@ -77,11 +77,11 @@ public class RomeToolsFeed extends NewsFeed
     }
 
     @Override
-    public List<NewsEntry> getEntries()
+    public Set<NewsEntry> getEntries()
     {
-        if (!this.read() && this.feed == null) return new ArrayList<>();
+        if (!this.read() && this.feed == null) return new TreeSet<>();
         return this.feed.getEntries().stream()
                 .map(e -> new RomeToolsEntry(e))
-                .collect(toList());
+                .collect(toSet());
     }
 }

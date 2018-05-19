@@ -16,13 +16,11 @@ import org.apache.logging.log4j.LogManager;
 public final class NewsReader
 {
     private List<NewsFeed> feeds;
-    private Set<NewsEntry> oldEntries;
     private Outputter outputter = null;
 
     NewsReader(Outputter outputter)
     {
         this.feeds = new ArrayList<>();
-        this.oldEntries = new HashSet();
         try {
             this.outputter = outputter.getClass().newInstance();
         } catch (InstantiationException | IllegalAccessException e) {
@@ -67,10 +65,10 @@ public final class NewsReader
             return false;
         }
 
+        feed.addPublishedEntries(feed.getEntries()); // mark all entries as read
         this.feeds.add(feed);
-        this.oldEntries.addAll(feed.getEntries()); // mark all entries as read
 
-        LogManager.getLogger(NewsReader.class).info("Added Feed -> " + url);
+        LogManager.getLogger(NewsReader.class).info("Added Feed -> " + feed.getURL());
 
         return true;
     }
@@ -93,54 +91,39 @@ public final class NewsReader
         return this.feeds;
     }
 
-    private List<NewsEntry> getAllEntries() throws IOException
+    private Set<NewsEntry> getNewEntries(Set<NewsEntry> allEntries, Set<String> oldLinks)
     {
-       List<NewsEntry> allEntries =
-               Collections.synchronizedList(new ArrayList<>());
+        Set<NewsEntry> newEntries = allEntries.stream()
+                .filter(e -> !oldLinks.contains(e.getLink()) && !e.getTitle().isEmpty())
+                .collect(Collectors.toSet());
 
-        this.feeds.parallelStream().forEach(feed ->
-                                        allEntries.addAll(feed.getEntries()));
-        return allEntries;
+        return newEntries;
     }
 
     public synchronized Outputter readNews()
     {
         LogManager.getLogger(NewsReader.class)
                 .debug("readNews(): checking for updates...");
-        try {
-            Set<String> oldLinks = this.oldEntries.stream()
-                    .map(NewsEntry::getLink)
-                    .collect(Collectors.toSet());
 
-            Set<NewsEntry> allEntries = new HashSet<>(this.getAllEntries());
+        this.feeds.forEach((feed) -> {
+            Set<String> oldLinks = feed.getPublishedEntries().stream()
+                .map(NewsEntry::getLink)
+                .collect(Collectors.toSet());
 
-            Set<NewsEntry> newEntries = allEntries.stream()
-                    .filter(e -> !oldLinks.contains(e.getLink()) &&
-                            !e.getTitle().isEmpty())
-                    .collect(Collectors.toSet());
+            LogManager.getLogger(NewsReader.class).info("Nro Published Entries: " + feed.getPublishedEntries().size());
+            Set<NewsEntry> entries = feed.getEntries();
+            Set<NewsEntry> newEntries = this.getNewEntries(entries, oldLinks);
+
+            LogManager.getLogger(NewsReader.class).info("Title: " + feed.getTitle() +
+                    " URL " + feed.getURL() + " Number of oldLinks -> " + oldLinks.size() + " " +
+                     "New Entries -> " + newEntries.size() + " Current Entries -> " + entries.size());
 
             newEntries.forEach(e -> this.outputter.append(e));
 
-            this.oldEntries.addAll(newEntries);
-            Set<String> allLinks = allEntries.stream()
-                    .map(NewsEntry::getLink)
-                    .collect(Collectors.toSet());
+            feed.addPublishedEntries(newEntries);
 
-            Set<NewsEntry> toRemove = this.oldEntries.stream()
-                    .filter(e -> !allLinks.contains(e.getLink()))
-                    .collect(Collectors.toSet());
-
-            if (toRemove.size() > 0) {
-                LogManager.getLogger(NewsReader.class).debug(
-                        "Cleaning old entries... size: " +
-                                toRemove.size());
-                this.oldEntries.removeAll(toRemove);
-            }
-        } catch (IOException e) {
-            LogManager.getLogger(NewsReader.class).error(e.getMessage());
-        } catch (Exception e) {
-            LogManager.getLogger(NewsReader.class).error(e.getMessage());
-        }
+            feed.truncatePublishedEntries(feed.getPublishedEntries().size() - entries.size()*5);
+        });
 
         return this.outputter;
     }

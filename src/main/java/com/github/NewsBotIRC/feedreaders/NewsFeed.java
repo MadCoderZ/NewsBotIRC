@@ -24,17 +24,29 @@
 
 package com.github.NewsBotIRC.feedreaders;
 
-import java.util.List;
+import java.time.Instant;
+import java.util.Set;
+import java.util.TreeSet;
 import org.apache.logging.log4j.LogManager;
 
 /**
  *
  * @author Geronimo
  */
-public abstract class NewsFeed implements Cloneable
+public abstract class NewsFeed
 {
     private String feedURL;
-    private boolean breakingNews = false;
+    private TreeSet<NewsEntry> publishedEntries;
+
+    public NewsFeed()
+    {
+        this.publishedEntries = new TreeSet<>(
+                (NewsEntry a, NewsEntry b) -> {
+                    if (a.getDownloadedTimeStamp() == b.getDownloadedTimeStamp()) return a.getLink().compareTo(b.getLink());
+                    if (a.getDownloadedTimeStamp() > b.getDownloadedTimeStamp()) return 1;
+                    return -1;
+                });
+    }
 
     public String getURL()
     {
@@ -46,31 +58,40 @@ public abstract class NewsFeed implements Cloneable
         this.feedURL = feedURL;
     }
 
-    public boolean isBreakingNews()
+    public TreeSet<NewsEntry> getPublishedEntries()
     {
-        return this.breakingNews;
+        return this.publishedEntries;
     }
 
-    public void setBreakingNews(boolean breakingNews)
+    public void addPublishedEntries(Set<NewsEntry> entries)
     {
-        this.breakingNews = breakingNews;
+        LogManager.getLogger(NewsFeed.class).info("Number of Added Entries -> " + entries.size());
+        entries.forEach(e -> e.setDownloadedTimeStamp(Instant.now().toEpochMilli()));
+        this.publishedEntries.addAll(entries);
+        LogManager.getLogger(NewsFeed.class).info("Number of Published Entries -> " +
+                this.publishedEntries.size());
     }
 
-    @Override
-    public Object clone()
+    public void truncatePublishedEntries(int numberOfEntries)
     {
-      Object clone = null;
-
-      try {
-         clone = super.clone();
-      } catch (CloneNotSupportedException e) {
-          LogManager.getLogger(NewsFeed.class).error(e.getMessage());
-      }
-
-      return clone;
-   }
+        int numberOfRemovedEntries = 0;
+        if (numberOfEntries > 0 && !this.publishedEntries.isEmpty()) {
+            while (numberOfEntries > 0) {
+                NewsEntry entry = this.publishedEntries.pollFirst();
+                if (entry == null) {
+                    LogManager.getLogger(NewsFeed.class).info("Entry is null!");
+                    return;
+                }
+                LogManager.getLogger(NewsFeed.class).info("Removing entry: " + entry.getLink() +
+                        " - timestamp: " + entry.getDownloadedTimeStamp());
+                numberOfEntries--;
+                numberOfRemovedEntries++;
+            }
+        }
+        LogManager.getLogger(NewsFeed.class).info("Number of Purged Entries: " + numberOfRemovedEntries);
+    }
 
     public abstract boolean isValid();
     public abstract String getTitle();
-    public abstract List<NewsEntry> getEntries();
+    public abstract Set<NewsEntry> getEntries();
 }

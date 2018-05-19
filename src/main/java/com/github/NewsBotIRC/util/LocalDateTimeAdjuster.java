@@ -25,9 +25,7 @@
 package com.github.NewsBotIRC.util;
 
 import java.time.Duration;
-import java.time.Instant;
 import java.time.LocalDateTime;
-import org.apache.logging.log4j.LogManager;
 
 /**
  *

@@ -28,6 +28,9 @@ import com.github.NewsBotIRC.ConfReader.Input;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.apache.logging.log4j.LogManager;
 
 /**
  *
@@ -37,29 +40,34 @@ public final class NewsFactory
 {
     private static NewsFactory instance = null;
 
-    Map<Input, NewsFeed> feedReaders;
+    Map<Input, Class> feedReaders;
 
     protected NewsFactory()
     {
         this.feedReaders = new HashMap<>();
 
-        this.addFeedType(Input.RSS, new RomeToolsFeed());
-        this.addFeedType(Input.DB, new DBFeed());
+        this.addFeedType(Input.RSS, RomeToolsFeed.class);
+        this.addFeedType(Input.DB, DBFeed.class);
     }
 
-    public void addFeedType(Input feedType, NewsFeed feedImplemenetation)
+    public void addFeedType(Input feedType, Class feedImplemenetation)
     {
         this.feedReaders.put(feedType, feedImplemenetation);
     }
 
     public NewsFeed createFeed(Input feedType, String feedURL)
     {
-        Optional<NewsFeed> feed =
-                Optional.ofNullable(this.feedReaders.get(feedType));
+        Class feed = this.feedReaders.get(feedType);
 
-        feed.ifPresent(f -> f.setURL(feedURL));
-
-        return feed.map(f -> (NewsFeed) f.clone()).orElse(new EmptyFeed());
+        NewsFeed rFeed = null;
+        try {
+            rFeed = (NewsFeed)feed.newInstance();
+        } catch (InstantiationException | IllegalAccessException ex) {
+            LogManager.getLogger(NewsFactory.class).debug(ex.getMessage());
+        }
+        if (rFeed == null) return new EmptyFeed();
+        rFeed.setURL(feedURL);
+        return rFeed;
     }
 
     public static NewsFactory getInstance()

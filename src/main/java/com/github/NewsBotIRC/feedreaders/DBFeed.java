@@ -28,6 +28,8 @@ import com.github.NewsBotIRC.ConfReader;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -82,7 +84,7 @@ public class DBFeed extends NewsFeed
     }
 
     @Override
-    public List<NewsEntry> getEntries()
+    public Set<NewsEntry> getEntries()
     {
         EntityManager entityManager = this.getEntityManager();
 
@@ -99,6 +101,6 @@ public class DBFeed extends NewsFeed
 
         this.offset += result.size();
 
-        return result;
+        return new TreeSet(result);
     }
 }

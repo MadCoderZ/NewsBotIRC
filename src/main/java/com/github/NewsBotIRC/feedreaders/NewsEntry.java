@@ -38,9 +38,11 @@ public interface NewsEntry
     public String getDescription();
     public List<String> getCategories();
     public LocalDateTime getLocalDateTime();
+    public long getDownloadedTimeStamp();
     public void setTitle(String title);
     public void setLink(String link);
     public void setDescription(String desc);
     public void setCategories(List<String> categories);
     public void setLocalDateTime(LocalDateTime ldt);
+    public void setDownloadedTimeStamp(long timestamp);
 }

@@ -41,10 +41,12 @@ import static java.util.stream.Collectors.toList;
 public class RomeToolsEntry implements NewsEntry
 {
     private final SyndEntry entry;
+    private long timestamp;
 
     public RomeToolsEntry(SyndEntry entry)
     {
         this.entry = entry;
+        this.timestamp = 0;
     }
 
     @Override
@@ -75,7 +77,6 @@ public class RomeToolsEntry implements NewsEntry
     public LocalDateTime getLocalDateTime()
     {
         LocalDateTime ldt;
-
         Date tmpDate = this.entry.getPublishedDate() != null ?
                 this.entry.getPublishedDate() : this.entry.getUpdatedDate();
         if (tmpDate != null)  {
@@ -118,5 +119,17 @@ public class RomeToolsEntry implements NewsEntry
     @Override
     public void setCategories(List<String> categories)
     {
+    }
+
+    @Override
+    public long getDownloadedTimeStamp()
+    {
+        return this.timestamp;
+    }
+
+    @Override
+    public void setDownloadedTimeStamp(long timestamp)
+    {
+        this.timestamp = timestamp;
     }
 }

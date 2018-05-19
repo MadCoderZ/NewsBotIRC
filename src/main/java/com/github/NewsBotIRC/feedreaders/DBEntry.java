@@ -52,6 +52,7 @@ public class DBEntry implements NewsEntry, Serializable
     private String link;
     private String description;
     private LocalDateTime ldt;
+    private long timestamp;
     private List<String> categories;
 
     public DBEntry()
@@ -65,6 +66,7 @@ public class DBEntry implements NewsEntry, Serializable
         this.description = description;
         this.categories = categories;
         this.ldt = ldt;
+        this.timestamp = 0;
     }
 
     public DBEntry(NewsEntry entry)
@@ -74,6 +76,7 @@ public class DBEntry implements NewsEntry, Serializable
         this.description = entry.getDescription();
         this.ldt = entry.getLocalDateTime();
         this.categories = entry.getCategories();
+        this.timestamp = 0;
     }
 
     @Id
@@ -153,5 +156,17 @@ public class DBEntry implements NewsEntry, Serializable
     public void setCategories(List<String> categories)
     {
         this.categories = categories;
+    }
+
+    @Override
+    public long getDownloadedTimeStamp()
+    {
+        return this.timestamp;
+    }
+
+    @Override
+    public void setDownloadedTimeStamp(long timestamp)
+    {
+        this.timestamp = timestamp;
     }
 }

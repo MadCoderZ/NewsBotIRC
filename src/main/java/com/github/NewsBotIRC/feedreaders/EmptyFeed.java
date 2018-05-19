@@ -24,8 +24,8 @@
 
 package com.github.NewsBotIRC.feedreaders;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  *
@@ -51,8 +51,8 @@ public class EmptyFeed extends NewsFeed
     }
 
     @Override
-    public List<NewsEntry> getEntries()
+    public Set<NewsEntry> getEntries()
     {
-        return new ArrayList();
+        return new TreeSet();
     }
 }
