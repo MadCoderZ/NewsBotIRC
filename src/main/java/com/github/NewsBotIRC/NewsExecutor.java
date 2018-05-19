@@ -20,6 +20,6 @@ public class NewsExecutor
 
         public void addTask(Runnable task)
         {
-            this.executor.scheduleAtFixedRate(task, this.seconds, this.seconds, SECONDS);
+            this.executor.scheduleAtFixedRate(new NewsTaskWrapper(task), this.seconds, this.seconds, SECONDS);
         }
 }
