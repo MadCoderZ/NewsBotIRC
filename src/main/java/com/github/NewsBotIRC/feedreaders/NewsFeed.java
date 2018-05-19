@@ -42,7 +42,13 @@ public abstract class NewsFeed
     {
         this.publishedEntries = new TreeSet<>(
                 (NewsEntry a, NewsEntry b) -> {
-                    if (a.getDownloadedTimeStamp() == b.getDownloadedTimeStamp()) return a.getLink().compareTo(b.getLink());
+                    if (a.getDownloadedTimeStamp() == b.getDownloadedTimeStamp()) {
+                        if (a.getLink() != null) {
+                            return a.getLink().compareTo(b.getLink());
+                        } else if (a.getTitle() != null) {
+                            return a.getTitle().compareTo(b.getTitle());
+                        } else return 0;
+                    }
                     if (a.getDownloadedTimeStamp() > b.getDownloadedTimeStamp()) return 1;
                     return -1;
                 });
