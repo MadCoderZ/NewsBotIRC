@@ -44,14 +44,19 @@ public class IRCOutputter implements Outputter
     @Override
     public void append(NewsEntry entry)
     {
-        String domain = entry.getLink().replaceFirst(".*https?://([\\w.-]+)/.*",
-                                                                        "<$1>");
-        String link = URLShortener.shortenUrl(entry.getLink());
         String timeAgo = LocalDateTimeAdjuster.timeAgo(entry.getLocalDateTime());
+        if (entry.getLink() != null) {
+            String domain = entry.getLink().replaceFirst(".*https?://([\\w.-]+)/.*",
+                                                                        "<$1>");
+            String link = URLShortener.shortenUrl(entry.getLink());
 
-        IRCMediator.getInstance().sendMessage("\"" + Colors.DARK_GRAY
-                + entry.getTitle() + Colors.NORMAL + "\" " + timeAgo + " "
-                + Colors.ITALICS + domain + Colors.NORMAL + " <" + link + ">");
+            IRCMediator.getInstance().sendMessage("\"" + Colors.DARK_GRAY
+                 + entry.getTitle() + Colors.NORMAL + "\" " + timeAgo + " "
+                 + Colors.ITALICS + domain + Colors.NORMAL + " <" + link + ">");
+        } else {
+            IRCMediator.getInstance().sendMessage("\"" + Colors.DARK_GRAY
+                 + entry.getTitle() + Colors.NORMAL + "\" " + timeAgo);
+        }
     }
 
     @Override
