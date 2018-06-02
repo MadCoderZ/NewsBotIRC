@@ -10,5 +10,6 @@ public interface Cmd {
 
     public String get();
     public void action(IRCMediator m, String params);
+    public String help();
 
 }

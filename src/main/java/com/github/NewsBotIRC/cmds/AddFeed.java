@@ -31,4 +31,9 @@ public class AddFeed implements Cmd
         }
     }
 
+    @Override
+    public String help()
+    {
+        return "Adds a feed: !" + this.get() + " http://server/feed_name";
+    }
 }

@@ -23,4 +23,10 @@ public class Version implements Cmd {
                 config.getString("application.inceptionYear") + ")"
         );
     }
+
+    @Override
+    public String help()
+    {
+        return "Shows version number.";
+    }
 }

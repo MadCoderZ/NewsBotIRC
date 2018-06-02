@@ -37,4 +37,10 @@ public class Uptime implements Cmd
         m.sendMessage(elapsedDays + " days, " + elapsedHours + " hours, " +
                 elapsedMinutes + " minutes, " + elapsedSeconds + " seconds");
     }
+
+    @Override
+    public String help()
+    {
+        return "Shows the bot's uptime.";
+    }
 }

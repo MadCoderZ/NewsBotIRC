@@ -25,5 +25,11 @@ public class Debug implements Cmd
         long usedMB = (memory / 1024) / 1024;
         m.sendMessage("Used memory: " + usedMB + " Megabytes");
     }
+
+    @Override
+    public String help()
+    {
+        return "Shows the bot's memory usage.";
+    }
 }
 

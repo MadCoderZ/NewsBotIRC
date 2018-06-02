@@ -23,4 +23,10 @@ public class ListFeeds implements Cmd
             LogManager.getLogger(ListFeeds.class).error(e.getMessage());
         }
     }
+
+    @Override
+    public String help()
+    {
+        return "Lists the available feeds.";
+    }
 }

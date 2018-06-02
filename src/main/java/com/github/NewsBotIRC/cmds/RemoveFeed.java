@@ -28,4 +28,10 @@ public class RemoveFeed implements Cmd
             m.sendMessage("ERROR: could not remove feed!");
         }
     }
+
+    @Override
+    public String help()
+    {
+        return "Removes a feed: !" + this.get() + " index_number";
+    }
 }
