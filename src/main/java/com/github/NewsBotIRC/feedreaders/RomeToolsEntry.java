@@ -52,8 +52,9 @@ public class RomeToolsEntry implements NewsEntry
     @Override
     public String getTitle()
     {
-        String title = this.entry.getTitle().replaceAll("\n", "");
-        return title.trim();
+        String title = this.entry.getTitle();
+        if (title == null) return "";
+        return title.replaceAll("\n", "").trim();
     }
 
     @Override
