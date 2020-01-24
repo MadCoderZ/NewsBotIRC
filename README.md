@@ -1,4 +1,8 @@
 ![](http://i.imgur.com/hrELgzg.png)
+
+# Not maintained anymore
+This repository has been archived and it is not maintained anymore. However, you may still fork it but we will not be accepting PRs nor issues.
+
 # Java IRC Bot with RSS feed reader
 [![Build Status](https://travis-ci.org/MadCoderZ/NewsBotIRC.svg?branch=master)](https://travis-ci.org/MadCoderZ/NewsBotIRC)
 
